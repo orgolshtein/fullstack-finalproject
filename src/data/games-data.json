@@ -1,0 +1,90 @@
+[
+    {
+        "id": 1,
+        "title": "Premium European Roulette",
+        "descrition": "Descrition for Premium European Roulette",
+        "thumb": "/src/assets/gamethumbs/premiumeuropeanroulette375x375.png",
+        "new": false,
+        "type": "table"
+    },
+    {
+        "id": 2,
+        "title": "Green Wizard",
+        "descrition": "Descrition for Green Wizard",
+        "thumb": "/src/assets/gamethumbs/greenwizard375x375.jpg",
+        "new": true,
+        "type": "slot"
+    },
+    {
+        "id": 3,
+        "title": "Silver Bullet",
+        "descrition": "Descrition for Silver Bullet",
+        "thumb": "/src/assets/gamethumbs/silverbullet375x375.jpg",
+        "new": false,
+        "type": "slot"
+    },
+    {
+        "id": 4,
+        "title": "Blue Wizard",
+        "descrition": "Descrition for Blue Wizard",
+        "thumb": "/src/assets/gamethumbs/bluewizard375x375.png",
+        "new": false,
+        "type": "slot"
+    },
+    {
+        "id": 5,
+        "title": "Mega Fire Blaze Roulette",
+        "descrition": "Descrition for Mega Fire Blaze Roulette",
+        "thumb": "/src/assets/gamethumbs/megafireblazeroulette375x375.png",
+        "new": false,
+        "type": "table"
+    },
+    {
+        "id": 6,
+        "title": "Jackpot Giant",
+        "descrition": "Descrition for Jackpot Giant",
+        "thumb": "/src/assets/gamethumbs/jackpotgiant375x375.jpg",
+        "new": false,
+        "type": "slot"
+    },
+    {
+        "id": 7,
+        "title": "Dragon Jackpot Roulette",
+        "descrition": "Descrition for Dragon Jackpot Roulette",
+        "thumb": "/src/assets/gamethumbs/dragonjackpotroulette375x375.jpg",
+        "new": true,
+        "type": "table"
+    },
+    {
+        "id": 8,
+        "title": "Red Wizard",
+        "descrition": "Descrition for Red Wizard",
+        "thumb": "/src/assets/gamethumbs/redwizard375x375.svg",
+        "new": false,
+        "type": "slot"
+    },
+    {
+        "id": 9,
+        "title": "Jungle Giants",
+        "descrition": "Descrition for Jungle Giants",
+        "thumb": "/src/assets/gamethumbs/junglegiants375x375.svg",
+        "new": false,
+        "type": "slot"
+    },
+    {
+        "id": 10,
+        "title": "Joker Rush Power Play",
+        "descrition": "Descrition for Joker Rush Power Play",
+        "thumb": "/src/assets/gamethumbs/jokerrushpp375x375.svg",
+        "new": true,
+        "type": "slot"
+    },
+    {
+        "id": 11,
+        "title": "Premium Blackjack",
+        "descrition": "Descrition for Premium Blackjack",
+        "thumb": "/src/assets/gamethumbs/premiumblackjack375x375.png",
+        "new": false,
+        "type": "table"
+    }
+]
