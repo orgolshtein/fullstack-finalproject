@@ -6,13 +6,25 @@ import AppLogo from "../AppLogo";
 
 export default function Header (){
     const [headerMsg, setHeaderMsg] = useState("");
+    const [passwordInputType, setPasswordInputType] = useState("password");
+    const [passwordIcon, setPasswordIcon] = useState("/src/assets/icons/password_invisible_icon.svg")
+
+    const passwordIconClickHandler = () => {
+        if (passwordInputType === "password") {
+            setPasswordInputType("text");
+            setPasswordIcon("/src/assets/icons/password_visible_icon.svg");
+          } else {
+            setPasswordInputType("password");
+            setPasswordIcon("/src/assets/icons/password_invisible_icon.svg");
+          }
+    };
 
     const forgotClickHandler = () => {
         setHeaderMsg("Temporary Message! Need to create Forgot Password Component");
         setTimeout(()=>{
             setHeaderMsg("");
         }, 3000);
-    }
+    };
 
     const loginClickHandler = () =>{
         setHeaderMsg("Username/Email or Password does not exist");
@@ -40,14 +52,19 @@ export default function Header (){
                     alt="mainlogo" 
                 />
                 <div>
-                    <input
-                    type="text"
-                    placeholder="Username / Email"
-                    />
-                    <input
-                    type="text"
-                    placeholder="Password:"
-                    />
+                    <span className="inputContainer">
+                        <input
+                        type="text"
+                        placeholder="Username / Email"
+                        />
+                    </span> 
+                    <span className="inputContainer">
+                        <input
+                        type={passwordInputType}
+                        placeholder="Password:"
+                        />
+                        <img src={passwordIcon} onClick={passwordIconClickHandler}/>
+                    </span>       
                     <button className="loginButton" onClick={loginClickHandler}>Login</button>
                     <span></span>
                     <span className="msgContainer">{headerMsg}</span>
@@ -103,22 +120,48 @@ const HeaderDiv = styled.div`
             color: ${lighten(0.2, AppColor.MainText)};
         }
     
-        input{
+        .inputContainer{
             font-size: 1rem;
             border-radius: 0;
             border-color: ${AppColor.InputBorder};
             box-shadow: none;
             color: ${AppColor.InputText};
             border-width: 1px;
-            padding: 0 2.5em 0 0.56em;
             display: inline-block;
-            margin: 0;
             width: 100%;
             font-weight: 530;
             border-style: solid;
             background: ${AppColor.InputBackground};
             transition: box-shadow 100ms,border 100ms;
             line-height: 1;
+            
+            input{
+                border:none;
+                width: 100%;
+                padding: 0 2.5em 0 0.56em;
+                height: 100%;
+            }
+
+            img{
+                display: inline-block;
+                height: 100%;
+                min-height: 100%;
+                max-height: 100%;
+                width: 1.2em;
+                min-width: initial;
+                margin-right: 0.285em;
+                background-size: contain;
+                opacity: .60;
+                top: -2.2rem;
+                vertical-align: middle;
+                overflow: hidden;
+                text-align: left;
+                text-indent: -3000px;
+                position: absolute;
+                left: 27.5rem;
+                font-size: 1.25rem;
+                cursor: pointer;
+            }
         }
     
         .msgContainer{
