@@ -25,7 +25,7 @@ export default function Home () {
             {gamesList
             ?.map((item) => (
                 <div key={item.id} /* onClick={() => updateProfileRobot(item)} */>
-                <GameThumb image={item.thumb} res={180} />
+                <GameThumb image={item.thumb} $res={180} />
                 </div>
                 ))}
             
