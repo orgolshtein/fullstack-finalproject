@@ -5,9 +5,10 @@ const ErrorText = "#e25757";
 const LoginBtn = "#aea269";
 const JoinBtn = "#00a259";
 const ButtonText = "#ffffff";
-const InputBorder = "#e25757";
+const InputBorder = "#7081ae";
 const InputText = "#000000";
-const InputBackground = "#ffffff"
+const InputBackground = "#ffffff";
+const DisbledInputBackground = "#7081ae";
 
 export { 
     MainText, 
@@ -19,5 +20,6 @@ export {
     ButtonText,
     InputBorder,
     InputText,
-    InputBackground
+    InputBackground,
+    DisbledInputBackground
 }

@@ -3,11 +3,11 @@ import BannerGallery from "../components/BannerGallery";
 import { CenteredDiv } from "../styles/Containers";
 import GameTabs from "../components/GameTabs";
 import { Outlet } from "react-router-dom";
+import ForgotPassword from "../components/ForgotPassword";
 import Footer from "../components/footer/Footer";
-import ToTop from "../components/ToTop";
+// import ToTop from "../components/ToTop";
 
 export default function MainLayout () {
-
   return (
     <div>
         <Header />
@@ -17,7 +17,8 @@ export default function MainLayout () {
           <Outlet />
         </CenteredDiv>
         <Footer />
-        <ToTop />
+        <ForgotPassword />
+        {/* <ToTop /> */}
     </div>
   )
 };

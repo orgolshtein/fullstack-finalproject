@@ -50,8 +50,8 @@ const GalleryDIV = styled.div`
     background:#000000;
 
     .swiper {
-      width: 100rem;
-      height: 20rem;
+      width: 90rem;
+      height: 18rem;
     }
 
     .swiper-slide img {
@@ -93,7 +93,7 @@ const GalleryDIV = styled.div`
         top: 2rem;
         z-index: 1;
         width: 25rem;
-        left: 15%;
+        left: 13%;
     }
 
     button{
@@ -104,7 +104,7 @@ const GalleryDIV = styled.div`
       top: 12rem;
       z-index: 1;
       width: 25rem;
-      left: 15%;
+      left: 13%;
       width: 21.4rem;
       max-width: 100%;
       margin-left: 2.2rem;

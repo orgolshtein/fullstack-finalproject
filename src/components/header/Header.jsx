@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import { lighten, darken } from "polished";
 import * as AppColor from "../../styles/Colors";
 import AppLogo from "../AppLogo";
+import { AppContext } from "../../state/AppContext";
 
 export default function Header (){
     const [headerMsg, setHeaderMsg] = useState("");
     const [passwordInputType, setPasswordInputType] = useState("password");
-    const [passwordIcon, setPasswordIcon] = useState("/src/assets/icons/password_invisible_icon.svg")
+    const [passwordIcon, setPasswordIcon] = useState("/src/assets/icons/password_invisible_icon.svg");
+    const { 
+        updateforgotPasswordDisplay, 
+        elementDiabled, 
+        updateElementDisabled, 
+        inputBackgroundColor, 
+        updateInputBackgroundColor 
+    } = useContext(AppContext);
 
     const passwordIconClickHandler = () => {
         if (passwordInputType === "password") {
@@ -20,17 +28,20 @@ export default function Header (){
     };
 
     const forgotClickHandler = () => {
-        setHeaderMsg("Temporary Message! Need to create Forgot Password Component");
-        setTimeout(()=>{
-            setHeaderMsg("");
-        }, 3000);
+        updateforgotPasswordDisplay("flex");
     };
 
     const loginClickHandler = () =>{
-        setHeaderMsg("Username/Email or Password does not exist");
+        updateElementDisabled(true);
+        updateInputBackgroundColor(AppColor.DisbledInputBackground);
         setTimeout(()=>{
-            setHeaderMsg("");
-        }, 20000);
+            setHeaderMsg("Username/Email or Password does not exist");
+            updateElementDisabled(false);
+            updateInputBackgroundColor(AppColor.InputBackground);
+            setTimeout(()=>{
+                setHeaderMsg("");
+            }, 5000);
+        }, Math.floor(Math.random() * (5000-1000)+1000));
     };
 
     const joinClickHandler = () => {
@@ -56,19 +67,23 @@ export default function Header (){
                         <input
                         type="text"
                         placeholder="Username / Email"
+                        disabled={elementDiabled}
+                        background={inputBackgroundColor}
                         />
                     </span> 
                     <span className="inputContainer">
                         <input
                         type={passwordInputType}
                         placeholder="Password:"
+                        disabled={elementDiabled}
+                        background={inputBackgroundColor}
                         />
                         <img src={passwordIcon} onClick={passwordIconClickHandler}/>
                     </span>       
                     <button className="loginButton" onClick={loginClickHandler}>Login</button>
                     <span></span>
                     <span className="msgContainer">{headerMsg}</span>
-                    <span><a onClick={forgotClickHandler}>Forgotten Password?</a></span>
+                    <span><a onClick={forgotClickHandler} disabled={elementDiabled}>Forgotten Password?</a></span>
                     <button className="joinButton" onClick={joinClickHandler}>Join Now</button>
                 </div>
             </div>
@@ -131,7 +146,7 @@ const HeaderDiv = styled.div`
             width: 100%;
             font-weight: 530;
             border-style: solid;
-            background: ${AppColor.InputBackground};
+            background: ${(props)=>(props.background)};
             transition: box-shadow 100ms,border 100ms;
             line-height: 1;
             

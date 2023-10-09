@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import games_data from "../data/games-data.json";
-// const games_data = await import("../data/games-data.json")
+// const games_data = await import("../data/games-data.json");
+import * as AppColor from "../styles/Colors";
 
 const AppContext = React.createContext();
 const { Provider } = AppContext;
@@ -9,6 +10,9 @@ const AppProvider = ({children}) =>{
     const [gamesList, setGamesList] = useState([]);
     const [loadingStatus, setLoadingStatus] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
+    const [elementDiabled, setElementDisabled] = useState(false);
+    const [inputBackgroundColor, setInputBackgroundColor] = useState(AppColor.InputBackground);
+    const [forgotPasswordDisplay, setforgotPasswordDisplay] = useState("none");
     const [toTopDisplay, setToTopDisplay] = useState("none");
 
     const getGamesList = ()=>{
@@ -49,6 +53,18 @@ const AppProvider = ({children}) =>{
         setErrorMessage("Cannot connect");
       };
 
+      const updateElementDisabled = (x) =>{
+        setElementDisabled(x);
+      };
+
+      const updateInputBackgroundColor = (x) =>{
+        setInputBackgroundColor(x);
+      };
+
+      const updateforgotPasswordDisplay = (x) => {
+        setforgotPasswordDisplay(x);
+      };
+
       const updateToTopDisplay = (x) => {
         setToTopDisplay(x);
       };
@@ -57,6 +73,9 @@ const AppProvider = ({children}) =>{
         gamesList,
         loadingStatus,
         errorMessage,
+        elementDiabled,
+        inputBackgroundColor,
+        forgotPasswordDisplay,
         toTopDisplay
     };
 
@@ -68,6 +87,9 @@ const AppProvider = ({children}) =>{
         updateGamesList,
         fetchErrorHandler,
         loadingIsFinished,
+        updateElementDisabled,
+        updateInputBackgroundColor,
+        updateforgotPasswordDisplay,
         updateToTopDisplay
     };
 
