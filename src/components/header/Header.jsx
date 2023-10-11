@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import styled from "styled-components";
 import { lighten, darken } from "polished";
 import * as AppColor from "../../styles/Colors";
@@ -9,13 +9,14 @@ export default function Header (){
     const [headerMsg, setHeaderMsg] = useState("");
     const [passwordInputType, setPasswordInputType] = useState("password");
     const [passwordIcon, setPasswordIcon] = useState("/src/assets/icons/password_invisible_icon.svg");
-    const { 
-        updateforgotPasswordDisplay, 
-        elementDiabled, 
-        updateElementDisabled, 
-        inputBackgroundColor, 
-        updateInputBackgroundColor 
-    } = useContext(AppContext);
+    const [loginInputDisabled, setLoginInputDisabled] = useState(false);
+    const [loginBackgroundColor, setLoginBackgroundColor] = useState(AppColor.InputBackground);
+    const [loginBtnActive, setLoginBtnActive] = useState(false);
+    const [joinBtnActive, setJoinBtnActive] = useState(false);
+    const { updateforgotPasswordDisplay, updateRegBlockDisplay } = useContext(AppContext);
+
+    let userInput = useRef();
+    let passInput = useRef();
 
     const passwordIconClickHandler = () => {
         if (passwordInputType === "password") {
@@ -32,23 +33,32 @@ export default function Header (){
     };
 
     const loginClickHandler = () =>{
-        updateElementDisabled(true);
-        updateInputBackgroundColor(AppColor.DisbledInputBackground);
-        setTimeout(()=>{
-            setHeaderMsg("Username/Email or Password does not exist");
-            updateElementDisabled(false);
-            updateInputBackgroundColor(AppColor.InputBackground);
+        if (userInput.current.value === "" || passInput.current.value === "") {
+            setHeaderMsg("");
+            setHeaderMsg("Username/Email and Password are required");
+        } else {
+            setHeaderMsg("");
+            setLoginInputDisabled(true);
+            setLoginBackgroundColor(AppColor.DisbledInputBackground);
+            setLoginBtnActive(true);
             setTimeout(()=>{
-                setHeaderMsg("");
-            }, 5000);
-        }, Math.floor(Math.random() * (5000-1000)+1000));
+                setHeaderMsg("Username/Email or Password does not exist");
+                setLoginInputDisabled(false);
+                setLoginBackgroundColor(AppColor.InputBackground);
+                setLoginBtnActive(false);
+            }, Math.floor(Math.random() * (5000-1000)+1000));
+        }
     };
 
     const joinClickHandler = () => {
-        setHeaderMsg("Temporary Message! Need to create Registration Popup Component");
+        setJoinBtnActive(true);
         setTimeout(()=>{
-            setHeaderMsg("");
-        }, 3000);
+            updateRegBlockDisplay("flex");
+            setJoinBtnActive(false);
+            setTimeout(()=>{
+                updateRegBlockDisplay("none");
+            }, 3000)
+        }, Math.floor(Math.random() * (2000-1000)+1000));
     };
 
     return (
@@ -67,24 +77,38 @@ export default function Header (){
                         <input
                         type="text"
                         placeholder="Username / Email"
-                        disabled={elementDiabled}
-                        background={inputBackgroundColor}
+                        disabled={loginInputDisabled}
+                        background={loginBackgroundColor}
+                        ref={userInput}
                         />
                     </span> 
                     <span className="inputContainer">
                         <input
                         type={passwordInputType}
                         placeholder="Password:"
-                        disabled={elementDiabled}
-                        background={inputBackgroundColor}
+                        disabled={loginInputDisabled}
+                        background={loginBackgroundColor}
+                        ref={passInput}
                         />
-                        <img src={passwordIcon} onClick={passwordIconClickHandler}/>
+                        {
+                            loginBtnActive ?
+                            <img src={passwordIcon} cursor={"arrow"}/> :
+                            <img src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
+                        }
                     </span>       
-                    <button className="loginButton" onClick={loginClickHandler}>Login</button>
+                    {
+                        loginBtnActive ?
+                        <button className="loginButtonActive">Login</button> :
+                        <button className="loginButton" onClick={loginClickHandler}>Login</button>
+                    }
                     <span></span>
                     <span className="msgContainer">{headerMsg}</span>
-                    <span><a onClick={forgotClickHandler} disabled={elementDiabled}>Forgotten Password?</a></span>
-                    <button className="joinButton" onClick={joinClickHandler}>Join Now</button>
+                    <span><a onClick={forgotClickHandler}>Forgotten Password?</a></span>
+                    {
+                        joinBtnActive ?
+                        <button className="joinButtonActive">Join Now</button> :
+                        <button className="joinButton" onClick={joinClickHandler}>Join Now</button>
+                    }
                 </div>
             </div>
         </HeaderDiv>
@@ -175,7 +199,7 @@ const HeaderDiv = styled.div`
                 position: absolute;
                 left: 27.5rem;
                 font-size: 1.25rem;
-                cursor: pointer;
+                cursor: ${(props) => props.cursor};
             }
         }
     
@@ -208,9 +232,14 @@ const HeaderDiv = styled.div`
             background-color: ${darken(0.2, AppColor.LoginBtn)};
         }
     
-        .loginButton:active {
-            color: ${darken(0.8, AppColor.ButtonText)};
-            background-color: ${lighten(0.1, AppColor.LoginBtn)};
+        .loginButtonActive {
+            color: ${darken(0.3, AppColor.ButtonText)};
+            background-color: ${darken(0.4, AppColor.LoginBtn)};
+            text-transform: uppercase;
+            font-size: .786rem;
+            font-weight: 700;
+            border: 0;
+            border-radius: 0.1rem;
         }
     
         .joinButton{
@@ -236,9 +265,18 @@ const HeaderDiv = styled.div`
             background-color: ${darken(0.1, AppColor.JoinBtn)};
         }
     
-        .joinButton:active {
-            color: ${darken(0.8, AppColor.ButtonText)};
-            background-color: ${lighten(0.1, AppColor.JoinBtn)};
+        .joinButtonActive {
+            color: ${darken(0.3, AppColor.ButtonText)};
+            background-color: ${darken(0.4, AppColor.JoinBtn)};
+            text-transform: uppercase;
+            font-size: .786rem;
+            font-weight: 700;
+            border: 0;
+            border-radius: 0.1rem;
+            grid-column-start: 3;
+            grid-column-end: 4;
+            grid-row-start: 2;
+            grid-row-end: 4;
         }
     }
 `

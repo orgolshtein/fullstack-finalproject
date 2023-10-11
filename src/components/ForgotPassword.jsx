@@ -1,20 +1,22 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import styled from "styled-components";
+import { darken } from "polished";
 import * as AppColor from "../styles/Colors";
 import { AppContext } from "../state/AppContext";
 import AppLogo from "./AppLogo";
 import useImperativeDisableScroll from "../hooks/useImperativeDisableScroll";
 
 export default function ForgotPassword () {
+    const [ctaMsg, setCtaMsg] = useState("");
+    const [inputDisabled, setInputDisabled] = useState(false);
+    const [inputBackgroundColor, setInputBackgroundColor] = useState(AppColor.InputBackground);
+    const [ctaActive, setCtaActive] = useState(false);
     const { 
         forgotPasswordDisplay, 
-        updateforgotPasswordDisplay,
-        elementDiabled,
-        updateElementDisabled,
-        inputBackgroundColor,
-        updateInputBackgroundColor
+        updateforgotPasswordDisplay
     } = useContext(AppContext);
-    const [ctaMsg, setCtaMsg] = useState("");
+
+    let userInput = useRef();
 
     forgotPasswordDisplay === "flex" ?
     useImperativeDisableScroll({ element: document.body, disabled: true }):
@@ -22,18 +24,20 @@ export default function ForgotPassword () {
     
     const closeClickHandler = () =>{
         updateforgotPasswordDisplay("none");
+        setCtaMsg("");
+        userInput.current.value = "";
     };
 
     const ctaClickHandler = () =>{
-        updateElementDisabled(true);
-        updateInputBackgroundColor(AppColor.DisbledInputBackground);
+        setCtaMsg("");
+        setInputDisabled(true);
+        setInputBackgroundColor(AppColor.DisbledInputBackground);
+        setCtaActive(true);
         setTimeout(()=>{
             setCtaMsg("User not found");
-            updateElementDisabled(false);
-            updateInputBackgroundColor(AppColor.InputBackground);
-            setTimeout(()=>{
-                setCtaMsg("");
-            }, 5000)
+            setInputDisabled(false);
+            setInputBackgroundColor(AppColor.InputBackground);
+            setCtaActive(false);
         }, (3000-1000)+1000);
     };
 
@@ -51,14 +55,19 @@ export default function ForgotPassword () {
                             <div>Please insert one of the following</div>
                             <input type="email"
                             placeholder="Enter user or email address" 
-                            disabled={elementDiabled}
+                            disabled={inputDisabled}
                             background={inputBackgroundColor}
+                            ref={userInput}
                             />
                             {
                                 ctaMsg !== "" ?
                                 <span>{ctaMsg}</span> : null                          
                             }
-                            <button onClick={ctaClickHandler} disabled={elementDiabled}>continue</button>
+                            {
+                                ctaActive ?
+                                <button className="buttonActive">continue</button> :
+                                <button onClick={ctaClickHandler}>continue</button>
+                            }
                         </div>
                     </div>
                 </div>
@@ -94,11 +103,9 @@ const ForgotPasswordDiv = styled.div`
 
         .inner{
             border-radius: 0.2rem;
-            background: #ececec;
             box-shadow: 0 0 1.5em rgba(0,0,0,.5);
             position: relative;
-            background-color: #eeeeee;
-            color: #000;
+            background-color: ${AppColor.PopupMainBackground};
 
             .closeBtn{
                 background: url("/src/assets/icons/cross_white_icon.svg") no-repeat 0 0/contain;
@@ -106,25 +113,18 @@ const ForgotPasswordDiv = styled.div`
                 height: 0.75em;
                 right: 0.8em;
                 top: 0.8em;
-                min-width: initial;
                 position: absolute;
-                float: none;
                 z-index: 2;
-                transition: transform 300ms;
                 cursor: pointer;
                 display: inline-block;
                 min-height: 2.5em;
-                vertical-align: middle;
-                overflow: hidden;
-                text-align: left;
-                text-indent: -3000px;
             }
 
             .content{
                 max-height: 95vh;
                 height: auto;
                 overflow-x: hidden;
-                color: #6c6c6c;
+                color: ${AppColor.PopupMainText};
                 font-size: .72em;
                 padding: 1em 1.15em 0;
                 min-height: 6.6em;
@@ -136,7 +136,7 @@ const ForgotPasswordDiv = styled.div`
 
                 .titlebox{
                     background: ${AppColor.MainDark};
-                    color: #fff;
+                    color: ${AppColor.MainText};
                     margin: -1.2em -0.8em 0;
                     text-align: center;
                     text-transform: capitalize;
@@ -170,8 +170,8 @@ const ForgotPasswordDiv = styled.div`
                         max-width: 100%;
                         margin-bottom: 1em;
                         font-size: 1rem;
-                        color: #6c6c6c;
-                        border-color: #6c6c6c;
+                        color: ${AppColor.PopupMainText};
+                        border-color: ${AppColor.PopupMainText};
                         border-radius: 3px;
                         box-shadow: none;
                         border-width: 1px;
@@ -181,7 +181,7 @@ const ForgotPasswordDiv = styled.div`
                         width: 100%;
                         font-weight: 400;
                         border-style: solid;
-                        background: ${(props)=>(props.background)};
+                        background-color: ${(props)=>(props.background)};
                         transition: box-shadow 100ms,border 100ms;
                         line-height: 1;
                     }
@@ -207,6 +207,31 @@ const ForgotPasswordDiv = styled.div`
                         font-weight: 300;
                         transition: box-shadow 300ms;
                         cursor: pointer;
+                        line-height: 2.25em;
+                        padding: 0 1em;
+                        border: 0;
+                        text-align: center;
+                        text-decoration: none;
+                        margin: 1rem auto;
+                        border-radius: 0;
+                        box-shadow: none;
+                        min-width: 100%;
+                        text-transform: uppercase;
+                    }
+
+                    .buttonActive{
+                        color: ${darken(0.3, AppColor.ButtonText)};
+                        background-color: ${darken(0.4, AppColor.LoginBtn)};
+                        display: inline-block;
+                        position: relative;
+                        overflow: visible;
+                        vertical-align: middle;
+                        font-family: Asap,Helvetica Neue,Helvetica,Arial,sans-serif;
+                        font-size: 1.4rem;
+                        font-style: normal;
+                        font-weight: 300;
+                        transition: box-shadow 300ms;
+                        cursor: initial;
                         line-height: 2.25em;
                         padding: 0 1em;
                         border: 0;

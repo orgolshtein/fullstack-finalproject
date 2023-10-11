@@ -4,6 +4,7 @@ import { CenteredDiv } from "../styles/Containers";
 import GameTabs from "../components/GameTabs";
 import { Outlet } from "react-router-dom";
 import ForgotPassword from "../components/ForgotPassword";
+import RegistrationBlock from "../components/RegistrationBlock";
 import Footer from "../components/footer/Footer";
 // import ToTop from "../components/ToTop";
 
@@ -18,6 +19,7 @@ export default function MainLayout () {
         </CenteredDiv>
         <Footer />
         <ForgotPassword />
+        <RegistrationBlock />
         {/* <ToTop /> */}
     </div>
   )

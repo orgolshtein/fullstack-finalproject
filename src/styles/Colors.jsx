@@ -9,6 +9,8 @@ const InputBorder = "#7081ae";
 const InputText = "#000000";
 const InputBackground = "#ffffff";
 const DisbledInputBackground = "#7081ae";
+const PopupMainBackground = "#eeeeee";
+const PopupMainText = "#6c6c6c"
 
 export { 
     MainText, 
@@ -21,5 +23,7 @@ export {
     InputBorder,
     InputText,
     InputBackground,
-    DisbledInputBackground
+    DisbledInputBackground,
+    PopupMainBackground,
+    PopupMainText
 }
