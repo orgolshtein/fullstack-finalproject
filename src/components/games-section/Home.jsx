@@ -1,16 +1,16 @@
 import { useContext } from "react";
-import { AppContext } from "../state/AppContext";
+import { AppContext } from "../../state/AppContext";
 import GameThumb from "./GameThumb";
-import { useOncePostMount } from "../hooks/UseOnce"
-import { GameListDiv } from "../styles/Containers"
+import { useOncePostMount } from "../../hooks/UseOnce"
+import { GameListDiv } from "../../styles/Containers"
 
-export default function SlotGames () {
-    const { gamesList, getSlotGamesList, fetchErrorHandler, loadingIsFinished } = useContext(AppContext);
+export default function Home () {
+    const { gamesList, getGamesList, fetchErrorHandler, loadingIsFinished } = useContext(AppContext);
 
     useOncePostMount(() => {
         (async () => {
           try {
-            await getSlotGamesList();
+            await getGamesList();
           } catch {
             fetchErrorHandler();
           } finally {
@@ -21,9 +21,10 @@ export default function SlotGames () {
 
     return(
         <GameListDiv>
+            
             {gamesList
-            .map((item) => (
-                <div key={item.id} /* onClick={() => updateProfileRobot(item)} */>
+            ?.map((item) => (
+                <div key={item.id} /* onClick={() => updateSelectedGame(item)} */>
                 <GameThumb image={item.thumb} $res={180} />
                 </div>
                 ))}

@@ -1,10 +1,10 @@
 import Header from "../components/header/Header";
-import BannerGallery from "../components/BannerGallery";
+import BannerGallery from "../components/gallery/BannerGallery";
 import { CenteredDiv } from "../styles/Containers";
-import GameTabs from "../components/GameTabs";
+import GameTabs from "../components/games-section/GameTabs";
 import { Outlet } from "react-router-dom";
-import ForgotPassword from "../components/ForgotPassword";
-import RegistrationBlock from "../components/RegistrationBlock";
+import ForgotPassword from "../components/popups/ForgotPassword";
+import RegistrationBlock from "../components/popups/RegistrationBlock";
 import Footer from "../components/footer/Footer";
 // import ToTop from "../components/ToTop";
 

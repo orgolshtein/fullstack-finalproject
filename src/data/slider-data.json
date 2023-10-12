@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "title": "Daily LeaderBoards",
+        "src": "/src/assets/slides/DailyLeaderboard.jpg"
+    },
+    {
+        "id": 2,
+        "title": "God Of Storms",
+        "src": "/src/assets/slides/GodOfStorms.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Green Wizard",
+        "src": "/src/assets/slides/GreenWizard.jpg"
+    },
+    {
+        "id": 4,
+        "title": "European Roulette",
+        "src": "/src/assets/slides/EuropeanRoulette.jpg"
+    },
+    {
+        "id": 5,
+        "title": "Silver Bullet Bandit",
+        "src": "/src/assets/slides/SilverBulletBandit.jpg"
+    },
+    {
+        "id": 6,
+        "title": "Joker Rush",
+        "src": "/src/assets/slides/JokerRush.jpg"
+    }
+]

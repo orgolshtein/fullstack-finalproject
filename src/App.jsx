@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
-import Home from "./components/Home";
-import NewGames from "./components/NewGames";
-import SlotGames from "./components/SlotGames";
-import TableGames from "./components/TableGames";
+import Home from "./components/games-section/Home";
+import NewGames from "./components/games-section/NewGames";
+import SlotGames from "./components/games-section/SlotGames";
+import TableGames from "./components/games-section/TableGames";
 
 function App() {
   

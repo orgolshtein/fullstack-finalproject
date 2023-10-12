@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { MainDark, MainLight } from "../styles/Colors";
-import AllGamesIcon from "../assets/icons/allgames_icon.svg";
-import NewGamesIcon from "../assets/icons/new_icon.svg";
-import SlotsIcon from "../assets/icons/slots_icon.svg";
-import TableGamesIcon from "../assets/icons/table_icon.svg";
+import { MainDark, MainLight } from "../../styles/Colors";
+import AllGamesIcon from "../../assets/icons/allgames_icon.svg";
+import NewGamesIcon from "../../assets/icons/new_icon.svg";
+import SlotsIcon from "../../assets/icons/slots_icon.svg";
+import TableGamesIcon from "../../assets/icons/table_icon.svg";
 
 
 const GameTabs = () => (

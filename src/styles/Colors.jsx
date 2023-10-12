@@ -1,29 +1,14 @@
-const MainText = "#ffffff";
-const MainDark = "#0b2139";
-const MainLight = "#ffffff"
-const ErrorText = "#e25757";
-const LoginBtn = "#aea269";
-const JoinBtn = "#00a259";
-const ButtonText = "#ffffff";
-const InputBorder = "#7081ae";
-const InputText = "#000000";
-const InputBackground = "#ffffff";
-const DisbledInputBackground = "#7081ae";
-const PopupMainBackground = "#eeeeee";
-const PopupMainText = "#6c6c6c"
-
-export { 
-    MainText, 
-    MainDark, 
-    MainLight, 
-    ErrorText, 
-    LoginBtn,
-    JoinBtn,
-    ButtonText,
-    InputBorder,
-    InputText,
-    InputBackground,
-    DisbledInputBackground,
-    PopupMainBackground,
-    PopupMainText
-}
+export const MainText = "#ffffff";
+export const MainDark = "#0b2139";
+export const MainLight = "#ffffff"
+export const ErrorText = "#e25757";
+export const LoginBtn = "#aea269";
+export const JoinBtn = "#00a259";
+export const ButtonText = "#ffffff";
+export const InputBorder = "#7081ae";
+export const InputText = "#000000";
+export const InputBackground = "#ffffff";
+export const DisbledInputBackground = "#7081ae";
+export const PopupMainBackground = "#eeeeee";
+export const PopupMainText = "#6c6c6c"
+export const GalleryBackground = "#000000";

@@ -1,0 +1,9 @@
+-Login component
+-Link slides to login
+-Search component
+-Selected game component
+-Error handling
+-Click outside to close component??
+-Fully populate games-data.json
+-Responsive design
+-Server & Database
