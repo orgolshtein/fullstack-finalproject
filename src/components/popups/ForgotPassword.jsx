@@ -5,7 +5,7 @@ import { AppContext } from "../../state/AppContext";
 import AppLogo from "../AppLogo";
 import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
 import { ForgotPasswordCta, ForgotPasswordCtaActive, PopupCloseBtn } from "../../styles/Buttons";
-import { PopupInput } from "../../styles/Inputs";
+import { ForgotPassInput } from "../../styles/Inputs";
 import { PopupDiv } from "../../styles/Containers";
 
 export default function ForgotPassword () {
@@ -44,10 +44,10 @@ export default function ForgotPassword () {
     };
 
     return (
-        <PopupDiv display={forgotPasswordDisplay} $titleboxheight="12rem">
+        <PopupDiv display={forgotPasswordDisplay} width="24rem" $zindex="110" $titleboxheight="12rem">
             <div className="flexContainer">
                 <div className="inner">
-                    <PopupCloseBtn onClick={closeClickHandler}></PopupCloseBtn>
+                    <PopupCloseBtn onClick={closeClickHandler} $url="src/assets/icons/cross_white_icon.svg"></PopupCloseBtn>
                     <div className="content">
                         <div className="titlebox">
                             <AppLogo $res={"6"} alt="popuplogo"/>
@@ -55,7 +55,7 @@ export default function ForgotPassword () {
                         </div>
                         <ForgotPasswordDiv>
                             <div>Please insert one of the following</div>
-                            <PopupInput type="email"
+                            <ForgotPassInput type="email"
                             placeholder="Enter user or email address" 
                             disabled={inputDisabled}
                             $background={inputBackgroundColor}

@@ -15,7 +15,7 @@ export default function RegistrationBlock () {
     useImperativeDisableScroll({ element: document.body, disabled: false });
 
     return (
-        <PopupDiv display={regBlockDisplay} $titleboxheight="4rem">
+        <PopupDiv display={regBlockDisplay} width="24rem" $zindex="110" $titleboxheight="4rem">
             <div className="flexContainer">
                 <div className="inner">
                     <div className="content">

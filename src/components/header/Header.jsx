@@ -5,7 +5,7 @@ import { darken } from "polished";
 import * as AppColor from "../../styles/Colors";
 import AppLogo from "../AppLogo";
 import { LoginHeaderBtn, LoginHeaderBtnActive, JoinHeaderBtn, JoinHeaderBtnActive } from "../../styles/Buttons";
-import { InputHeader, InputContainerHeader } from "../../styles/Inputs";
+import { InputContainerHeader } from "../../styles/Inputs";
 import { PasswordVisIcon } from "../../styles/Elements";
 
 export default function Header (){
@@ -77,26 +77,26 @@ export default function Header (){
                 />
                 <div className="authGrid">
                     <InputContainerHeader>
-                        <InputHeader
+                        <input
                         type="text"
                         placeholder="Username / Email"
                         disabled={loginInputDisabled}
-                        $background={loginBackgroundColor}
+                        background={loginBackgroundColor}
                         ref={userInput}
                         />
                     </InputContainerHeader> 
                     <InputContainerHeader>
-                        <InputHeader
+                        <input
                         type={passwordInputType}
                         placeholder="Password:"
                         disabled={loginInputDisabled}
-                        $background={loginBackgroundColor}
+                        background={loginBackgroundColor}
                         ref={passInput}
                         />
                         {
                             loginBtnActive ?
-                            <PasswordVisIcon src={passwordIcon} cursor={"arrow"}/> :
-                            <PasswordVisIcon src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
+                            <PasswordVisIcon $top="-1.2rem" $left="22.5rem" width="1.2em" src={passwordIcon} cursor={"arrow"}/> :
+                            <PasswordVisIcon $top="-1.2rem" $left="22.5rem" width="1.2em" src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
                         }
                     </InputContainerHeader>       
                     {

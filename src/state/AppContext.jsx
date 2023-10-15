@@ -12,6 +12,7 @@ const AppProvider = ({children}) =>{
   const [errorMessage, setErrorMessage] = useState("");
   const [forgotPasswordDisplay, setforgotPasswordDisplay] = useState("none");
   const [regBlockDisplay, setRegBlockDisplay] = useState("none");
+  const [loginDisplay, setLoginDisplay] = useState("none");
   const [toTopDisplay, setToTopDisplay] = useState("none");
 
   const getSliderList = ()=>{
@@ -65,6 +66,10 @@ const AppProvider = ({children}) =>{
     setRegBlockDisplay(x);
   };
 
+  const updateLoginDisplay = (x) => {
+    setLoginDisplay(x);
+  };
+
   const updateToTopDisplay = (x) => {
     setToTopDisplay(x);
   };
@@ -76,6 +81,7 @@ const AppProvider = ({children}) =>{
     errorMessage,
     forgotPasswordDisplay,
     regBlockDisplay,
+    loginDisplay,
     toTopDisplay
   };
 
@@ -90,6 +96,7 @@ const AppProvider = ({children}) =>{
     loadingIsFinished,
     updateforgotPasswordDisplay,
     updateRegBlockDisplay,
+    updateLoginDisplay,
     updateToTopDisplay
   };
 

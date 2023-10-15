@@ -28,12 +28,12 @@ export const PopupDiv = styled.div`
     bottom: 0;
     justify-content: center;
     align-items: center;
-    z-index: 106;
+    z-index: ${(props)=>props.$zindex};
     backdrop-filter: blur(15px);
 
     .flexContainer{
-        min-width: 24rem;
-        max-width: 24rem;
+        min-width: ${(props)=>props.width};
+        max-width: ${(props)=>props.width};
         padding: 0 1.15em;
         position: relative;
         z-index: 107;

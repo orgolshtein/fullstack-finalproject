@@ -17,7 +17,8 @@ export default function BannerGallery () {
           getSliderList, 
           fetchErrorHandler, 
           loadingIsFinished, 
-          updateRegBlockDisplay 
+          updateRegBlockDisplay,
+          updateLoginDisplay
         } = useContext(AppContext);
 
   useOncePostMount(() => {
@@ -31,6 +32,10 @@ export default function BannerGallery () {
       }
     })();
   });
+
+  const bannerClickHandler = () => {
+    updateLoginDisplay("flex");
+  };
 
   const ctaClickHandler = () => {
     setCtaActive(true);
@@ -57,7 +62,7 @@ export default function BannerGallery () {
       >
          {sliderList
             ?.map((item) => (
-              <SwiperSlide key={item.id}><img src={item.src} alt={item.title}></img></SwiperSlide>
+              <SwiperSlide key={item.id}><img src={item.src} alt={item.title} onClick={bannerClickHandler}></img></SwiperSlide>
                 ))}
         <div>
           <WelcomeBonusOverlay 

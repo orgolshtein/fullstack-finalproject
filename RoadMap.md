@@ -1,6 +1,5 @@
--Login component
--Link slides to login
 -Search component
+-Game tabs component adjust
 -Selected game component
 -Error handling
 -Click outside to close component??

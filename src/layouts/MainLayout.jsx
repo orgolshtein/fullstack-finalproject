@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 import ForgotPassword from "../components/popups/ForgotPassword";
 import RegistrationBlock from "../components/popups/RegistrationBlock";
 import Footer from "../components/footer/Footer";
+import Login from "../components/popups/Login";
 // import ToTop from "../components/ToTop";
 
 export default function MainLayout () {
@@ -20,6 +21,7 @@ export default function MainLayout () {
         <Footer />
         <ForgotPassword />
         <RegistrationBlock />
+        <Login />
         {/* <ToTop /> */}
     </div>
   )

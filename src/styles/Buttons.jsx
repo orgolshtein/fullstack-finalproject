@@ -128,7 +128,7 @@ export const JoinGalleryBtnActive = styled.button`
       transition: color .15s ease-out;
 `
 export const PopupCloseBtn = styled.span`
-    background: url("/src/assets/icons/cross_white_icon.svg") no-repeat 0 0/contain;
+    background: url(${(props) => props.$url}) no-repeat 0 0/contain;
     width: 0.75em;
     height: 0.75em;
     right: 0.8em;
@@ -163,6 +163,10 @@ export const ForgotPasswordCta = styled.button`
     box-shadow: none;
     min-width: 100%;
     text-transform: uppercase;
+    
+    &:hover {
+      background-color: ${darken(0.2, AppColor.LoginBtn)};
+    }
 `
 
 export const ForgotPasswordCtaActive = styled.button`
@@ -188,4 +192,120 @@ export const ForgotPasswordCtaActive = styled.button`
     box-shadow: none;
     min-width: 100%;
     text-transform: uppercase;
+`
+
+export const LoginPopupBtn = styled.button`
+    color: ${AppColor.ButtonText};
+    background-color: ${AppColor.LoginBtn};
+    height: 2.8rem;
+    width: 100%;
+    padding: 0;
+    font-size: 1.14rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+    border-radius: 0.2rem;
+    line-height: 2.5em;
+    box-shadow: none;
+    min-width: 11em;
+    font-family: 'Gotham Bold',sans-serif;
+    transition: background-color .15s ease-out;
+    display: inline-block;
+    position: relative;
+    overflow: visible;
+    vertical-align: middle;
+    font-style: normal;
+    border: 0;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: ${darken(0.2, AppColor.LoginBtn)};
+    }
+`
+
+export const LoginPopupBtnActive = styled.button`
+    color: ${darken(0.3, AppColor.ButtonText)};
+    background-color: ${darken(0.4, AppColor.LoginBtn)};
+    height: 2.8rem;
+    width: 100%;
+    padding: 0;
+    font-size: 1.14rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+    border-radius: 0.2rem;
+    line-height: 2.5em;
+    box-shadow: none;
+    min-width: 11em;
+    font-family: 'Gotham Bold',sans-serif;
+    transition: background-color .15s ease-out;
+    display: inline-block;
+    position: relative;
+    overflow: visible;
+    vertical-align: middle;
+    font-style: normal;
+    border: 0;
+    text-align: center;
+    text-decoration: none;
+    cursor: initial;
+`
+
+export const JoinPopupBtn = styled.button`
+    color: ${AppColor.ButtonText};
+    background-color: ${AppColor.JoinBtn};
+    height: 2.8rem;
+    width: 100%;
+    padding: 0;
+    font-size: 1.14rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+    border-radius: 0.2rem;
+    line-height: 2.5em;
+    box-shadow: none;
+    min-width: 11em;
+    font-family: 'Gotham Bold',sans-serif;
+    transition: background-color .15s ease-out;
+    display: inline-block;
+    position: relative;
+    overflow: visible;
+    vertical-align: middle;
+    font-style: normal;
+    border: 0;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: ${darken(0.1, AppColor.JoinBtn)};
+    }
+`
+
+export const JoinPopupBtnActive = styled.button`
+    color: ${darken(0.3, AppColor.ButtonText)};
+    background-color: ${darken(0.4, AppColor.JoinBtn)};
+    height: 2.8rem;
+    width: 100%;
+    padding: 0;
+    font-size: 1.14rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+    border-radius: 0.2rem;
+    line-height: 2.5em;
+    box-shadow: none;
+    min-width: 11em;
+    font-family: 'Gotham Bold',sans-serif;
+    transition: background-color .15s ease-out;
+    display: inline-block;
+    position: relative;
+    overflow: visible;
+    vertical-align: middle;
+    font-style: normal;
+    border: 0;
+    text-align: center;
+    text-decoration: none;
+    cursor: initial;
 `
