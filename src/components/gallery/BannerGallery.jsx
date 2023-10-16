@@ -119,7 +119,7 @@ const GalleryDIV = styled.div`
       height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 12px));
       display: inline-block;
       border-radius: var(--swiper-pagination-bullet-border-radius, 50%);
-      background: #f2f2f2;
+      background: ${AppColor.MainLight};
       opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.4);
     }
 

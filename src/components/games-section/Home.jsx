@@ -21,14 +21,12 @@ export default function Home () {
 
     return(
         <GameListDiv>
-            
-            {gamesList
-            ?.map((item) => (
-                <div key={item.id} /* onClick={() => updateSelectedGame(item)} */>
-                <GameThumb image={item.thumb} $res={180} />
-                </div>
-                ))}
-            
+          {gamesList
+          ?.filter((game) => game.show).map((item) => (
+              <div key={item.id} /* onClick={() => updateSelectedGame(item)} */>
+              <GameThumb image={item.thumb} $res={180} />
+              </div>
+              ))}
         </GameListDiv>
     );
 }

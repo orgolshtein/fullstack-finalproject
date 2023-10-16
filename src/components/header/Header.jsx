@@ -94,23 +94,23 @@ export default function Header (){
                         ref={passInput}
                         />
                         {
-                            loginBtnActive ?
-                            <PasswordVisIcon $top="-1.2rem" $left="22.5rem" width="1.2em" src={passwordIcon} cursor={"arrow"}/> :
-                            <PasswordVisIcon $top="-1.2rem" $left="22.5rem" width="1.2em" src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
+                        loginBtnActive ?
+                        <PasswordVisIcon width="1.2em" src={passwordIcon} cursor={"arrow"}/> :
+                        <PasswordVisIcon width="1.2em" src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
                         }
                     </InputContainerHeader>       
                     {
-                        loginBtnActive ?
-                        <LoginHeaderBtnActive>Login</LoginHeaderBtnActive> :
-                        <LoginHeaderBtn onClick={loginClickHandler}>Login</LoginHeaderBtn>
+                    loginBtnActive ?
+                    <LoginHeaderBtnActive>Login</LoginHeaderBtnActive> :
+                    <LoginHeaderBtn onClick={loginClickHandler}>Login</LoginHeaderBtn>
                     }
                     <span></span>
                     <span className="msgContainer">{headerMsg}</span>
                     <span><a onClick={forgotClickHandler}>Forgotten Password?</a></span>
                     {
-                        joinBtnActive ?
-                        <JoinHeaderBtnActive>Join Now</JoinHeaderBtnActive> :
-                        <JoinHeaderBtn onClick={joinClickHandler}>Join Now</JoinHeaderBtn>
+                    joinBtnActive ?
+                    <JoinHeaderBtnActive>Join Now</JoinHeaderBtnActive> :
+                    <JoinHeaderBtn onClick={joinClickHandler}>Join Now</JoinHeaderBtn>
                     }
                 </div>
             </div>

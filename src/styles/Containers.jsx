@@ -1,11 +1,21 @@
 import styled from "styled-components";
 import * as AppColor from "./Colors";
 
-export const CenteredDiv = styled.div`
+export const GameSectionDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items:center;
 `;
+
+export const GamesContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    width: 87.5rem;
+    background: ${AppColor.MainLight};
+    border-bottom-left-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+`
 
 export const GameListDiv = styled.div`
     position: relative;

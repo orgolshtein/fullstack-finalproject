@@ -98,7 +98,7 @@ export const JoinGalleryBtn = styled.button`
     transition: color .15s ease-out;
 
     &:hover {
-      background-color: ${darken(0.2, AppColor.JoinBtn)};
+      background-color: ${darken(0.1, AppColor.JoinBtn)};
     }
 `
 
@@ -285,7 +285,7 @@ export const JoinPopupBtn = styled.button`
 
 export const JoinPopupBtnActive = styled.button`
     color: ${darken(0.3, AppColor.ButtonText)};
-    background-color: ${darken(0.4, AppColor.JoinBtn)};
+    background-color: ${darken(0.2, AppColor.JoinBtn)};
     height: 2.8rem;
     width: 100%;
     padding: 0;

@@ -16,37 +16,37 @@ const AppProvider = ({children}) =>{
   const [toTopDisplay, setToTopDisplay] = useState("none");
 
   const getSliderList = ()=>{
-    const datalist = slider_data.map((item)=>({...item}));
+    const datalist = slider_data.map((item)=>({...item, show: true}));
     setSliderList(datalist);
   }
   
   const getGamesList = ()=>{
-    const datalist = games_data.map((item)=>({...item}));
+    const datalist = games_data.map((item)=>({...item, show: true}));
     setGamesList(datalist);
     console.log(datalist);
   };
 
   const getNewGamesList = ()=>{
-    const datalist = games_data.filter((item) => item.new === true).map((item)=>({...item}));
+    const datalist = games_data.filter((item) => item.new === true).map((item)=>({...item, show: true}));
     setGamesList(datalist);
     console.log(datalist);
   };
 
   const getSlotGamesList = ()=>{
-    const datalist = games_data.filter((item) => item.type === "slot").map((item)=>({...item}));
+    const datalist = games_data.filter((item) => item.type === "slot").map((item)=>({...item, show: true}));
     setGamesList(datalist);
     console.log(datalist);
   };
 
   const getTableGamesList = ()=>{
-    const datalist = games_data.filter((item) => item.type === "table").map((item)=>({...item}));
+    const datalist = games_data.filter((item) => item.type === "table").map((item)=>({...item, show: true}));
     setGamesList(datalist);
     console.log(datalist);
   };
 
   const updateGamesList = (x)=>{
     setGamesList(x);
-    console.log(datalist);
+    console.log(x);
   };
 
   const loadingIsFinished = () => {

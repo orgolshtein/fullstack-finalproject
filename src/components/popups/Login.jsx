@@ -99,7 +99,7 @@ export default function Login () {
                         <LoginDiv>
                             <form action="">
                                 <InputContainerLogin>
-                                    <img className="userIcon" src={UserIcon} />
+                                    <img className="inputIcon" src={UserIcon} />
                                     <input type="text"
                                     placeholder="Username / Email" 
                                     disabled={inputDisabled}
@@ -108,7 +108,7 @@ export default function Login () {
                                     />
                                 </InputContainerLogin>
                                 <InputContainerLogin>
-                                    <img className="passIcon" src={PassIcon} />
+                                    <img className="inputIcon" src={PassIcon} />
                                     <input type={passwordInputType}
                                     placeholder="Password:" 
                                     disabled={inputDisabled}
@@ -117,8 +117,8 @@ export default function Login () {
                                     />
                                     {
                                         loginBtnActive ?
-                                        <PasswordVisIcon $top="-9.1rem" $left="18.5rem" width="1.6em" src={passwordIcon} cursor={"arrow"}/> :
-                                        <PasswordVisIcon $top="-9.1rem" $left="18.5rem" width="1.6em" src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
+                                        <PasswordVisIcon width="1.9rem" src={passwordIcon} cursor={"arrow"}/> :
+                                        <PasswordVisIcon width="1.9rem" src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
                                     }
                                 </InputContainerLogin>
                                 {
@@ -169,19 +169,9 @@ const LoginDiv = styled.div`
             font-weight: bold;
         }
 
-        .userIcon{
-            left: 3.3rem;
-            top: 5.2rem;
-            width: 1.214em;
-            position: absolute;
-            display: inline-block;
-            opacity: .65;
-            transform: translate3d(0,-50%,0);
-        }
-
-        .passIcon{
-            left: 3.3rem;
-            top: 8.7rem;
+        .inputIcon{
+            left: 0.5rem;
+            top: 1.2rem;
             width: 1.214em;
             position: absolute;
             display: inline-block;
@@ -196,13 +186,13 @@ const LoginDiv = styled.div`
         cursor: pointer;
 
         &:hover{
-            color: ${lighten(0.3, "#6c6c6c")};
+            color: ${lighten(0.3, AppColor.PopupMainText)};
         }
     }
 
     hr {
         height: 0.5px;
-        background-color: #3c3c3c;;
+        background-color: ${AppColor.PopupMainText};;
         border: none;
         z-index: 200;
         width: 100%;
@@ -211,6 +201,5 @@ const LoginDiv = styled.div`
     .joinLink{
         font-weight: 300;
         font-size: 1.1rem;
-        color: #3c3c3c;
     }
 `;

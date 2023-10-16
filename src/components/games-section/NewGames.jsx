@@ -22,7 +22,7 @@ export default function NewGames () {
     return(
         <GameListDiv>
             {gamesList
-            ?.map((item) => (
+            ?.filter((game) => game.show).map((item) => (
                 <div key={item.id} /* onClick={() => updateProfileRobot(item)} */>
                 <GameThumb image={item.thumb} $res={180} />
                 </div>

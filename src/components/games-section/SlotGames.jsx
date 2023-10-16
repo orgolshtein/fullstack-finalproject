@@ -21,7 +21,7 @@ export default function SlotGames () {
 
     return(
         <GameListDiv>
-            {gamesList
+            {gamesList?.filter((game) => game.show)
             .map((item) => (
                 <div key={item.id} /* onClick={() => updateProfileRobot(item)} */>
                 <GameThumb image={item.thumb} $res={180} />
