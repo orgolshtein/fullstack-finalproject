@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import slider_data from "../data/slider-data.json"
 import games_data from "../data/games-data.json";
+import * as AppColor from "../styles/Colors"
 
 const AppContext = React.createContext();
 const { Provider } = AppContext;
@@ -13,6 +14,14 @@ const AppProvider = ({children}) =>{
   const [forgotPasswordDisplay, setforgotPasswordDisplay] = useState("none");
   const [regBlockDisplay, setRegBlockDisplay] = useState("none");
   const [loginDisplay, setLoginDisplay] = useState("none");
+  const [homeIcon, setHomeIcon] = useState("src/assets/icons/allgames_icon.svg");
+  const [newIcon, setNewIcon] = useState("src/assets/icons/new_icon.svg");
+  const [slotsIcon, setSlotsIcon] = useState("src/assets/icons/slots_icon.svg");
+  const [tableIcon, setTableIcon] = useState("src/assets/icons/table_icon.svg");
+  const [homeLabelColor, setHomeLabelColor] = useState(AppColor.GameTabLabel);
+  const [newLabelColor, setNewLabelColor] = useState(AppColor.GameTabLabel);
+  const [slotsLabelColor, setSlotsLabelColor] = useState(AppColor.GameTabLabel);
+  const [tableLabelColor, setTableLabelColor] = useState(AppColor.GameTabLabel);
   const [toTopDisplay, setToTopDisplay] = useState("none");
 
   const getSliderList = ()=>{
@@ -70,6 +79,50 @@ const AppProvider = ({children}) =>{
     setLoginDisplay(x);
   };
 
+  const homeActive = () => {
+    setHomeIcon("src/assets/icons/allgames_icon-active.svg");
+    setNewIcon("src/assets/icons/new_icon.svg");
+    setSlotsIcon("src/assets/icons/slots_icon.svg");
+    setTableIcon("src/assets/icons/table_icon.svg");
+    setHomeLabelColor(AppColor.GameTabLabelActive);
+    setNewLabelColor(AppColor.GameTabLabel);
+    setSlotsLabelColor(AppColor.GameTabLabel);
+    setTableLabelColor(AppColor.GameTabLabel);
+  };
+
+  const newActive = () => {
+    setHomeIcon("src/assets/icons/allgames_icon.svg");
+    setNewIcon("src/assets/icons/new_icon-active.svg");
+    setSlotsIcon("src/assets/icons/slots_icon.svg");
+    setTableIcon("src/assets/icons/table_icon.svg");
+    setHomeLabelColor(AppColor.GameTabLabel);
+    setNewLabelColor(AppColor.GameTabLabelActive);
+    setSlotsLabelColor(AppColor.GameTabLabel);
+    setTableLabelColor(AppColor.GameTabLabel);
+  };
+
+  const slotsActive = () => {
+    setHomeIcon("src/assets/icons/allgames_icon.svg");
+    setNewIcon("src/assets/icons/new_icon.svg");
+    setSlotsIcon("src/assets/icons/slots_icon-active.svg");
+    setTableIcon("src/assets/icons/table_icon.svg");
+    setHomeLabelColor(AppColor.GameTabLabel);
+    setNewLabelColor(AppColor.GameTabLabel);
+    setSlotsLabelColor(AppColor.GameTabLabelActive);
+    setTableLabelColor(AppColor.GameTabLabel);
+  };
+
+  const tableActive = () => {
+    setHomeIcon("src/assets/icons/allgames_icon.svg");
+    setNewIcon("src/assets/icons/new_icon.svg");
+    setSlotsIcon("src/assets/icons/slots_icon.svg");
+    setTableIcon("src/assets/icons/table_icon-active.svg");
+    setHomeLabelColor(AppColor.GameTabLabel);
+    setNewLabelColor(AppColor.GameTabLabel);
+    setSlotsLabelColor(AppColor.GameTabLabel);
+    setTableLabelColor(AppColor.GameTabLabelActive);
+  };
+
   const updateToTopDisplay = (x) => {
     setToTopDisplay(x);
   };
@@ -82,6 +135,14 @@ const AppProvider = ({children}) =>{
     forgotPasswordDisplay,
     regBlockDisplay,
     loginDisplay,
+    homeIcon,
+    newIcon,
+    slotsIcon,
+    tableIcon,
+    homeLabelColor,
+    newLabelColor,
+    slotsLabelColor,
+    tableLabelColor,
     toTopDisplay
   };
 
@@ -97,6 +158,10 @@ const AppProvider = ({children}) =>{
     updateforgotPasswordDisplay,
     updateRegBlockDisplay,
     updateLoginDisplay,
+    homeActive,
+    newActive,
+    slotsActive,
+    tableActive,
     updateToTopDisplay
   };
 

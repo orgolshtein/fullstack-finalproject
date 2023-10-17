@@ -5,7 +5,7 @@ import { useOncePostMount } from "../../hooks/UseOnce"
 import { GameListDiv } from "../../styles/Containers"
 
 export default function Home () {
-    const { gamesList, getGamesList, fetchErrorHandler, loadingIsFinished } = useContext(AppContext);
+    const { gamesList, getGamesList, fetchErrorHandler, loadingIsFinished, homeActive } = useContext(AppContext);
 
     useOncePostMount(() => {
         (async () => {
@@ -15,6 +15,7 @@ export default function Home () {
             fetchErrorHandler();
           } finally {
             loadingIsFinished();
+            homeActive();
           }
         })();
       });

@@ -98,35 +98,36 @@ export default function Login () {
                     <div className="content">
                         <LoginDiv>
                             <form action="">
-                                <InputContainerLogin>
+                                <InputContainerLogin $background={inputBackgroundColor}>
                                     <img className="inputIcon" src={UserIcon} />
                                     <input type="text"
-                                    placeholder="Username / Email" 
-                                    disabled={inputDisabled}
-                                    background={inputBackgroundColor}
-                                    ref={userInput}
+                                        placeholder="Username / Email" 
+                                        disabled={inputDisabled}
+                                        ref={userInput}
                                     />
                                 </InputContainerLogin>
-                                <InputContainerLogin>
+                                <InputContainerLogin $background={inputBackgroundColor}>
                                     <img className="inputIcon" src={PassIcon} />
                                     <input type={passwordInputType}
-                                    placeholder="Password:" 
-                                    disabled={inputDisabled}
-                                    background={inputBackgroundColor}
-                                    ref={passInput}
+                                        placeholder="Password:" 
+                                        disabled={inputDisabled}
+                                        ref={passInput}
                                     />
                                     {
-                                        loginBtnActive ?
-                                        <PasswordVisIcon width="1.9rem" src={passwordIcon} cursor={"arrow"}/> :
-                                        <PasswordVisIcon width="1.9rem" src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
+                                    loginBtnActive ?
+                                    <PasswordVisIcon width="1.9rem" src={passwordIcon} cursor={"arrow"}/> :
+                                    <PasswordVisIcon width="1.9rem" src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
                                     }
                                 </InputContainerLogin>
                                 {
-                                    loginBtnActive ?
-                                    <LoginPopupBtnActive>Login</LoginPopupBtnActive> :
-                                    <LoginPopupBtn onClick={loginClickHandler} type="button">Login</LoginPopupBtn>
+                                loginBtnActive ?
+                                <LoginPopupBtnActive>Login</LoginPopupBtnActive> :
+                                <LoginPopupBtn onClick={loginClickHandler} type="button">Login</LoginPopupBtn>
                                 }
-                                <div>{loginMsg}</div>                      
+                                {
+                                loginMsg !== "" ?
+                                <div>{loginMsg}</div> : null                          
+                                }
                             </form>
                             <div className="forgotPassLink" onClick={forgotPassClickHandler}>Lost your log in details?</div>
                             <hr />

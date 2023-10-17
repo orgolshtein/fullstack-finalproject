@@ -60,7 +60,7 @@ export const InputContainerLogin = styled.span`
     width: 100%;
     font-weight: 400;
     border-style: solid;
-    background-color: ${(props)=>(props.background)};
+    background-color: ${(props)=>props.$background};
     transition: box-shadow 100ms,border 100ms;
     line-height: 1;
 
@@ -110,7 +110,7 @@ export const SearchInputContainer = styled.div`
         position: absolute;
         font-size: 1rem;
         border: none;
-        width: 12.89rem;
+        width: 12.75rem;
         height: 100%;
         padding-left: 1.5rem;
 

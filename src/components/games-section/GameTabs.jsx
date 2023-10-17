@@ -1,40 +1,61 @@
+import { useContext } from "react";
+import { AppContext } from "../../state/AppContext";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import * as AppColor from "../../styles/Colors";
-import AllGamesIcon from "../../assets/icons/allgames_icon.svg";
-import NewGamesIcon from "../../assets/icons/new_icon.svg";
-import SlotsIcon from "../../assets/icons/slots_icon.svg";
-import TableGamesIcon from "../../assets/icons/table_icon.svg";
 import SearchGame from "./SearchGame";
 
 
-const GameTabs = () => (
-<TabsUl>
-    <li>
-        <Link to="/">
-        <img src={AllGamesIcon} />
-            HOME</Link>
-    </li>
-    <li>
-        <Link to="/new">
-        <img src={NewGamesIcon} />
-            NEW</Link>
-    </li>
-    <li>
-        <Link to="/slots">
-        <img src={SlotsIcon} />
-            SLOTS</Link>
-    </li>
-    <li>
-        <Link to="/table">
-        <img src={TableGamesIcon} />
-            TABLE GAMES</Link>
-    </li>
-    <SearchGame />
-</TabsUl>
-);
+export default function GameTabs () {
+    const { 
+        homeIcon, 
+        newIcon, 
+        slotsIcon, 
+        tableIcon,
+        homeLabelColor,
+        newLabelColor, 
+        slotsLabelColor, 
+        tableLabelColor
+    } = useContext(AppContext);
 
-export default GameTabs;
+    return (
+    <TabsUl 
+        $homeIcon={homeIcon} 
+        $newIcon={newIcon} 
+        $slotsIcon={slotsIcon} 
+        $tableIcon={tableIcon}
+        $homeLabelColor={homeLabelColor} 
+        $newLabelColor={newLabelColor} 
+        $slotsLabelColor={slotsLabelColor} 
+        $tableLabelColor={tableLabelColor}
+    >
+        <li>
+            <Link className="homeIcon" to="/">
+            <span />
+                HOME</Link>
+        </li>
+        <li>
+            <Link className="newIcon" to="/new">
+            <span />
+                NEW</Link>
+        </li>
+        <li>
+            <Link className="slotsIcon" to="/slots">
+            <span />
+                SLOTS</Link>
+        </li>
+        <li>
+            <Link className="tableIcon" to="/table">
+            <span />
+                TABLE GAMES</Link>
+        </li>
+        <SearchGame />
+    </TabsUl>
+    );
+};
+
+
+ GameTabs;
 
 const TabsUl = styled.ul`
     display: flex;
@@ -49,23 +70,84 @@ const TabsUl = styled.ul`
     padding: 2rem 5rem 5.5rem 5rem;
     gap: 7rem;
 
-    a{
-        display: flex;
-        flex-direction:column;
-        align-items:center;
-        gap: 1rem;
-        padding: 0 0.85em;
-        color: ${AppColor.GameTabLabel};
-        text-decoration: none;
-        
-        &:hover{
-            color: ${AppColor.GameTabLabelActive};
+    li{
+        a{
+            display: flex;
+            flex-direction:column;
+            align-items:center;
+            gap: 1rem;
+            padding: 0 0.85em;
+            text-decoration: none;
         }
-    }
+    
+    
+        span{
+            width: 3rem;
+            height: 3rem
+        }
+    
+        .homeIcon{
+            color: ${(props)=>props.$homeLabelColor};
 
+            span{
+                background: url(${(props)=>props.$homeIcon}) no-repeat;
+            }
+        }
 
-    img{
-        width: 3rem;
-        height: 3rem
+        .newIcon{
+            color: ${(props)=>props.$newLabelColor};
+
+            span{
+                background: url(${(props)=>props.$newIcon}) no-repeat;
+            }
+        }
+
+        .slotsIcon{
+            color: ${(props)=>props.$slotsLabelColor};
+
+            span{
+                background: url(${(props)=>props.$slotsIcon}) no-repeat;
+            }
+        }
+
+        .tableIcon{
+            color: ${(props)=>props.$tableLabelColor};
+            
+            span{
+                background: url(${(props)=>props.$tableIcon}) no-repeat;
+            }
+        }
+
+        &:hover{
+            a{
+                color: ${AppColor.GameTabLabelActive};
+            }
+        
+            .homeIcon{
+                span{
+                    background: url("src/assets/icons/allgames_icon-active.svg") no-repeat;
+                }
+            }
+
+            .newIcon{
+                span{
+                    background: url("src/assets/icons/new_icon-active.svg") no-repeat;
+                }
+            }
+
+            .slotsIcon{
+                span{
+                    background: url("src/assets/icons/slots_icon-active.svg") no-repeat;
+                }
+            }
+
+            .tableIcon{
+                span{
+                    background: url("src/assets/icons/table_icon-active.svg") no-repeat;
+                }
+            }
+        }
+
     }
+    
 `

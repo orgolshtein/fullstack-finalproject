@@ -1,5 +1,4 @@
--Search component
--Game tabs component adjust
+-Game Thumb component
 -Selected game component
 -Error handling
 -Click outside to close component??

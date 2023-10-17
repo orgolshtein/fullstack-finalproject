@@ -5,7 +5,7 @@ import { useOncePostMount } from "../../hooks/UseOnce"
 import { GameListDiv } from "../../styles/Containers"
 
 export default function SlotGames () {
-    const { gamesList, getSlotGamesList, fetchErrorHandler, loadingIsFinished } = useContext(AppContext);
+    const { gamesList, getSlotGamesList, fetchErrorHandler, loadingIsFinished, slotsActive } = useContext(AppContext);
 
     useOncePostMount(() => {
         (async () => {
@@ -15,6 +15,7 @@ export default function SlotGames () {
             fetchErrorHandler();
           } finally {
             loadingIsFinished();
+            slotsActive();
           }
         })();
       });
