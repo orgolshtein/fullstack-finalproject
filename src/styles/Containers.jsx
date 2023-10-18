@@ -94,3 +94,17 @@ export const PopupDiv = styled.div`
         }
     }
 `
+
+export const GameThumbContainer = styled.div`
+    position: relative;
+    cursor: pointer;
+    &:hover{
+        img{
+        filter: blur(.07rem);
+        }
+
+        button{
+            display:inline-block;
+        }
+    }
+`

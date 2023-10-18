@@ -309,3 +309,31 @@ export const JoinPopupBtnActive = styled.button`
     text-decoration: none;
     cursor: initial;
 `
+
+export const GameThumbBtn = styled.button`
+    background-color: ${AppColor.JoinBtn};
+    width: 0;
+    display: none;
+    line-height: 1.7;
+    font-size: 0.8rem;
+    min-width: calc(50% - 0.5em);
+    border-radius: 0.1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: background-color .15s ease-out;
+    color: ${AppColor.ButtonText};
+    position: absolute;
+    vertical-align: middle;
+    font-style: normal;
+    border: 0;
+    text-align: center;
+    text-decoration: none;
+    top: 6rem;
+    left: 3.5rem;
+    z-index:3;
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${darken(0.1, AppColor.JoinBtn)};
+    }
+`

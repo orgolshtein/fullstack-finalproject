@@ -9,7 +9,6 @@ export default function SearchGame () {
     const inputTypeHandler = () => {
         const searchedGamesList = gamesList.map((item)=>{
             item.show = item.title.toLowerCase().includes(searchInputTxt.current.value.toLowerCase());
-            console.log("Searching: "+searchInputTxt.current.value);
             return item;
         });
         updateGamesList(searchedGamesList);

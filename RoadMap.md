@@ -1,7 +1,6 @@
--Game Thumb component
 -Selected game component
 -Error handling
 -Click outside to close component??
--Fully populate games-data.json
+-Fully populate games-data.json (Different sized thumbs?)
 -Responsive design
 -Server & Database
