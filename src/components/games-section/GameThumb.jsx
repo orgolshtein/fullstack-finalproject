@@ -5,28 +5,25 @@ import { GameThumbContainer } from "../../styles/Containers";
 import { GameThumbNewTag } from "../../styles/Elements";
 import { useOncePostMount } from "../../hooks/UseOnce";
 import { AppContext } from "../../state/AppContext";
+import GameImage from "../GameImage";
 
-export default function GameThumb ({ image, $new, $res }) {
+export default function GameThumb ({ image, title, $new, $selectedgame }) {
   const [newTagDisplay, setNewTagDisplay] = useState("none");
-  const { updateLoginDisplay } = useContext(AppContext);
+  const { updateSelectedGame, updateGameOverlayDisplay } = useContext(AppContext);
 
   useOncePostMount(()=> $new ? setNewTagDisplay("inline-block"): null);
 
-  const thumbClickHandler = () => {
-    updateLoginDisplay("flex");
-  };
-
   return (
-      <GameThumbContainer onClick={thumbClickHandler}>
+      <GameThumbContainer onClick={()=>{
+        updateGameOverlayDisplay("none");
+        updateSelectedGame($selectedgame);
+        setTimeout(()=>{
+          updateGameOverlayDisplay("flex");
+        },100)
+      }}>
           <GameThumbBtn>play now</GameThumbBtn>
           <GameThumbNewTag display={newTagDisplay}>new</GameThumbNewTag>
-          <GameThumbIMG src={image} $res={$res} alt="" />
+          <GameImage image={image} $res={180} title={title} />
       </GameThumbContainer>
   );
-}
-
-
-const GameThumbIMG = styled.img`
-  height: ${(props) => props.$res}px;
-  width: ${(props) => props.$res}px;
-`;
+};

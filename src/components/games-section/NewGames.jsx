@@ -22,11 +22,10 @@ export default function NewGames () {
 
     return(
         <GameListDiv>
-            {gamesList
-            ?.filter((game) => game.show).map((item) => (
-              <GameThumb key={item.id} image={item.thumb} $new={item.new} $res={180} />
+            {gamesList?.filter((game) => game.show)
+            .map((item) => (
+              <GameThumb key={item.id} $selectedgame={item} image={item.thumb} title={item.title} $new={item.new}/>
                 ))}
-            
         </GameListDiv>
     );
 }

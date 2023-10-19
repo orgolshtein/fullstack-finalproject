@@ -22,6 +22,8 @@ const AppProvider = ({children}) =>{
   const [newLabelColor, setNewLabelColor] = useState(AppColor.GameTabLabel);
   const [slotsLabelColor, setSlotsLabelColor] = useState(AppColor.GameTabLabel);
   const [tableLabelColor, setTableLabelColor] = useState(AppColor.GameTabLabel);
+  const [selectedGame, setSelectedGame] = useState({});
+  const [gameOverlayDisplay, setGameOverlayDisplay] = useState("none");
   const [toTopDisplay, setToTopDisplay] = useState("none");
 
   const getSliderList = ()=>{
@@ -117,6 +119,14 @@ const AppProvider = ({children}) =>{
     setTableLabelColor(AppColor.GameTabLabelActive);
   };
 
+  const updateSelectedGame = (x) => {
+    setSelectedGame(x);
+  };
+
+  const updateGameOverlayDisplay = (x) => {
+    setGameOverlayDisplay(x);
+  }
+
   const updateToTopDisplay = (x) => {
     setToTopDisplay(x);
   };
@@ -137,6 +147,8 @@ const AppProvider = ({children}) =>{
     newLabelColor,
     slotsLabelColor,
     tableLabelColor,
+    selectedGame,
+    gameOverlayDisplay,
     toTopDisplay
   };
 
@@ -156,6 +168,8 @@ const AppProvider = ({children}) =>{
     newActive,
     slotsActive,
     tableActive,
+    updateSelectedGame,
+    updateGameOverlayDisplay,
     updateToTopDisplay
   };
 

@@ -15,3 +15,4 @@ export const DisbledInputBackground = "#7081ae";
 export const PopupMainBackground = "#eeeeee";
 export const PopupMainText = "#6c6c6c"
 export const GalleryBackground = "#000000";
+export const GameTitle = "#aea269";

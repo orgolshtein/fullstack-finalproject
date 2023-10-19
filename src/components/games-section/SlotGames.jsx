@@ -24,9 +24,8 @@ export default function SlotGames () {
         <GameListDiv>
             {gamesList?.filter((game) => game.show)
             .map((item) => (
-              <GameThumb key={item.id} image={item.thumb} $new={item.new} $res={180} />
+              <GameThumb key={item.id} $selectedgame={item} image={item.thumb} title={item.title} $new={item.new}/>
                 ))}
-            
         </GameListDiv>
-    );
+  );
 }

@@ -7,6 +7,7 @@ import ForgotPassword from "../components/popups/ForgotPassword";
 import RegistrationBlock from "../components/popups/RegistrationBlock";
 import Footer from "../components/footer/Footer";
 import Login from "../components/popups/Login";
+import GameOverlay from "../components/popups/GameOverlay";
 // import ToTop from "../components/ToTop";
 
 const MainLayout = () => (
@@ -23,6 +24,7 @@ const MainLayout = () => (
         <ForgotPassword />
         <RegistrationBlock />
         <Login />
+        <GameOverlay />
         {/* <ToTop /> */}
     </div>
   );

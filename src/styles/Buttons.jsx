@@ -337,3 +337,34 @@ export const GameThumbBtn = styled.button`
       background-color: ${darken(0.1, AppColor.JoinBtn)};
     }
 `
+
+export const PlayPopupBtn = styled.button`
+    color: ${AppColor.ButtonText};
+    background-color: ${AppColor.JoinBtn};
+    height: 2.8rem;
+    width: 3rem;
+    padding: 0;
+    font-size: 1.14rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+    border-radius: 0.2rem;
+    line-height: 2.5em;
+    box-shadow: none;
+    min-width: 11em;
+    font-family: 'Gotham Bold',sans-serif;
+    transition: background-color .15s ease-out;
+    display: inline-block;
+    position: relative;
+    overflow: visible;
+    vertical-align: middle;
+    font-style: normal;
+    border: 0;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${darken(0.1, AppColor.JoinBtn)};
+    }
+`
