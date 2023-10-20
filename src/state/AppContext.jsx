@@ -9,11 +9,13 @@ const { Provider } = AppContext;
 const AppProvider = ({children}) =>{
   const [sliderList, setSliderList] = useState([]);  
   const [gamesList, setGamesList] = useState([]);
+  const [selectedGame, setSelectedGame] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [forgotPasswordDisplay, setforgotPasswordDisplay] = useState("none");
-  const [regBlockDisplay, setRegBlockDisplay] = useState("none");
-  const [loginDisplay, setLoginDisplay] = useState("none");
+  const [isForgotPassDisplayed, setIsforgotPassDisplayed] = useState(false);
+  const [isRegBlockDisplayed, setIsRegBlockDisplayed] = useState(false);
+  const [isLoginDisplayed, setIsLoginDisplayed] = useState(false);
+  const [isGameOverlayDisplayed, setIsGameOverlayDisplayed] = useState(false);
+  const [isToTopDisplayed, setIsToTopDisplayed] = useState(false);
   const [homeIcon, setHomeIcon] = useState("src/assets/icons/allgames_icon.svg");
   const [newIcon, setNewIcon] = useState("src/assets/icons/new_icon.svg");
   const [slotsIcon, setSlotsIcon] = useState("src/assets/icons/slots_icon.svg");
@@ -22,9 +24,7 @@ const AppProvider = ({children}) =>{
   const [newLabelColor, setNewLabelColor] = useState(AppColor.GameTabLabel);
   const [slotsLabelColor, setSlotsLabelColor] = useState(AppColor.GameTabLabel);
   const [tableLabelColor, setTableLabelColor] = useState(AppColor.GameTabLabel);
-  const [selectedGame, setSelectedGame] = useState({});
-  const [isGameOverlay, setIsGameOverlay] = useState(false);
-  const [toTopDisplay, setToTopDisplay] = useState("none");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const getSliderList = ()=>{
     const datalist = slider_data.map((item)=>({...item, show: true}));
@@ -55,24 +55,32 @@ const AppProvider = ({children}) =>{
     setGamesList(x);
   };
 
+  const updateSelectedGame = (x) => {
+    setSelectedGame(x);
+  };
+
   const loadingIsFinished = () => {
     setIsLoading(false);
   };
-  
-  const fetchErrorHandler = () => {
-    setErrorMessage("Cannot connect");
-  };
 
   const updateforgotPasswordDisplay = (x) => {
-    setforgotPasswordDisplay(x);
+    setIsforgotPassDisplayed(x);
   };
 
   const updateRegBlockDisplay = (x) => {
-    setRegBlockDisplay(x);
+    setIsRegBlockDisplayed(x);
   };
 
   const updateLoginDisplay = (x) => {
-    setLoginDisplay(x);
+    setIsLoginDisplayed(x);
+  };
+
+  const updateGameOverlayDisplay = (x) => {
+    setIsGameOverlayDisplayed(x);
+  }
+
+  const updateToTopDisplay = (x) => {
+    setIsToTopDisplayed(x);
   };
 
   const homeActive = () => {
@@ -119,26 +127,20 @@ const AppProvider = ({children}) =>{
     setTableLabelColor(AppColor.GameTabLabelActive);
   };
 
-  const updateSelectedGame = (x) => {
-    setSelectedGame(x);
-  };
-
-  const updateGameOverlayDisplay = (x) => {
-    setIsGameOverlay(x);
-  }
-
-  const updateToTopDisplay = (x) => {
-    setToTopDisplay(x);
+  const fetchErrorHandler = () => {
+    setErrorMessage("Cannot connect");
   };
 
   const state = {
     sliderList,
     gamesList,
+    selectedGame,
     isLoading,
-    errorMessage,
-    forgotPasswordDisplay,
-    regBlockDisplay,
-    loginDisplay,
+    isForgotPassDisplayed,
+    isRegBlockDisplayed,
+    isLoginDisplayed,
+    isGameOverlayDisplayed,
+    isToTopDisplayed,
     homeIcon,
     newIcon,
     slotsIcon,
@@ -147,11 +149,9 @@ const AppProvider = ({children}) =>{
     newLabelColor,
     slotsLabelColor,
     tableLabelColor,
-    selectedGame,
-    isGameOverlay,
-    toTopDisplay
+    errorMessage
   };
-
+  
   const actions = {
     getSliderList,
     getGamesList,
@@ -159,20 +159,20 @@ const AppProvider = ({children}) =>{
     getSlotGamesList,
     getTableGamesList,
     updateGamesList,
-    fetchErrorHandler,
+    updateSelectedGame,
     loadingIsFinished,
     updateforgotPasswordDisplay,
     updateRegBlockDisplay,
     updateLoginDisplay,
+    updateGameOverlayDisplay,
+    updateToTopDisplay,
     homeActive,
     newActive,
     slotsActive,
     tableActive,
-    updateSelectedGame,
-    updateGameOverlayDisplay,
-    updateToTopDisplay
+    fetchErrorHandler
   };
-
+  
   return <Provider value={{ ...state, ...actions }}>{children}</Provider>;
 };
 

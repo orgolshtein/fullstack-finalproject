@@ -36,17 +36,17 @@ export default function BannerGallery () {
 
   const bannerClickHandler = () => {
     updateGameOverlayDisplay(false);
-    updateLoginDisplay("flex");
+    updateLoginDisplay(true);
   };
 
   const ctaClickHandler = () => {
     updateGameOverlayDisplay(false);
     setCtaActive(true);
     setTimeout(()=>{
-        updateRegBlockDisplay("flex");
+        updateRegBlockDisplay(true);
         setCtaActive(false);
         setTimeout(()=>{
-            updateRegBlockDisplay("none");
+            updateRegBlockDisplay(false);
         }, 4000)
     }, Math.floor(Math.random() * (2000-1000)+1000));
 };

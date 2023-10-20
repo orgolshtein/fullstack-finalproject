@@ -30,7 +30,7 @@ export const GameListDiv = styled.div`
 `
 
 export const PopupDiv = styled.div`
-    display: ${(props)=>props.display};
+    display: flex;
     position: fixed;
     left: 0;
     top: 0;
@@ -48,9 +48,6 @@ export const PopupDiv = styled.div`
         position: relative;
         z-index: 107;
         width: 100%;
-        text-align: left;
-        animation-name: bounceIn;
-        pointer-events: auto;
         border-radius: 2rem;
 
         .inner{
@@ -60,17 +57,11 @@ export const PopupDiv = styled.div`
             background-color: ${AppColor.PopupMainBackground};
 
             .content{
-                max-height: 95vh;
-                height: auto;
                 overflow-x: hidden;
                 color: ${AppColor.PopupMainText};
                 font-size: .72em;
                 padding: 1em 1.15em 0;
-                min-height: 6.6em;
-                clear: both;
                 position: relative;
-                overflow-y: auto;
-                word-wrap: break-word;
                 border-radius: 0.2rem;
 
                 .titlebox {
@@ -80,7 +71,7 @@ export const PopupDiv = styled.div`
                     text-align: center;
                     text-transform: capitalize;
                     line-height: normal;
-                    font-size: 1.429rem;
+                    font-size: 1.4rem;
                     font-weight: 700;
                     display: flex;
                     flex-direction: column;

@@ -14,18 +14,18 @@ export default function ForgotPassword () {
     const [inputBackgroundColor, setInputBackgroundColor] = useState(AppColor.InputBackground);
     const [ctaActive, setCtaActive] = useState(false);
     const { 
-        forgotPasswordDisplay, 
+        isForgotPassDisplayed, 
         updateforgotPasswordDisplay
     } = useContext(AppContext);
 
     let userInput = useRef();
 
-    forgotPasswordDisplay === "flex" ?
+    isForgotPassDisplayed ?
     useImperativeDisableScroll({ element: document.body, disabled: true }):
     useImperativeDisableScroll({ element: document.body, disabled: false });
     
     const closeClickHandler = () =>{
-        updateforgotPasswordDisplay("none");
+        updateforgotPasswordDisplay(false);
         setCtaMsg("");
         userInput.current.value = "";
     };
@@ -44,37 +44,42 @@ export default function ForgotPassword () {
     };
 
     return (
-        <PopupDiv display={forgotPasswordDisplay} width="24rem" $zindex="110" $titleboxheight="12rem">
-            <div className="flexContainer">
-                <div className="inner">
-                    <PopupCloseBtn onClick={closeClickHandler} $url="src/assets/icons/cross_white_icon.svg"></PopupCloseBtn>
-                    <div className="content">
-                        <div className="titlebox">
-                            <AppLogo $res={"6"} alt="popuplogo"/>
-                            <div>Forgot user / password assistance</div>
+        <>
+        {
+            isForgotPassDisplayed ?
+            <PopupDiv width="24rem" $zindex="110" $titleboxheight="12rem">
+                <div className="flexContainer">
+                    <div className="inner">
+                        <PopupCloseBtn onClick={closeClickHandler} $url="src/assets/icons/cross_white_icon.svg"></PopupCloseBtn>
+                        <div className="content">
+                            <div className="titlebox">
+                                <AppLogo $res={"6"} alt="popuplogo"/>
+                                <div>Forgot user / password assistance</div>
+                            </div>
+                            <ForgotPasswordDiv>
+                                <div>Please insert one of the following</div>
+                                <ForgotPassInput type="email"
+                                placeholder="Enter user or email address" 
+                                disabled={inputDisabled}
+                                $background={inputBackgroundColor}
+                                ref={userInput}
+                                />
+                                {
+                                    ctaMsg !== "" ?
+                                    <span>{ctaMsg}</span> : null                          
+                                }
+                                {
+                                    ctaActive ?
+                                    <ForgotPasswordCtaActive>continue</ForgotPasswordCtaActive> :
+                                    <ForgotPasswordCta onClick={ctaClickHandler}>continue</ForgotPasswordCta>
+                                }
+                            </ForgotPasswordDiv>
                         </div>
-                        <ForgotPasswordDiv>
-                            <div>Please insert one of the following</div>
-                            <ForgotPassInput type="email"
-                            placeholder="Enter user or email address" 
-                            disabled={inputDisabled}
-                            $background={inputBackgroundColor}
-                            ref={userInput}
-                            />
-                            {
-                                ctaMsg !== "" ?
-                                <span>{ctaMsg}</span> : null                          
-                            }
-                            {
-                                ctaActive ?
-                                <ForgotPasswordCtaActive>continue</ForgotPasswordCtaActive> :
-                                <ForgotPasswordCta onClick={ctaClickHandler}>continue</ForgotPasswordCta>
-                            }
-                        </ForgotPasswordDiv>
                     </div>
                 </div>
-            </div>
-        </PopupDiv>
+            </PopupDiv> : null
+        }
+        </>
     );
 }
 

@@ -7,28 +7,33 @@ import { PopupDiv } from "../../styles/Containers";
 
 export default function RegistrationBlock () {
     const { 
-        regBlockDisplay
+        isRegBlockDisplayed
     } = useContext(AppContext);
 
-    regBlockDisplay === "flex" ?
+    isRegBlockDisplayed ?
     useImperativeDisableScroll({ element: document.body, disabled: true }):
     useImperativeDisableScroll({ element: document.body, disabled: false });
 
     return (
-        <PopupDiv display={regBlockDisplay} width="24rem" $zindex="110" $titleboxheight="4rem">
-            <div className="flexContainer">
-                <div className="inner">
-                    <div className="content">
-                        <div className="titlebox">
-                            <div>We're sorry...</div>
+        <>
+        {
+            isRegBlockDisplayed ?
+            <PopupDiv width="24rem" $zindex="110" $titleboxheight="4rem">
+                <div className="flexContainer">
+                    <div className="inner">
+                        <div className="content">
+                            <div className="titlebox">
+                                <div>We're sorry...</div>
+                            </div>
+                            <RegBlockDiv>
+                                <div>Registration cannot be made in your region</div>
+                            </RegBlockDiv>
                         </div>
-                        <RegBlockDiv>
-                            <div>Registration cannot be made in your region</div>
-                        </RegBlockDiv>
                     </div>
                 </div>
-            </div>
-        </PopupDiv>
+            </PopupDiv> : null
+        }
+        </>
     );
 }
 

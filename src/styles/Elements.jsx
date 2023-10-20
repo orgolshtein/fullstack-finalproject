@@ -24,11 +24,7 @@ export const GameThumbNewTag = styled.span`
     font-weight: 300;
     color: ${AppColor.ButtonText};
     position: absolute;
-    vertical-align: middle;
-    font-style: normal;
-    border: 0;
     text-align: center;
-    text-decoration: none;
     top: 0.5rem;
     left: 0rem;
     z-index:3;

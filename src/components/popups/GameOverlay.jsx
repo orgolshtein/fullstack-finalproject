@@ -6,19 +6,19 @@ import { PlayPopupBtn, PopupCloseBtn } from "../../styles/Buttons";
 import * as AppColor from "../../styles/Colors";
 
 export default function GameOverlay () {
-    const { selectedGame, isGameOverlay, updateGameOverlayDisplay, updateLoginDisplay } = useContext(AppContext);
+    const { selectedGame, isGameOverlayDisplayed, updateGameOverlayDisplay, updateLoginDisplay } = useContext(AppContext);
 
     const closeClickHandler = () => {
         updateGameOverlayDisplay(false);
     };
 
     const ctaClickHandler = () => {
-        updateLoginDisplay("flex");
+        updateLoginDisplay(true);
     };
 
     return (
         <GameOverlayDiv>
-            <div className={isGameOverlay? "shown" : "hidden"}>
+            <div className={isGameOverlayDisplayed? "shown" : "hidden"}>
                 <PopupCloseBtn onClick={closeClickHandler} $url="src/assets/icons/cross_white_icon.svg"></PopupCloseBtn>
                 <h1>{selectedGame.title}</h1>
                 <GameImage image={selectedGame.thumb} $res={260} title={selectedGame.title}/>
@@ -71,7 +71,7 @@ const GameOverlayDiv = styled.div`
     
         p{
             font-size: 1rem;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
             color: ${AppColor.MainText};
             text-align: left;
             height: 10rem;
@@ -119,7 +119,7 @@ const GameOverlayDiv = styled.div`
     
         p{
             font-size: 1rem;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
             color: ${AppColor.MainText};
             text-align: left;
             height: 10rem;

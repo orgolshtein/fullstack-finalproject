@@ -4,11 +4,11 @@ import { AppContext } from "../state/AppContext";
 
 
 export default function ToTop () {
-    const { toTopDisplay, updateToTopDisplay } = useContext(AppContext);
+    const { isToTopDisplayed, updateToTopDisplay } = useContext(AppContext);
 
     const DisplayHandler = () =>{
         if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
-            updateToTopDisplay("inline-block");
+            updateToTopDisplay(true);
           }
     };
     
@@ -17,13 +17,15 @@ export default function ToTop () {
     }
 
     return (
-        <ToTopButton onClick={ScrollHandler} onChange={DisplayHandler} display={toTopDisplay}></ToTopButton>
+        <>
+            {isToTopDisplayed ? <ToTopButton onClick={ScrollHandler} onChange={DisplayHandler}></ToTopButton> : null}
+        </>
     );
 }
 
 
 const ToTopButton = styled.div`
-    display: ${(props) => props.display};
+    display: inline-block;
     background: url(/src/assets/icons/btop_icon.png) 50% 50%/contain no-repeat;
     position: fixed;
     z-index: 101;

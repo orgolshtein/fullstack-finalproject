@@ -39,7 +39,7 @@ export default function Header (){
 
     const forgotClickHandler = () => {
         updateGameOverlayDisplay(false);
-        updateforgotPasswordDisplay("flex");
+        updateforgotPasswordDisplay(true);
     };
 
     const loginClickHandler = () =>{
@@ -65,10 +65,10 @@ export default function Header (){
         setJoinBtnActive(true);
         updateGameOverlayDisplay(false);
         setTimeout(()=>{
-            updateRegBlockDisplay("flex");
+            updateRegBlockDisplay(true);
             setJoinBtnActive(false);
             setTimeout(()=>{
-                updateRegBlockDisplay("none");
+                updateRegBlockDisplay(false);
             }, 4000)
         }, Math.floor(Math.random() * (2000-1000)+1000));
     };
