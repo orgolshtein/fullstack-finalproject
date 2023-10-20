@@ -15,11 +15,11 @@ export default function GameThumb ({ image, title, $new, $selectedgame }) {
 
   return (
       <GameThumbContainer onClick={()=>{
-        updateGameOverlayDisplay("none");
-        updateSelectedGame($selectedgame);
+        updateGameOverlayDisplay(false);
         setTimeout(()=>{
-          updateGameOverlayDisplay("flex");
-        },100)
+          updateSelectedGame($selectedgame);
+          updateGameOverlayDisplay(true);
+        },200)
       }}>
           <GameThumbBtn>play now</GameThumbBtn>
           <GameThumbNewTag display={newTagDisplay}>new</GameThumbNewTag>

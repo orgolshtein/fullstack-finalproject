@@ -1,4 +1,4 @@
--Selected game component
+-Redo Popup components
 -BackToTop component
 -Error handling
 -Click outside to close component??

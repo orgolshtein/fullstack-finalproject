@@ -1,5 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { darken } from "polished";
 import * as AppColor from "../../styles/Colors";
@@ -16,12 +17,17 @@ export default function Header (){
     const [loginBackgroundColor, setLoginBackgroundColor] = useState(AppColor.InputBackground);
     const [loginBtnActive, setLoginBtnActive] = useState(false);
     const [joinBtnActive, setJoinBtnActive] = useState(false);
-    const { updateforgotPasswordDisplay, updateRegBlockDisplay } = useContext(AppContext);
+    const { updateforgotPasswordDisplay, updateRegBlockDisplay, updateGameOverlayDisplay } = useContext(AppContext);
 
     let userInput = useRef();
     let passInput = useRef();
 
+    const logoClickHandler = () => {
+        updateGameOverlayDisplay(false);
+    };
+
     const passwordIconClickHandler = () => {
+        updateGameOverlayDisplay(false);
         if (passwordInputType === "password") {
             setPasswordInputType("text");
             setPasswordIcon("/src/assets/icons/password_visible_icon.svg");
@@ -32,10 +38,12 @@ export default function Header (){
     };
 
     const forgotClickHandler = () => {
+        updateGameOverlayDisplay(false);
         updateforgotPasswordDisplay("flex");
     };
 
     const loginClickHandler = () =>{
+        updateGameOverlayDisplay(false);
         if (userInput.current.value === "" || passInput.current.value === "") {
             setHeaderMsg("");
             setHeaderMsg("Username/Email and Password are required");
@@ -55,6 +63,7 @@ export default function Header (){
 
     const joinClickHandler = () => {
         setJoinBtnActive(true);
+        updateGameOverlayDisplay(false);
         setTimeout(()=>{
             updateRegBlockDisplay("flex");
             setJoinBtnActive(false);
@@ -64,17 +73,23 @@ export default function Header (){
         }, Math.floor(Math.random() * (2000-1000)+1000));
     };
 
+    const inputActive = () => {
+        updateGameOverlayDisplay(false);
+    };
+
     return (
         <HeaderDiv>
             <div className="headerContent">
-                <AppLogo 
-                    $res="10" 
-                    $pos="sticky" 
-                    $left="5rem" 
-                    $zindex="2" 
-                    cursor="pointer" 
-                    alt="mainlogo" 
-                />
+                <Link onClick={logoClickHandler} className="homeIcon" to="/">
+                    <AppLogo 
+                        $res="10" 
+                        $pos="sticky" 
+                        $left="5rem" 
+                        $zindex="2" 
+                        cursor="pointer" 
+                        alt="mainlogo"
+                    />
+                </Link>
                 <div className="authGrid">
                     <InputContainerHeader>
                         <input
@@ -83,6 +98,7 @@ export default function Header (){
                         disabled={loginInputDisabled}
                         background={loginBackgroundColor}
                         ref={userInput}
+                        onClick={inputActive}
                         />
                     </InputContainerHeader> 
                     <InputContainerHeader>
@@ -92,6 +108,7 @@ export default function Header (){
                         disabled={loginInputDisabled}
                         background={loginBackgroundColor}
                         ref={passInput}
+                        onClick={inputActive}
                         />
                         {
                         loginBtnActive ?

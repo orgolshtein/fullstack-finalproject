@@ -9,7 +9,7 @@ const { Provider } = AppContext;
 const AppProvider = ({children}) =>{
   const [sliderList, setSliderList] = useState([]);  
   const [gamesList, setGamesList] = useState([]);
-  const [loadingStatus, setLoadingStatus] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [forgotPasswordDisplay, setforgotPasswordDisplay] = useState("none");
   const [regBlockDisplay, setRegBlockDisplay] = useState("none");
@@ -23,7 +23,7 @@ const AppProvider = ({children}) =>{
   const [slotsLabelColor, setSlotsLabelColor] = useState(AppColor.GameTabLabel);
   const [tableLabelColor, setTableLabelColor] = useState(AppColor.GameTabLabel);
   const [selectedGame, setSelectedGame] = useState({});
-  const [gameOverlayDisplay, setGameOverlayDisplay] = useState("none");
+  const [isGameOverlay, setIsGameOverlay] = useState(false);
   const [toTopDisplay, setToTopDisplay] = useState("none");
 
   const getSliderList = ()=>{
@@ -56,7 +56,7 @@ const AppProvider = ({children}) =>{
   };
 
   const loadingIsFinished = () => {
-    setLoadingStatus(false);
+    setIsLoading(false);
   };
   
   const fetchErrorHandler = () => {
@@ -124,7 +124,7 @@ const AppProvider = ({children}) =>{
   };
 
   const updateGameOverlayDisplay = (x) => {
-    setGameOverlayDisplay(x);
+    setIsGameOverlay(x);
   }
 
   const updateToTopDisplay = (x) => {
@@ -134,7 +134,7 @@ const AppProvider = ({children}) =>{
   const state = {
     sliderList,
     gamesList,
-    loadingStatus,
+    isLoading,
     errorMessage,
     forgotPasswordDisplay,
     regBlockDisplay,
@@ -148,7 +148,7 @@ const AppProvider = ({children}) =>{
     slotsLabelColor,
     tableLabelColor,
     selectedGame,
-    gameOverlayDisplay,
+    isGameOverlay,
     toTopDisplay
   };
 

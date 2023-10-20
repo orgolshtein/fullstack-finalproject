@@ -5,7 +5,7 @@ import { useOncePostMount } from "../../hooks/UseOnce"
 import { GameListDiv } from "../../styles/Containers"
 
 export default function TableGames () {
-    const { gamesList, getTableGamesList, fetchErrorHandler, loadingIsFinished, tableActive } = useContext(AppContext);
+    const { gamesList, getTableGamesList, fetchErrorHandler, loadingIsFinished, tableActive, updateGameOverlayDisplay } = useContext(AppContext);
 
     useOncePostMount(() => {
         (async () => {
@@ -16,6 +16,7 @@ export default function TableGames () {
           } finally {
             loadingIsFinished();
             tableActive();
+            updateGameOverlayDisplay(false);
           }
         })();
       });

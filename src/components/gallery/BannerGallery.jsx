@@ -18,7 +18,8 @@ export default function BannerGallery () {
           fetchErrorHandler, 
           loadingIsFinished, 
           updateRegBlockDisplay,
-          updateLoginDisplay
+          updateLoginDisplay,
+          updateGameOverlayDisplay
         } = useContext(AppContext);
 
   useOncePostMount(() => {
@@ -34,10 +35,12 @@ export default function BannerGallery () {
   });
 
   const bannerClickHandler = () => {
+    updateGameOverlayDisplay(false);
     updateLoginDisplay("flex");
   };
 
   const ctaClickHandler = () => {
+    updateGameOverlayDisplay(false);
     setCtaActive(true);
     setTimeout(()=>{
         updateRegBlockDisplay("flex");
