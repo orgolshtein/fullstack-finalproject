@@ -301,3 +301,51 @@ export const PlayPopupBtn = styled.button`
       background-color: ${darken(0.1, AppColor.JoinBtn)};
     }
 `
+
+export const ToTopButton = styled.div`
+    background: transparent;
+
+    .shown{
+        display: inline-block;
+        background: url(/src/assets/icons/btop_icon.png) 50% 50%/contain no-repeat;
+        position: fixed;
+        z-index: 100;
+        bottom: 3.5em;
+        right: 1em;
+        width: 3.8em;
+        height: 3.8em;
+        cursor: pointer;
+        animation: slide-up 300ms;
+    
+        @keyframes slide-up {
+            from {
+                transform: translateY(100%); opacity: 0;
+            }
+            to {
+                transform: translateY(0%); opacity: 1;
+            }
+        }
+    }
+
+    .hidden{
+        display:none;
+        background: url(/src/assets/icons/btop_icon.png) 50% 50%/contain no-repeat;
+        position: fixed;
+        z-index: 100;
+        bottom: 3.5em;
+        right: 1em;
+        width: 3.8em;
+        height: 3.8em;
+        cursor: pointer;
+        animation: slide-down 300ms;
+    
+        @keyframes slide-down {
+            from { 
+                display: block; 
+            }
+            to { 
+                transform: translateY(100%); opacity: 0;
+            }
+        }
+    }
+`

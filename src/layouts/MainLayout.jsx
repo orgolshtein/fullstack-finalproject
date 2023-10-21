@@ -8,25 +8,55 @@ import RegistrationBlock from "../components/popups/RegistrationBlock";
 import Footer from "../components/footer/Footer";
 import Login from "../components/popups/Login";
 import GameOverlay from "../components/popups/GameOverlay";
-// import ToTop from "../components/ToTop";
+import ToTop from "../components/ToTop";
+import { useOncePostMount } from "../hooks/UseOnce";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../state/AppContext";
 
-const MainLayout = () => (
-    <div>
-        <Header />
-        <BannerGallery />
-        <GameSectionDiv>
-          <GamesContainer>
-            <GameTabs />
-            <Outlet />
-          </GamesContainer>
-        </GameSectionDiv>
-        <Footer />
-        <ForgotPassword />
-        <RegistrationBlock />
-        <Login />
-        <GameOverlay />
-        {/* <ToTop /> */}
-    </div>
+export default function MainLayout() {
+  const [scrollY, setScrollY] = useState(0);
+  const { updateToTopDisplay } = useContext(AppContext);
+
+  useEffect(() => {
+    function watchScroll() {
+      window.addEventListener("scroll", ()=>{
+        setScrollY(window.scrollY);
+        if (scrollY > 265){
+          updateToTopDisplay(true)
+        } else{
+          updateToTopDisplay(false)
+        }
+      });
+    }
+    watchScroll();
+    return () => {
+      window.removeEventListener("scroll", ()=>{
+        setScrollY(window.scrollY);
+        if (scrollY > 265){
+          updateToTopDisplay(true)
+        } else{
+          updateToTopDisplay(false)
+        }
+      });
+    };
+  });
+
+  return (
+      <div>
+          <Header />
+          <BannerGallery />
+          <GameSectionDiv>
+            <GamesContainer>
+              <GameTabs />
+              <Outlet />
+            </GamesContainer>
+          </GameSectionDiv>
+          <Footer />
+          <ForgotPassword />
+          <RegistrationBlock />
+          <Login />
+          <GameOverlay />
+          <ToTop />
+      </div>
   );
-
-export default MainLayout;
+}
