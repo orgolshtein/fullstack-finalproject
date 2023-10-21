@@ -4,9 +4,10 @@ import * as AppColor from "./Colors";
 export const InputContainerHeader = styled.span`
     position: relative;
     font-size: 1rem;
-    border: ${AppColor.InputBorder} 1px solid;
+    border: ${(props)=>props.$inputbor} 1.7px solid;
     color: ${AppColor.InputText};
     background: ${(props)=>(props.background)};
+    border-radius: 0.2rem;
 
     input{
         border:none;
@@ -26,10 +27,10 @@ export const ForgotPassInput = styled.input`
     margin-bottom: 1em;
     font-size: 1rem;
     color: ${AppColor.PopupMainText};
-    border-color: ${AppColor.InputBorder};
+    border-color: ${(props)=>props.$inputbor};
     border-radius: 3px;
     box-shadow: none;
-    border-width: 1px;
+    border-width: 1.5px;
     height: 2.5em;
     padding: 0 2.5em 0 0.56em;
     width: 100%;
@@ -51,10 +52,10 @@ export const InputContainerLogin = styled.span`
     margin-bottom: 1em;
     font-size: 1rem;
     color: ${AppColor.PopupMainText};
-    border-color: ${AppColor.InputBorder};
+    border-color: ${(props)=>props.$inputbor};
     border-radius: 3px;
     box-shadow: none;
-    border-width: 1px;
+    border-width: 1.5px;
     height: 2.5em;
     padding: 0 .1rem 0 0.1rem;
     width: 100%;
@@ -83,7 +84,8 @@ export const SearchInputContainer = styled.div`
     top: 0.7rem;
     left: 1.6rem;
     line-height: 2.6em;
-    border: 1px solid ${AppColor.InputBorder};
+    border: 1.5px solid ${AppColor.InputBorder};
+    border-radius: 0.2rem;
     height: 2rem;
 
     .searchIcon{

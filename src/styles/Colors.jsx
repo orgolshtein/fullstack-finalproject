@@ -8,6 +8,7 @@ export const ButtonText = "#ffffff";
 export const GameTabLabel = "#0b2139";
 export const GameTabLabelActive = "#aea269";
 export const InputBorder = "#7081ae";
+export const InputErrorBorder = "#e25757";
 export const InputText = "#000000";
 export const InputSearchText = "#6c6c6c"
 export const InputBackground = "#ffffff";

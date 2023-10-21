@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
 import styled from "styled-components";
 import { lighten } from "polished";
@@ -9,14 +9,16 @@ import { InputContainerLogin } from "../../styles/Inputs";
 import { PopupDiv } from "../../styles/Containers";
 import WelcomeBonusOverlay from "../WelcomeBonusOverlay"
 import { PasswordVisIcon } from "../../styles/Elements";
-import UserIcon from "../../assets/icons/login_user_icon.svg"
-import PassIcon from "../../assets/icons/login_password_icon.svg"
+import UserIcon from "../../assets/icons/login_user_icon.svg";
+import PassIcon from "../../assets/icons/login_password_icon.svg";
+import loadingIcon from "../../assets/icons/loading.gif";
 
 export default function Login () {
     const [loginMsg, setLoginMsg] = useState("");
     const [passwordInputType, setPasswordInputType] = useState("password");
     const [passwordIcon, setPasswordIcon] = useState("/src/assets/icons/password_invisible_icon.svg");
     const [inputDisabled, setInputDisabled] = useState(false);
+    const [inputBorder, setInputBorder] = useState(AppColor.InputBorder);
     const [inputBackgroundColor, setInputBackgroundColor] = useState(AppColor.InputBackground);
     const [loginBtnActive, setLoginBtnActive] = useState(false);
     const [joinBtnActive, setJoinBtnActive] = useState(false);
@@ -52,14 +54,14 @@ export default function Login () {
     };
 
     const loginClickHandler = () =>{
+        setLoginMsg("");
         if (userInput.current.value === "" || passInput.current.value === "") {
-            setLoginMsg("");
             setLoginMsg("Username/Email and Password are required");
             setTimeout(()=>{
                 setLoginMsg("");
             }, 5000)
         } else {
-            setLoginMsg("");
+            setLoginMsg(<img src={loadingIcon} width="30rem" height="30rem" />);
             setInputDisabled(true);
             setInputBackgroundColor(AppColor.DisbledInputBackground);
             setLoginBtnActive(true);
@@ -68,9 +70,6 @@ export default function Login () {
                 setInputDisabled(false);
                 setInputBackgroundColor(AppColor.InputBackground);
                 setLoginBtnActive(false);
-                setTimeout(()=>{
-                    setLoginMsg("");
-                }, 5000)
             }, Math.floor(Math.random() * (5000-1000)+1000));
         }
     };
@@ -90,6 +89,12 @@ export default function Login () {
         }, Math.floor(Math.random() * (2000-1000)+1000));
     };
 
+    useEffect(()=>{
+        loginMsg.length > 0 ?
+        setInputBorder(AppColor.InputErrorBorder) :
+        setInputBorder(AppColor.InputBorder)
+    },[loginMsg])
+
     return (
         <>
         {
@@ -101,7 +106,7 @@ export default function Login () {
                         <div className="content">
                             <LoginDiv>
                                 <form action="">
-                                    <InputContainerLogin $background={inputBackgroundColor}>
+                                    <InputContainerLogin $background={inputBackgroundColor} $inputbor={inputBorder}>
                                         <img className="inputIcon" src={UserIcon} onClick={()=>{
                                             userInput.current.focus();
                                         }}/>
@@ -111,7 +116,7 @@ export default function Login () {
                                             ref={userInput}
                                         />
                                     </InputContainerLogin>
-                                    <InputContainerLogin $background={inputBackgroundColor}>
+                                    <InputContainerLogin $background={inputBackgroundColor} $inputbor={inputBorder}>
                                         <img className="inputIcon" src={PassIcon} onClick={()=>{
                                             passInput.current.focus();
                                         }}/>

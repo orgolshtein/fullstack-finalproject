@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -8,11 +8,13 @@ import AppLogo from "../AppLogo";
 import { LoginHeaderBtn, LoginHeaderBtnActive, JoinHeaderBtn, JoinHeaderBtnActive } from "../../styles/Buttons";
 import { InputContainerHeader } from "../../styles/Inputs";
 import { PasswordVisIcon } from "../../styles/Elements";
+import loadingIcon from "../../assets/icons/loading.gif"
 
 export default function Header (){
     const [headerMsg, setHeaderMsg] = useState("");
     const [passwordInputType, setPasswordInputType] = useState("password");
     const [passwordIcon, setPasswordIcon] = useState("/src/assets/icons/password_invisible_icon.svg");
+    const [loginInputBorder, setLoginInputBorder] = useState(AppColor.InputBorder);
     const [loginInputDisabled, setLoginInputDisabled] = useState(false);
     const [loginBackgroundColor, setLoginBackgroundColor] = useState(AppColor.InputBackground);
     const [loginBtnActive, setLoginBtnActive] = useState(false);
@@ -44,11 +46,11 @@ export default function Header (){
 
     const loginClickHandler = () =>{
         updateGameOverlayDisplay(false);
+        setHeaderMsg("");
         if (userInput.current.value === "" || passInput.current.value === "") {
-            setHeaderMsg("");
             setHeaderMsg("Username/Email and Password are required");
         } else {
-            setHeaderMsg("");
+            setHeaderMsg(<img src={loadingIcon} width="30rem" height="30rem" style={{ marginLeft: "5rem" }}/>);
             setLoginInputDisabled(true);
             setLoginBackgroundColor(AppColor.DisbledInputBackground);
             setLoginBtnActive(true);
@@ -77,6 +79,12 @@ export default function Header (){
         updateGameOverlayDisplay(false);
     };
 
+    useEffect(()=>{
+        headerMsg.length > 0 ?
+        setLoginInputBorder(AppColor.InputErrorBorder) :
+        setLoginInputBorder(AppColor.InputBorder)
+    }, [headerMsg])
+
     return (
         <HeaderDiv>
             <div className="headerContent">
@@ -91,7 +99,7 @@ export default function Header (){
                     />
                 </Link>
                 <div className="authGrid">
-                    <InputContainerHeader>
+                    <InputContainerHeader $inputbor={loginInputBorder}>
                         <input
                         type="text"
                         placeholder="Username / Email"
@@ -101,7 +109,7 @@ export default function Header (){
                         onClick={inputActive}
                         />
                     </InputContainerHeader> 
-                    <InputContainerHeader>
+                    <InputContainerHeader $inputbor={loginInputBorder}>
                         <input
                         type={passwordInputType}
                         placeholder="Password:"

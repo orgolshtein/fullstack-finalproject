@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import * as AppColor from "../../styles/Colors";
 import { AppContext } from "../../state/AppContext";
@@ -7,10 +7,12 @@ import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
 import { ForgotPasswordCta, ForgotPasswordCtaActive, PopupCloseBtn } from "../../styles/Buttons";
 import { ForgotPassInput } from "../../styles/Inputs";
 import { PopupDiv } from "../../styles/Containers";
+import loadingIcon from "../../assets/icons/loading.gif"
 
 export default function ForgotPassword () {
     const [ctaMsg, setCtaMsg] = useState("");
     const [inputDisabled, setInputDisabled] = useState(false);
+    const [inputBorder, setInputBorder] = useState(AppColor.InputBorder);
     const [inputBackgroundColor, setInputBackgroundColor] = useState(AppColor.InputBackground);
     const [ctaActive, setCtaActive] = useState(false);
     const { 
@@ -32,16 +34,28 @@ export default function ForgotPassword () {
 
     const ctaClickHandler = () =>{
         setCtaMsg("");
-        setInputDisabled(true);
-        setInputBackgroundColor(AppColor.DisbledInputBackground);
-        setCtaActive(true);
-        setTimeout(()=>{
-            setCtaMsg("User not found");
-            setInputDisabled(false);
-            setInputBackgroundColor(AppColor.InputBackground);
-            setCtaActive(false);
-        }, (3000-1000)+1000);
+        if (userInput.current.value === "") {
+            setCtaMsg("User or email address is required");
+            setInputBorder(AppColor.InputErrorBorder)
+        } else{
+            setCtaMsg(<img src={loadingIcon} width="30rem" height="30rem" />)
+            setInputDisabled(true);
+            setInputBackgroundColor(AppColor.DisbledInputBackground);
+            setCtaActive(true);
+            setTimeout(()=>{
+                setCtaMsg("User not found");
+                setInputDisabled(false);
+                setInputBackgroundColor(AppColor.InputBackground);
+                setCtaActive(false);
+            }, (3000-1000)+1000);
+        }
     };
+
+    useEffect(()=>{
+        ctaMsg.length > 0 ?
+        setInputBorder(AppColor.InputErrorBorder) :
+        setInputBorder(AppColor.InputBorder)
+    }, [ctaMsg])
 
     return (
         <>
@@ -61,6 +75,7 @@ export default function ForgotPassword () {
                                 <ForgotPassInput type="email"
                                 placeholder="Enter user or email address" 
                                 disabled={inputDisabled}
+                                $inputbor={inputBorder}
                                 $background={inputBackgroundColor}
                                 ref={userInput}
                                 />
@@ -100,8 +115,9 @@ const ForgotPasswordDiv = styled.div`
     span{
         font-size: 1rem;
         color: ${AppColor.ErrorText};
-        margin: 1rem 0;
         line-height: 1;
         font-weight: bold;
+        display: inline-block;
+        height: 2rem;
     }
 `;
