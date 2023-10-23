@@ -7,7 +7,7 @@ import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
 import { ForgotPasswordCta, ForgotPasswordCtaActive, PopupCloseBtn } from "../../styles/Buttons";
 import { ForgotPassInput } from "../../styles/Inputs";
 import { PopupDiv } from "../../styles/Containers";
-import loadingIcon from "../../assets/icons/loading.gif"
+import loadingIcon from "../../assets/icons/loading.gif";
 
 export default function ForgotPassword () {
     const [ctaMsg, setCtaMsg] = useState("");
@@ -21,6 +21,7 @@ export default function ForgotPassword () {
     } = useContext(AppContext);
 
     let userInput = useRef();
+    let forgotPassRef = useRef();
 
     isForgotPassDisplayed ?
     useImperativeDisableScroll({ element: document.body, disabled: true }):
@@ -51,33 +52,44 @@ export default function ForgotPassword () {
         }
     };
 
+    const inputActive = () => {
+        setCtaMsg("");
+    };
+
     useEffect(()=>{
         ctaMsg.length > 0 ?
         setInputBorder(AppColor.InputErrorBorder) :
         setInputBorder(AppColor.InputBorder)
-    }, [ctaMsg])
+    }, [ctaMsg]);
+
+    const outsideClickHandler = (event) => {
+        if (forgotPassRef.current && !forgotPassRef.current.contains(event.target)){
+            closeClickHandler();
+        }
+    };
 
     return (
         <>
         {
             isForgotPassDisplayed ?
-            <PopupDiv width="24rem" $zindex="110" $titleboxheight="12rem">
+            <PopupDiv width="24rem" $zindex="110" $titleboxheight="12rem" onClick={outsideClickHandler}>
                 <div className="flexContainer">
-                    <div className="inner">
+                    <div className="inner" ref={forgotPassRef}>
                         <PopupCloseBtn onClick={closeClickHandler} $url="src/assets/icons/cross_white_icon.svg"></PopupCloseBtn>
                         <div className="content">
                             <div className="titlebox">
                                 <AppLogo $res={"6"} alt="popuplogo"/>
                                 <div>Forgot user / password assistance</div>
                             </div>
-                            <ForgotPasswordDiv>
+                            <ForgotPasswordDiv >
                                 <div>Please insert one of the following</div>
                                 <ForgotPassInput type="email"
-                                placeholder="Enter user or email address" 
-                                disabled={inputDisabled}
-                                $inputbor={inputBorder}
-                                $background={inputBackgroundColor}
-                                ref={userInput}
+                                    placeholder="Enter user or email address" 
+                                    disabled={inputDisabled}
+                                    $inputbor={inputBorder}
+                                    $background={inputBackgroundColor}
+                                    onClick={inputActive}
+                                    ref={userInput}
                                 />
                                 {
                                     ctaMsg !== "" ?

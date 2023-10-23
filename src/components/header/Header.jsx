@@ -69,14 +69,12 @@ export default function Header (){
         setTimeout(()=>{
             updateRegBlockDisplay(true);
             setJoinBtnActive(false);
-            setTimeout(()=>{
-                updateRegBlockDisplay(false);
-            }, 4000)
         }, Math.floor(Math.random() * (2000-1000)+1000));
     };
 
     const inputActive = () => {
         updateGameOverlayDisplay(false);
+        setHeaderMsg("");
     };
 
     useEffect(()=>{

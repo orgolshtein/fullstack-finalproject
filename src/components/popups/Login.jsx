@@ -31,6 +31,7 @@ export default function Login () {
 
     let userInput = useRef();
     let passInput = useRef();
+    let loginRef = useRef();
 
     isLoginDisplayed ?
     useImperativeDisableScroll({ element: document.body, disabled: true }):
@@ -57,9 +58,6 @@ export default function Login () {
         setLoginMsg("");
         if (userInput.current.value === "" || passInput.current.value === "") {
             setLoginMsg("Username/Email and Password are required");
-            setTimeout(()=>{
-                setLoginMsg("");
-            }, 5000)
         } else {
             setLoginMsg(<img src={loadingIcon} width="30rem" height="30rem" />);
             setInputDisabled(true);
@@ -83,25 +81,32 @@ export default function Login () {
         setTimeout(()=>{
             updateRegBlockDisplay(true);
             setJoinBtnActive(false);
-            setTimeout(()=>{
-                updateRegBlockDisplay(false);
-            }, 4000)
         }, Math.floor(Math.random() * (2000-1000)+1000));
+    };
+
+    const inputActive = () => {
+        setLoginMsg("");
     };
 
     useEffect(()=>{
         loginMsg.length > 0 ?
         setInputBorder(AppColor.InputErrorBorder) :
         setInputBorder(AppColor.InputBorder)
-    },[loginMsg])
+    },[loginMsg]);
+
+    const outsideClickHandler = (event) => {
+        if (loginRef.current && !loginRef.current.contains(event.target)){
+            closeClickHandler();
+        }
+    };
 
     return (
         <>
         {
             isLoginDisplayed ?
-            <PopupDiv width="26rem" $zindex="106">
+            <PopupDiv width="26rem" $zindex="106" onClick={outsideClickHandler}>
                 <div className="flexContainer">
-                    <div className="inner">
+                    <div className="inner" ref={loginRef}>
                         <PopupCloseBtn onClick={closeClickHandler} $url="src/assets/icons/cross_gray_icon.svg"></PopupCloseBtn>
                         <div className="content">
                             <LoginDiv>
@@ -113,6 +118,7 @@ export default function Login () {
                                         <input type="text"
                                             placeholder="Username / Email" 
                                             disabled={inputDisabled}
+                                            onClick={inputActive}
                                             ref={userInput}
                                         />
                                     </InputContainerLogin>
@@ -123,6 +129,7 @@ export default function Login () {
                                         <input type={passwordInputType}
                                             placeholder="Password:" 
                                             disabled={inputDisabled}
+                                            onClick={inputActive}
                                             ref={passInput}
                                         />
                                         {
