@@ -1,4 +1,3 @@
--Fully populate games-data.json (Different sized thumbs?)
--Responsive design
+-Responsive design (Different sized thumbs?)
 -Server & Database
 -Error handling
