@@ -1,3 +1,4 @@
--Responsive design (Different sized thumbs?)
+-Wide thumbs
+-Responsive design
 -Server & Database
 -Error handling

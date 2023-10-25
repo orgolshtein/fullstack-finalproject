@@ -268,8 +268,8 @@ export const GameThumbBtn = styled.button`
     color: ${AppColor.ButtonText};
     position: absolute;
     border: 0;
-    top: 6rem;
-    left: 3.5rem;
+    top: ${(props)=>props.$top};
+    left: ${(props)=>props.$left};
     z-index:3;
     cursor: pointer;
 

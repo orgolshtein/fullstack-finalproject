@@ -21,7 +21,7 @@ export default function GameOverlay () {
             <div className={isGameOverlayDisplayed? "shown" : "hidden"}>
                 <PopupCloseBtn onClick={closeClickHandler} $url="src/assets/icons/cross_white_icon.svg"></PopupCloseBtn>
                 <h1>{selectedGame.title}</h1>
-                <GameImage image={selectedGame.thumb} $res={260} title={selectedGame.title}/>
+                <GameImage image={selectedGame.thumb} $h={260} $w={260} title={selectedGame.title}/>
                 <p>{selectedGame.descrition}</p>
                 <PlayPopupBtn onClick={ctaClickHandler}>play now</PlayPopupBtn>
             </div>

@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { AppContext } from "../../state/AppContext";
 import GameThumb from "./GameThumb";
-import { useOncePostMount } from "../../hooks/UseOnce"
-import { GameListDiv } from "../../styles/Containers"
+import { useOncePostMount } from "../../hooks/UseOnce";
+import { GameListDiv } from "../../styles/Containers";
+import GameThumbLarge from "./GameThumbLarge";
 
 export default function NewGames () {
     const { gamesList, getNewGamesList, fetchErrorHandler, loadingIsFinished, newActive, updateGameOverlayDisplay } = useContext(AppContext);
@@ -24,7 +25,9 @@ export default function NewGames () {
     return(
         <GameListDiv>
             {gamesList?.filter((game) => game.show)
-            .map((item) => (
+            .map((item, i) => (
+              i === 6 ?
+              <GameThumbLarge key={item.id} $selectedgame={item} image={item.thumb} title={item.title} $new={item.new}/>:
               <GameThumb key={item.id} $selectedgame={item} image={item.thumb} title={item.title} $new={item.new}/>
                 ))}
         </GameListDiv>

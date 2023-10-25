@@ -19,14 +19,27 @@ export const GamesContainer = styled.div`
 
 export const GameListDiv = styled.div`
     position: relative;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: 180px 180px 180px 180px 180px 180px;
+    grid-template-rows:auto;
     gap: 1rem;
     padding: 0.7rem 0.769em 1.15rem;
     width: 88rem;
     left: 1%;
+
+    .big{
+        grid-column-start: 5;
+        grid-column-end: 7;
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+
+    .wide{
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
 `
 
 export const PopupDiv = styled.div`
