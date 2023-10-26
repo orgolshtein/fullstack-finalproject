@@ -1,6 +1,6 @@
 import { useContext, useRef } from "react";
-import styled from "styled-components";
 import { AppContext } from "../../state/AppContext";
+import styled from "styled-components";
 import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
 import { PopupDiv } from "../../styles/Containers";
 

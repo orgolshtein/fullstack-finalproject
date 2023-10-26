@@ -127,8 +127,8 @@ const AppProvider = ({children}) =>{
     setTableLabelColor(AppColor.GameTabLabelActive);
   };
 
-  const fetchErrorHandler = () => {
-    setErrorMessage("Cannot connect");
+  const fetchErrorHandler = (error) => {
+    setErrorMessage(`Connection error: ${error.message}`);
   };
 
   const state = {

@@ -27,6 +27,15 @@ export const GameListDiv = styled.div`
     width: 88rem;
     left: 1%;
 
+    .loading-failed{
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 1rem 0;
+        line-height: 1.1;
+        color: ${AppColor.ErrorText};
+        text-align: center;
+    }
+
     .big{
         grid-column-start: 5;
         grid-column-end: 7;
@@ -34,11 +43,18 @@ export const GameListDiv = styled.div`
         grid-row-end: 3;
     }
 
-    .wide{
+    .wide-top{
         grid-column-start: 3;
         grid-column-end: 5;
         grid-row-start: 1;
         grid-row-end: 2;
+    }
+
+    .wide-bottom{
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
     }
 `
 

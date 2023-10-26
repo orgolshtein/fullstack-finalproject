@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AppContext } from "../state/AppContext";
 import { ToTopButton } from "../styles/Buttons";
 
@@ -6,12 +6,12 @@ import { ToTopButton } from "../styles/Buttons";
 export default function ToTop () {
     const { isToTopDisplayed } = useContext(AppContext);
     
-    const ScrollHandler = ()=>{
+    const ClickHandler = ()=>{
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     return (
-        <ToTopButton onClick={ScrollHandler}>
+        <ToTopButton onClick={ClickHandler}>
             <div className={isToTopDisplayed? "shown" : "hidden"}></div>
         </ToTopButton>
     );

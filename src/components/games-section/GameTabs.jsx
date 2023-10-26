@@ -80,7 +80,6 @@ const TabsUl = styled.ul`
             text-decoration: none;
         }
     
-    
         span{
             width: 3rem;
             height: 3rem

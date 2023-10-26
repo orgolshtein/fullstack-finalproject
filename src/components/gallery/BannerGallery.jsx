@@ -3,6 +3,7 @@ import { AppContext } from "../../state/AppContext";
 import { useOncePostMount } from "../../hooks/UseOnce";
 import styled from "styled-components";
 import * as AppColor from "../../styles/Colors";
+import loadingIcon from "../../assets/icons/loading.gif";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import 'swiper/css/pagination';
@@ -15,7 +16,9 @@ export default function BannerGallery () {
   const [ctaActive, setCtaActive] = useState(false);
   const { sliderList, 
           getSliderList, 
-          fetchErrorHandler, 
+          errorMessage,
+          fetchErrorHandler,
+          isLoading, 
           loadingIsFinished, 
           updateRegBlockDisplay,
           updateLoginDisplay,
@@ -27,7 +30,7 @@ export default function BannerGallery () {
       try {
         await getSliderList();
       } catch {
-        fetchErrorHandler();
+        fetchErrorHandler(errorMessage);
       } finally {
         loadingIsFinished();
       }
@@ -50,6 +53,12 @@ export default function BannerGallery () {
 
   return (
   <GalleryDIV>
+   {
+    errorMessage ? (
+      <h1 className="loading-failed">{errorMessage}</h1>
+    ) : isLoading ? (
+      <img src={loadingIcon} width="200rem" height="200rem" style = {{ marginLeft : 500 }}/>
+    ) :
     <Swiper
       autoplay={{
         delay: 3500,
@@ -80,6 +89,7 @@ export default function BannerGallery () {
           }
         </div>
     </Swiper>
+   }
   </GalleryDIV>
   );
 } 

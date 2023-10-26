@@ -1,12 +1,17 @@
 import { useContext } from "react";
 import { AppContext } from "../../state/AppContext";
-import GameImage from "../GameImage";
 import styled from "styled-components";
-import { PlayPopupBtn, PopupCloseBtn } from "../../styles/Buttons";
 import * as AppColor from "../../styles/Colors";
+import GameImage from "../GameImage";
+import { PlayPopupBtn, PopupCloseBtn } from "../../styles/Buttons";
 
 export default function GameOverlay () {
-    const { selectedGame, isGameOverlayDisplayed, updateGameOverlayDisplay, updateLoginDisplay } = useContext(AppContext);
+    const { 
+        selectedGame, 
+        isGameOverlayDisplayed, 
+        updateGameOverlayDisplay, 
+        updateLoginDisplay 
+    } = useContext(AppContext);
 
     const closeClickHandler = () => {
         updateGameOverlayDisplay(false);

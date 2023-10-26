@@ -1,13 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react";
+import { AppContext } from "../../state/AppContext";
+import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
 import styled from "styled-components";
 import * as AppColor from "../../styles/Colors";
-import { AppContext } from "../../state/AppContext";
-import AppLogo from "../AppLogo";
-import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
-import { ForgotPasswordCta, ForgotPasswordCtaActive, PopupCloseBtn } from "../../styles/Buttons";
-import { ForgotPassInput } from "../../styles/Inputs";
-import { PopupDiv } from "../../styles/Containers";
 import loadingIcon from "../../assets/icons/loading.gif";
+import { PopupDiv } from "../../styles/Containers";
+import AppLogo from "../AppLogo";
+import { ForgotPassInput } from "../../styles/Inputs";
+import { ForgotPasswordCta, ForgotPasswordCtaActive, PopupCloseBtn } from "../../styles/Buttons";
 
 export default function ForgotPassword () {
     const [ctaMsg, setCtaMsg] = useState("");

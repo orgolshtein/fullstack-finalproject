@@ -1,3 +1,5 @@
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../state/AppContext";
 import Header from "../components/header/Header";
 import BannerGallery from "../components/gallery/BannerGallery";
 import { GameSectionDiv, GamesContainer } from "../styles/Containers";
@@ -9,9 +11,6 @@ import Footer from "../components/footer/Footer";
 import Login from "../components/popups/Login";
 import GameOverlay from "../components/popups/GameOverlay";
 import ToTop from "../components/ToTop";
-import { useOncePostMount } from "../hooks/UseOnce";
-import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../state/AppContext";
 
 export default function MainLayout() {
   const [scrollY, setScrollY] = useState(0);

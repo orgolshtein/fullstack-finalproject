@@ -1,17 +1,17 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
+import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
 import styled from "styled-components";
 import { lighten } from "polished";
 import * as AppColor from "../../styles/Colors";
-import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
+import loadingIcon from "../../assets/icons/loading.gif";
+import { PopupDiv } from "../../styles/Containers";
 import { LoginPopupBtn, LoginPopupBtnActive, JoinPopupBtn, JoinPopupBtnActive, PopupCloseBtn } from "../../styles/Buttons";
 import { InputContainerLogin } from "../../styles/Inputs";
-import { PopupDiv } from "../../styles/Containers";
 import WelcomeBonusOverlay from "../WelcomeBonusOverlay"
 import { PasswordVisIcon } from "../../styles/Elements";
 import UserIcon from "../../assets/icons/login_user_icon.svg";
 import PassIcon from "../../assets/icons/login_password_icon.svg";
-import loadingIcon from "../../assets/icons/loading.gif";
 
 export default function Login () {
     const [loginMsg, setLoginMsg] = useState("");

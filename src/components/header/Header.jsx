@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { darken } from "polished";
 import * as AppColor from "../../styles/Colors";
+import loadingIcon from "../../assets/icons/loading.gif"
 import AppLogo from "../AppLogo";
 import { LoginHeaderBtn, LoginHeaderBtnActive, JoinHeaderBtn, JoinHeaderBtnActive } from "../../styles/Buttons";
 import { InputContainerHeader } from "../../styles/Inputs";
 import { PasswordVisIcon } from "../../styles/Elements";
-import loadingIcon from "../../assets/icons/loading.gif"
 
 export default function Header (){
     const [headerMsg, setHeaderMsg] = useState("");

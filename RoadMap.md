@@ -1,4 +1,3 @@
--Wide thumbs
+-404 component
 -Responsive design
 -Server & Database
--Error handling
