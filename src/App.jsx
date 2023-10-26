@@ -4,6 +4,7 @@ import Home from "./components/games-section/Home";
 import NewGames from "./components/games-section/NewGames";
 import SlotGames from "./components/games-section/SlotGames";
 import TableGames from "./components/games-section/TableGames";
+import NotFoundLayout from "./layouts/NotFoundLayout";
 
 function App() {
   
@@ -16,6 +17,7 @@ function App() {
             <Route path="/slots" element={<SlotGames />} />
             <Route path="/table" element={<TableGames />} />
         </Route>
+        <Route path="*" element={<NotFoundLayout/>} />
       </Routes>
   </>
   )

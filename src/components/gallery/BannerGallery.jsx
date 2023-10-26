@@ -57,7 +57,7 @@ export default function BannerGallery () {
     errorMessage ? (
       <h1 className="loading-failed">{errorMessage}</h1>
     ) : isLoading ? (
-      <img src={loadingIcon} width="200rem" height="200rem" style = {{ marginLeft : 500 }}/>
+      <img src={loadingIcon} width="200rem" height="200rem" style = {{ position : "relative", left : "45%"}}/>
     ) :
     <Swiper
       autoplay={{

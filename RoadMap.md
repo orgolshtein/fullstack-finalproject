@@ -1,3 +1,2 @@
--404 component
 -Responsive design
 -Server & Database
