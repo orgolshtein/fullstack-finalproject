@@ -10,11 +10,12 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import WelcomeBonusOverlay from "../WelcomeBonusOverlay";
-import { JoinGalleryBtn, JoinGalleryBtnActive } from "../../styles/Buttons";
+import { JoinGalleryBtn, JoinGalleryBtnActive, JoinGalleryBtnSmall, JoinGalleryBtnSmallActive } from "../../styles/Buttons";
 
 export default function BannerGallery () {
   const [ctaActive, setCtaActive] = useState(false);
-  const { sliderList, 
+  const { width,
+          sliderList, 
           getSliderList, 
           errorMessage,
           fetchErrorHandler,
@@ -69,25 +70,52 @@ export default function BannerGallery () {
       }}
       modules={[Autoplay, Pagination, Navigation]}
       >
-         {sliderList
+         {
+          width > 525 ?
+         sliderList
             ?.map((item) => (
-              <SwiperSlide key={item.id}><img src={item.src} alt={item.title} onClick={bannerClickHandler}></img></SwiperSlide>
-                ))}
-        <div>
-          <WelcomeBonusOverlay 
-            $position="absolute"
-            $top="2rem"
-            $zindex="1"
-            width="23rem"
-            $left="14.5%" 
-            alt="Welcome Bonus"
-          />
-          {
-            ctaActive ?
-            <JoinGalleryBtnActive>JOIN NOW</JoinGalleryBtnActive> :
-            <JoinGalleryBtn onClick={ctaClickHandler}>JOIN NOW</JoinGalleryBtn>
-          }
-        </div>
+              <SwiperSlide key={item.id}><img src={item.srcbig} alt={item.title} onClick={bannerClickHandler}></img></SwiperSlide>
+                ))
+                :
+                sliderList
+                ?.map((item) => (
+                  <SwiperSlide key={item.id}><img src={item.srcsmall} alt={item.title} onClick={bannerClickHandler}></img></SwiperSlide>
+                    ))
+              }
+        {
+          width > 600 ?
+          <div>
+            <WelcomeBonusOverlay 
+              $position="absolute"
+              $top="2rem"
+              $zindex="1"
+              width="23rem"
+              $left="14.5%" 
+              alt="Welcome Bonus"
+            />
+            {
+              ctaActive ?
+              <JoinGalleryBtnActive>JOIN NOW</JoinGalleryBtnActive> :
+              <JoinGalleryBtn onClick={ctaClickHandler}>JOIN NOW</JoinGalleryBtn>
+            }
+          </div>
+          :
+          <div>
+            <WelcomeBonusOverlay 
+              $position="absolute"
+              $top="3rem"
+              $zindex="1"
+              width="15rem"
+              $left="5%" 
+              alt="Welcome Bonus"
+            />
+            {
+              ctaActive ?
+              <JoinGalleryBtnSmallActive>JOIN NOW</JoinGalleryBtnSmallActive> :
+              <JoinGalleryBtnSmall onClick={ctaClickHandler}>JOIN NOW</JoinGalleryBtnSmall>
+            }
+          </div>
+        }
     </Swiper>
    }
   </GalleryDIV>
@@ -115,6 +143,11 @@ const GalleryDIV = styled.div`
         height: 100%;
         width: 100%;
         object-fit: fill;
+
+        @media only screen and (max-width: 600px) {
+                width: fit-content;
+                height: 15rem;                
+            }
     }
 
     .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
@@ -131,6 +164,10 @@ const GalleryDIV = styled.div`
       border-radius: var(--swiper-pagination-bullet-border-radius, 50%);
       background: ${AppColor.MainText};
       opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.4);
+
+      @media only screen and (max-width: 600px) {
+        display: none;            
+      }
     }
 
     .swiper-pagination-bullet-active {

@@ -7,6 +7,8 @@ const AppContext = React.createContext();
 const { Provider } = AppContext;
 
 const AppProvider = ({children}) =>{
+  const [width, setWidth] = useState(window.innerWidth);
+  const [scrollY, setScrollY] = useState(0);
   const [sliderList, setSliderList] = useState([]);  
   const [gamesList, setGamesList] = useState([]);
   const [selectedGame, setSelectedGame] = useState({});
@@ -26,10 +28,18 @@ const AppProvider = ({children}) =>{
   const [tableLabelColor, setTableLabelColor] = useState(AppColor.GameTabLabel);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const updateWidth = (x)=>{
+    setWidth(x)
+  };
+
+  const updateScrollY = (x)=>{
+    setScrollY(x);
+  }
+  
   const getSliderList = ()=>{
     const datalist = slider_data.map((item)=>({...item, show: true}));
     setSliderList(datalist);
-  }
+  };
   
   const getGamesList = ()=>{
     const datalist = games_data.map((item)=>({...item, show: true}));
@@ -132,6 +142,8 @@ const AppProvider = ({children}) =>{
   };
 
   const state = {
+    width,
+    scrollY,
     sliderList,
     gamesList,
     selectedGame,
@@ -153,6 +165,8 @@ const AppProvider = ({children}) =>{
   };
   
   const actions = {
+    updateWidth,
+    updateScrollY,
     getSliderList,
     getGamesList,
     getNewGamesList,

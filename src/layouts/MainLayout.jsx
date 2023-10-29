@@ -13,13 +13,20 @@ import GameOverlay from "../components/popups/GameOverlay";
 import ToTop from "../components/ToTop";
 
 export default function MainLayout() {
-  const [scrollY, setScrollY] = useState(0);
-  const { updateToTopDisplay } = useContext(AppContext);
+  const { width, updateWidth, scrollY, updateScrollY, updateToTopDisplay } = useContext(AppContext);
 
+  useEffect(() => {
+    const handleResizeWindow = () => updateWidth(window.innerWidth);
+     window.addEventListener("resize", handleResizeWindow);
+     return () => {
+       window.removeEventListener("resize", handleResizeWindow);
+     };
+   }, []);
+  
   useEffect(() => {
     function watchScroll() {
       window.addEventListener("scroll", ()=>{
-        setScrollY(window.scrollY);
+        updateScrollY(window.scrollY);
         if (scrollY > 265){
           updateToTopDisplay(true)
         } else{
@@ -30,7 +37,7 @@ export default function MainLayout() {
     watchScroll();
     return () => {
       window.removeEventListener("scroll", ()=>{
-        setScrollY(window.scrollY);
+        updateScrollY(window.scrollY);
         if (scrollY > 265){
           updateToTopDisplay(true)
         } else{

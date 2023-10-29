@@ -72,6 +72,59 @@ export const JoinHeaderBtnActive = styled.button`
     grid-row-end: 4;
 `
 
+export const LoginHeaderBtnSmall = styled.button`
+    background-color: ${AppColor.LoginBtn};
+    color: ${AppColor.ButtonText};
+    min-width: 7.5rem;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 0;
+    border-radius: 0.1rem;
+    text-align: center;
+    cursor: pointer;
+    height: 3rem;
+    transition: background-color .15s ease-out;
+    transition: color .15s ease-out;
+
+    &:hover {
+        background-color: ${darken(0.2, AppColor.LoginBtn)};
+    }
+`
+
+export const JoinHeaderBtnSmall = styled.button`
+    background-color: ${AppColor.JoinBtn};
+    color: ${AppColor.ButtonText};
+    min-width: 7.5rem;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 0;
+    border-radius: 0.1rem;
+    text-align: center;
+    cursor: pointer;
+    height: 3rem;
+    transition: background-color .15s ease-out;
+    transition: color .15s ease-out;
+
+    &:hover {
+        background-color: ${darken(0.1, AppColor.JoinBtn)};
+    }
+`
+
+export const JoinHeaderBtnSmallActive = styled.button`
+    color: ${darken(0.3, AppColor.ButtonText)};
+    background-color: ${darken(0.2, AppColor.JoinBtn)};
+    min-width: 7.5rem;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 0;
+    border-radius: 0.1rem;
+    text-align: center;
+    height: 3rem;
+`
+
 export const JoinGalleryBtn = styled.button`
     display: block;
     font-family: 'Gotham Bold',sans-serif;
@@ -119,6 +172,51 @@ export const JoinGalleryBtnActive = styled.button`
       transition: background-color .15s ease-out;
       transition: color .15s ease-out;
 `
+
+export const JoinGalleryBtnSmall = styled.button`
+    display: block;
+    font-family: 'Gotham Bold',sans-serif;
+    background-color:${AppColor.JoinBtn};
+    position: absolute;
+    top: 10rem;
+    z-index: 1;
+    width: 14rem;
+    max-width: 100%;
+    margin-left: 5rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding-top: 0.1em;
+    border-radius: 0.2rem;
+    font-weight: 700;
+    color: ${AppColor.MainText};
+    border: none;
+    transition: background-color .15s ease-out;
+    transition: color .15s ease-out;
+
+    &:hover {
+      background-color: ${darken(0.1, AppColor.JoinBtn)};
+    }
+`
+
+export const JoinGalleryBtnSmallActive = styled.button`
+    color: ${darken(0.7, AppColor.MainText)};
+    background-color: ${darken(0.2, AppColor.JoinBtn)};  
+    display: block;
+    font-family: 'Gotham Bold',sans-serif;
+    position: absolute;
+    top: 10rem;
+    z-index: 1;
+    width: 14rem;
+    max-width: 100%;
+    margin-left: 5rem;
+    font-size: 1.3rem;
+    cursor: initial;
+    padding-top: 0.1em;
+    border-radius: 0.2rem;
+    font-weight: 700;
+    border: none;
+`
+
 export const PopupCloseBtn = styled.span`
     background: url(${(props) => props.$url}) no-repeat 0 0/contain;
     width: 0.75em;
