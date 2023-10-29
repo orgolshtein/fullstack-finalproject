@@ -27,7 +27,7 @@ export const LoginHeaderBtn = styled.button`
 
 export const LoginHeaderBtnActive = styled.button`
     color: ${darken(0.3, AppColor.ButtonText)};
-    background-color: ${darken(0.4, AppColor.LoginBtn)};
+    background-color: ${darken(0.3, AppColor.LoginBtn)};
     text-transform: uppercase;
     font-size: .786rem;
     font-weight: 700;
@@ -60,7 +60,7 @@ export const JoinHeaderBtn = styled.button`
 
 export const JoinHeaderBtnActive = styled.button`
     color: ${darken(0.3, AppColor.ButtonText)};
-    background-color: ${darken(0.4, AppColor.JoinBtn)};
+    background-color: ${darken(0.2, AppColor.JoinBtn)};
     text-transform: uppercase;
     font-size: .786rem;
     font-weight: 700;
@@ -155,7 +155,7 @@ export const ForgotPasswordCta = styled.button`
 
 export const ForgotPasswordCtaActive = styled.button`
     color: ${darken(0.3, AppColor.ButtonText)};
-    background-color: ${darken(0.4, AppColor.LoginBtn)};
+    background-color: ${darken(0.3, AppColor.LoginBtn)};
     display: inline-block;
     position: relative;
     font-family: Asap,Helvetica Neue,Helvetica,Arial,sans-serif;
@@ -195,7 +195,7 @@ export const LoginPopupBtn = styled.button`
 
 export const LoginPopupBtnActive = styled.button`
     color: ${darken(0.3, AppColor.ButtonText)};
-    background-color: ${darken(0.4, AppColor.LoginBtn)};
+    background-color: ${darken(0.3, AppColor.LoginBtn)};
     height: 2.8rem;
     width: 100%;
     font-size: 1.2rem;

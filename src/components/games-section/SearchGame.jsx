@@ -1,6 +1,6 @@
 import { useContext, useRef } from "react";
 import { AppContext } from "../../state/AppContext";
-import { SearchInputContainer } from "../../styles/Inputs";
+import { SearchInputContainer, SearchInput } from "../../styles/Inputs";
 
 export default function SearchGame () {
     const { gamesList, updateGamesList, updateGameOverlayDisplay } = useContext(AppContext);
@@ -23,7 +23,7 @@ export default function SearchGame () {
             <span className="searchIcon" onClick={()=>{
                 searchInputTxt.current.focus();
             }}/>
-            <input 
+            <SearchInput 
                 type="text" 
                 placeholder="Search Game"
                 ref={searchInputTxt}

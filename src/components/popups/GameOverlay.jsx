@@ -38,7 +38,7 @@ const GameOverlayDiv = styled.div`
     background: transparent;
     .shown{
         display: flex;
-        background: ${AppColor.MainDark};
+        background: ${AppColor.MainTheme1};
         padding: 2rem;
         flex-direction: column;
         position: fixed;
@@ -86,7 +86,7 @@ const GameOverlayDiv = styled.div`
 
     .hidden{
         display: none;
-        background: ${AppColor.MainDark};
+        background: ${AppColor.MainTheme1};
         padding: 2rem;
         flex-direction: column;
         position: fixed;

@@ -12,7 +12,7 @@ export const GamesContainer = styled.div`
     flex-direction: column;
     align-items:center;
     width: 87.5rem;
-    background: ${AppColor.MainLight};
+    background: ${AppColor.MainTheme2};
     border-bottom-left-radius: 0.3rem;
     border-bottom-right-radius: 0.3rem;
 `
@@ -94,7 +94,7 @@ export const PopupDiv = styled.div`
                 border-radius: 0.2rem;
 
                 .titlebox {
-                    background: ${AppColor.MainDark};
+                    background: ${AppColor.MainTheme1};
                     color: ${AppColor.MainText};
                     margin: -1.2em -0.8em 0;
                     text-align: center;

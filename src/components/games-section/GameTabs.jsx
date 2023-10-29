@@ -61,7 +61,7 @@ const TabsUl = styled.ul`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background: ${AppColor.MainLight};
+    background: ${AppColor.MainTheme2};
     position: sticky;
     height: 6rem;
     width: 100%;

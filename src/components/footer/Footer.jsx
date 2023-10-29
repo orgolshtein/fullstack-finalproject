@@ -22,7 +22,7 @@ const Footer = () => (
 export default Footer;
 
 const FooterDiv = styled.div`
-    background-color: ${AppColor.MainDark};
+    background-color: ${AppColor.MainTheme1};
     font-weight: 300;
     position: relative;
     bottom: 0;

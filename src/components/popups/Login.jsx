@@ -7,7 +7,7 @@ import * as AppColor from "../../styles/Colors";
 import loadingIcon from "../../assets/icons/loading.gif";
 import { PopupDiv } from "../../styles/Containers";
 import { LoginPopupBtn, LoginPopupBtnActive, JoinPopupBtn, JoinPopupBtnActive, PopupCloseBtn } from "../../styles/Buttons";
-import { InputContainerLogin } from "../../styles/Inputs";
+import { InputContainerLogin, InputLogin } from "../../styles/Inputs";
 import WelcomeBonusOverlay from "../WelcomeBonusOverlay"
 import { PasswordVisIcon } from "../../styles/Elements";
 import UserIcon from "../../assets/icons/login_user_icon.svg";
@@ -111,25 +111,28 @@ export default function Login () {
                         <div className="content">
                             <LoginDiv>
                                 <form action="">
-                                    <InputContainerLogin $background={inputBackgroundColor} $inputbor={inputBorder}>
+                                    <InputContainerLogin $inputbor={inputBorder}>
                                         <img className="inputIcon" src={UserIcon} onClick={()=>{
                                             userInput.current.focus();
                                         }}/>
-                                        <input type="text"
+                                        <InputLogin 
+                                            type="text"
                                             placeholder="Username / Email" 
                                             disabled={inputDisabled}
                                             onClick={inputActive}
+                                            $background={inputBackgroundColor} 
                                             ref={userInput}
                                         />
                                     </InputContainerLogin>
-                                    <InputContainerLogin $background={inputBackgroundColor} $inputbor={inputBorder}>
+                                    <InputContainerLogin $inputbor={inputBorder}>
                                         <img className="inputIcon" src={PassIcon} onClick={()=>{
                                             passInput.current.focus();
                                         }}/>
-                                        <input type={passwordInputType}
+                                        <InputLogin type={passwordInputType}
                                             placeholder="Password:" 
                                             disabled={inputDisabled}
                                             onClick={inputActive}
+                                            $background={inputBackgroundColor}
                                             ref={passInput}
                                         />
                                         {

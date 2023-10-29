@@ -7,7 +7,7 @@ import * as AppColor from "../../styles/Colors";
 import loadingIcon from "../../assets/icons/loading.gif"
 import AppLogo from "../AppLogo";
 import { LoginHeaderBtn, LoginHeaderBtnActive, JoinHeaderBtn, JoinHeaderBtnActive } from "../../styles/Buttons";
-import { InputContainerHeader } from "../../styles/Inputs";
+import { InputContainerHeader, InputHeader } from "../../styles/Inputs";
 import { PasswordVisIcon } from "../../styles/Elements";
 
 export default function Header (){
@@ -98,21 +98,21 @@ export default function Header (){
                 </Link>
                 <div className="authGrid">
                     <InputContainerHeader $inputbor={loginInputBorder}>
-                        <input
+                        <InputHeader
                         type="text"
                         placeholder="Username / Email"
                         disabled={loginInputDisabled}
-                        background={loginBackgroundColor}
+                        $background={loginBackgroundColor}
                         ref={userInput}
                         onClick={inputActive}
                         />
                     </InputContainerHeader> 
                     <InputContainerHeader $inputbor={loginInputBorder}>
-                        <input
+                        <InputHeader
                         type={passwordInputType}
                         placeholder="Password:"
                         disabled={loginInputDisabled}
-                        background={loginBackgroundColor}
+                        $background={loginBackgroundColor}
                         ref={passInput}
                         onClick={inputActive}
                         />
@@ -145,7 +145,7 @@ const HeaderDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items:center;
-    background-color: ${AppColor.MainDark};
+    background-color: ${AppColor.MainTheme1};
     height: 7.8rem;
     width: 100%;
     font-weight: 300;

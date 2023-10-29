@@ -9,18 +9,18 @@ html {
     color: ${AppColor.MainText};
     background: -moz-linear-gradient(
     top,
-    ${AppColor.MainLight} 500px,
-    ${AppColor.MainDark} 800px
+    ${AppColor.MainTheme2} 500px,
+    ${AppColor.MainTheme1} 800px
   );
   background: -webkit-linear-gradient(
     top,
-    ${AppColor.MainLight} 500px,
-    ${AppColor.MainDark} 800px
+    ${AppColor.MainTheme2} 500px,
+    ${AppColor.MainTheme1} 800px
   );
   background: linear-gradient(
     to bottom,
-    ${AppColor.MainLight} 500px,
-    ${AppColor.MainDark} 800px
+    ${AppColor.MainTheme2} 500px,
+    ${AppColor.MainTheme1} 800px
   );
     font-family: Arial,sans-serif;
 }

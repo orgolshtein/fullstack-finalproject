@@ -94,7 +94,7 @@ export default function BannerGallery () {
   );
 } 
 const GalleryDIV = styled.div`
-    margin-top: 9.5rem;
+    margin-top: 7.8rem;
     position: relative;
     width: 100%;
     background: ${AppColor.GalleryBackground};
@@ -129,7 +129,7 @@ const GalleryDIV = styled.div`
       height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 12px));
       display: inline-block;
       border-radius: var(--swiper-pagination-bullet-border-radius, 50%);
-      background: ${AppColor.MainLight};
+      background: ${AppColor.MainText};
       opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.4);
     }
 

@@ -13,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
             <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/new" element={<NewGames />} />
             <Route path="/slots" element={<SlotGames />} />
             <Route path="/table" element={<TableGames />} />

@@ -6,27 +6,29 @@ export const InputContainerHeader = styled.span`
     font-size: 1rem;
     border: ${(props)=>props.$inputbor} 1.7px solid;
     color: ${AppColor.InputText};
-    background: ${(props)=>(props.background)};
     border-radius: 0.2rem;
+    
+    `
 
-    input{
-        border:none;
-        width: 100%;
-        padding: 0 2.5em 0 0.56em;
-        height: 100%;
+export const InputHeader = styled.input`
+    border:none;
+    background-color: ${(props)=>(props.$background)};
+    width: 100%;
+    padding: 0 2.5em 0 0.56em;
+    height: 100%;
 
-        &:focus{
-            outline-width: 0;
-        }
+    &:focus{
+        outline-width: 0;
     }
 `
+
 
 export const ForgotPassInput = styled.input`
     display: block;
     max-width: 100%;
     margin-bottom: 1em;
     font-size: 1rem;
-    color: ${AppColor.PopupMainText};
+    color: ${AppColor.InputText};
     border-color: ${(props)=>props.$inputbor};
     border-radius: 3px;
     box-shadow: none;
@@ -51,7 +53,7 @@ export const InputContainerLogin = styled.span`
     position: relative;
     margin-bottom: 1em;
     font-size: 1rem;
-    color: ${AppColor.PopupMainText};
+    color: ${AppColor.InputText};
     border-color: ${(props)=>props.$inputbor};
     border-radius: 3px;
     box-shadow: none;
@@ -61,24 +63,24 @@ export const InputContainerLogin = styled.span`
     width: 100%;
     font-weight: 400;
     border-style: solid;
-    background-color: ${(props)=>props.$background};
     transition: box-shadow 100ms,border 100ms;
     line-height: 1;
+    
+    `
 
-    input{
-        border:none;
-        width: 100%;
-        padding-left: 2rem;
-        height: 100%;
+export const InputLogin = styled.input`
+    border:none;
+    background-color: ${(props)=>props.$background};
+    width: 100%;
+    padding-left: 2rem;
+    height: 100%;
 
-        &:focus{
-            outline-width: 0;
-        }
+    &:focus{
+        outline-width: 0;
     }
 `
 
 export const SearchInputContainer = styled.div`
-    background-color: transparent;
     width: 13rem;
     position: relative;
     top: 0.7rem;
@@ -106,18 +108,19 @@ export const SearchInputContainer = styled.div`
         text-align: left;
         text-indent: -3000px;
     }
+`
 
-    input{
-        color: ${AppColor.InputSearchText};
-        position: absolute;
-        font-size: 1rem;
-        border: none;
-        width: 12.75rem;
-        height: 100%;
-        padding-left: 1.5rem;
+export const SearchInput = styled.input`
+    color: ${AppColor.InputText};
+    background-color: ${AppColor.InputBackground};
+    position: absolute;
+    font-size: 1rem;
+    border: none;
+    width: 12.75rem;
+    height: 100%;
+    padding-left: 1.5rem;
 
-        &:focus{
-            outline-width: 0;
-        }
+    &:focus{
+        outline-width: 0;
     }
 `
