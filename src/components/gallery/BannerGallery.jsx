@@ -53,7 +53,7 @@ export default function BannerGallery () {
 };
 
   return (
-  <GalleryDIV>
+  <GalleryDIV $swiperheight={width > 525 ? "18rem" : "15rem"}>
    {
     errorMessage ? (
       <h1 className="loading-failed">{errorMessage}</h1>
@@ -129,7 +129,7 @@ const GalleryDIV = styled.div`
 
     .swiper {
       width: 90rem;
-      height: 18rem;
+      height: ${(props)=>props.$swiperheight};
     }
 
     .swiper-slide img {

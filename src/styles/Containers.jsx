@@ -5,6 +5,10 @@ export const GameSectionDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items:center;
+
+    @media only screen and (max-width: 800px){
+        width: 100%;
+    }
 `;
 
 export const GamesContainer = styled.div`
@@ -15,6 +19,10 @@ export const GamesContainer = styled.div`
     background: ${AppColor.MainTheme2};
     border-bottom-left-radius: 0.3rem;
     border-bottom-right-radius: 0.3rem;
+    
+    @media only screen and (max-width: 800px){
+        width: 100%;
+    }
 `
 
 export const GameListDiv = styled.div`
@@ -55,6 +63,27 @@ export const GameListDiv = styled.div`
         grid-column-end: 3;
         grid-row-start: 3;
         grid-row-end: 4;
+    }
+`
+
+export const GameListSmallDiv = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.7rem 0.769em 1.15rem;
+    width: 100%;
+    left: 1%;
+
+    .loading-failed{
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 1rem 0;
+        line-height: 1.1;
+        color: ${AppColor.ErrorText};
+        text-align: center;
     }
 `
 

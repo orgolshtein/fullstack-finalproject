@@ -26,6 +26,7 @@ const AppProvider = ({children}) =>{
   const [newLabelColor, setNewLabelColor] = useState(AppColor.GameTabLabel);
   const [slotsLabelColor, setSlotsLabelColor] = useState(AppColor.GameTabLabel);
   const [tableLabelColor, setTableLabelColor] = useState(AppColor.GameTabLabel);
+  const [isHamburgerNavOpen, setIsHamburgerNavOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const updateWidth = (x)=>{
@@ -102,6 +103,7 @@ const AppProvider = ({children}) =>{
     setNewLabelColor(AppColor.GameTabLabel);
     setSlotsLabelColor(AppColor.GameTabLabel);
     setTableLabelColor(AppColor.GameTabLabel);
+    setIsHamburgerNavOpen(false);
   };
 
   const newActive = () => {
@@ -113,6 +115,7 @@ const AppProvider = ({children}) =>{
     setNewLabelColor(AppColor.GameTabLabelActive);
     setSlotsLabelColor(AppColor.GameTabLabel);
     setTableLabelColor(AppColor.GameTabLabel);
+    setIsHamburgerNavOpen(false);
   };
 
   const slotsActive = () => {
@@ -124,6 +127,7 @@ const AppProvider = ({children}) =>{
     setNewLabelColor(AppColor.GameTabLabel);
     setSlotsLabelColor(AppColor.GameTabLabelActive);
     setTableLabelColor(AppColor.GameTabLabel);
+    setIsHamburgerNavOpen(false);
   };
 
   const tableActive = () => {
@@ -135,7 +139,12 @@ const AppProvider = ({children}) =>{
     setNewLabelColor(AppColor.GameTabLabel);
     setSlotsLabelColor(AppColor.GameTabLabel);
     setTableLabelColor(AppColor.GameTabLabelActive);
+    setIsHamburgerNavOpen(false);
   };
+
+  const updateHamburgerNavDisplay = (x) => {
+    setIsHamburgerNavOpen(x);
+  }
 
   const fetchErrorHandler = (error) => {
     setErrorMessage(`Connection error: ${error.message}`);
@@ -161,6 +170,7 @@ const AppProvider = ({children}) =>{
     newLabelColor,
     slotsLabelColor,
     tableLabelColor,
+    isHamburgerNavOpen,
     errorMessage
   };
   
@@ -184,6 +194,7 @@ const AppProvider = ({children}) =>{
     newActive,
     slotsActive,
     tableActive,
+    updateHamburgerNavDisplay,
     fetchErrorHandler
   };
   

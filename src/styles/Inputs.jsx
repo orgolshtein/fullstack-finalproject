@@ -90,6 +90,16 @@ export const SearchInputContainer = styled.div`
     border-radius: 0.2rem;
     height: 2rem;
 
+    @media only screen and (max-width: 768px){
+        width: 22rem;
+        margin-top: 0.4rem;
+        position: relative;
+        line-height: 2.6em;
+        border: 1.5px solid ${AppColor.InputBorder};
+        border-radius: 0.2rem;
+        height: 3.6rem;
+    }
+
     .searchIcon{
         background: url("src/assets/icons/gamesearch_icon.svg") 50% 50%/contain no-repeat;
         width: 1.286rem;
@@ -107,6 +117,10 @@ export const SearchInputContainer = styled.div`
         overflow: hidden;
         text-align: left;
         text-indent: -3000px;
+
+        @media only screen and (max-width: 768px){
+            display: none;
+        }
     }
 `
 
@@ -122,5 +136,16 @@ export const SearchInput = styled.input`
 
     &:focus{
         outline-width: 0;
+    }
+
+    @media only screen and (max-width: 768px){
+        color: ${AppColor.InputText};
+        background-color: ${AppColor.InputBackground};
+        position: absolute;
+        font-size: 1.8rem;
+        border: none;
+        width: 100%;
+        height: 100%;
+        padding-left: 1.5rem;
     }
 `
