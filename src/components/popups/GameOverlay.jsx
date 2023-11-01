@@ -52,6 +52,10 @@ const GameOverlayDiv = styled.div`
         z-index:101;
         box-shadow: -2rem 1rem 4rem #000000;
         animation: slide-in 400ms;
+
+        @media only screen and (max-width: 500px) {
+            width: 100%;        
+        }
     
         @keyframes slide-in {
             from {
@@ -81,6 +85,13 @@ const GameOverlayDiv = styled.div`
             text-align: left;
             height: 10rem;
             overflow-y: auto;
+
+            @media only screen and (max-width: 600px) {
+                font-size: 1.5rem;
+                margin: 0;
+                padding: 3.2rem; 
+                height: max-content;          
+            }
         }
     }
 
@@ -129,6 +140,13 @@ const GameOverlayDiv = styled.div`
             text-align: left;
             height: 10rem;
             overflow-y: auto;
+
+            @media only screen and (max-width: 600px) {
+                font-size: 1.5rem;
+                margin: 0;
+                padding: 3.2rem; 
+                height: max-content;          
+            }
         }
     }
 `;

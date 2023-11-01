@@ -23,6 +23,10 @@ html {
     ${AppColor.MainTheme1} 800px
   );
     font-family: Arial,sans-serif;
+
+    @media only screen and (max-width: 768px) {
+        width: 100%;                
+    }
 }
 
 * {

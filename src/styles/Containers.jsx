@@ -6,7 +6,7 @@ export const GameSectionDiv = styled.div`
     flex-direction: column;
     align-items:center;
 
-    @media only screen and (max-width: 800px){
+    @media only screen and (max-width: 900px){
         width: 100%;
     }
 `;
@@ -20,7 +20,7 @@ export const GamesContainer = styled.div`
     border-bottom-left-radius: 0.3rem;
     border-bottom-right-radius: 0.3rem;
     
-    @media only screen and (max-width: 800px){
+    @media only screen and (max-width: 900px){
         width: 100%;
     }
 `

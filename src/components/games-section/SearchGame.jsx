@@ -3,7 +3,7 @@ import { AppContext } from "../../state/AppContext";
 import { SearchInputContainer, SearchInput } from "../../styles/Inputs";
 
 export default function SearchGame () {
-    const { gamesList, updateGamesList, updateGameOverlayDisplay } = useContext(AppContext);
+    const { width, gamesList, updateGamesList, updateGameOverlayDisplay } = useContext(AppContext);
     let searchInputTxt = useRef("");
 
     const inputClickHandler = () => {
@@ -25,7 +25,7 @@ export default function SearchGame () {
             }}/>
             <SearchInput 
                 type="text" 
-                placeholder="Search Game"
+                placeholder={width > 500 ? "Search Game" : "Search"}
                 ref={searchInputTxt}
                 onClick={inputClickHandler}
                 onChange={inputTypeHandler}

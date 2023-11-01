@@ -53,7 +53,9 @@ export default function BannerGallery () {
 };
 
   return (
-  <GalleryDIV $swiperheight={width > 525 ? "18rem" : "15rem"}>
+  <GalleryDIV 
+  $swiperheight={width > 800 ? "18rem" : "15rem"}
+  $swiperwidth={width > 800 ? "90rem" : "100%"}>
    {
     errorMessage ? (
       <h1 className="loading-failed">{errorMessage}</h1>
@@ -71,7 +73,7 @@ export default function BannerGallery () {
       modules={[Autoplay, Pagination, Navigation]}
       >
          {
-          width > 525 ?
+          width > 800 ?
          sliderList
             ?.map((item) => (
               <SwiperSlide key={item.id}><img src={item.srcbig} alt={item.title} onClick={bannerClickHandler}></img></SwiperSlide>
@@ -83,7 +85,7 @@ export default function BannerGallery () {
                     ))
               }
         {
-          width > 600 ?
+          width > 800 ?
           <div>
             <WelcomeBonusOverlay 
               $position="absolute"
@@ -106,7 +108,7 @@ export default function BannerGallery () {
               $top="3rem"
               $zindex="1"
               width="15rem"
-              $left="5%" 
+              $left="4.5rem" 
               alt="Welcome Bonus"
             />
             {
@@ -128,7 +130,7 @@ const GalleryDIV = styled.div`
     background: ${AppColor.GalleryBackground};
 
     .swiper {
-      width: 90rem;
+      width: ${(props)=>props.$swiperwidth};
       height: ${(props)=>props.$swiperheight};
     }
 
@@ -144,7 +146,7 @@ const GalleryDIV = styled.div`
         width: 100%;
         object-fit: fill;
 
-        @media only screen and (max-width: 600px) {
+        @media only screen and (max-width: 400px) {
                 width: fit-content;
                 height: 15rem;                
             }
@@ -165,7 +167,7 @@ const GalleryDIV = styled.div`
       background: ${AppColor.MainText};
       opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.4);
 
-      @media only screen and (max-width: 600px) {
+      @media only screen and (max-width: 800px) {
         display: none;            
       }
     }

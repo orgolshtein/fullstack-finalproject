@@ -13,7 +13,7 @@ import GameOverlay from "../components/popups/GameOverlay";
 import ToTop from "../components/ToTop";
 
 export default function MainLayout() {
-  const { width, updateWidth, scrollY, updateScrollY, updateToTopDisplay } = useContext(AppContext);
+  const { updateWidth, scrollY, updateScrollY, updateToTopDisplay } = useContext(AppContext);
 
   useEffect(() => {
     const handleResizeWindow = () => updateWidth(window.innerWidth);

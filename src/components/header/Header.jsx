@@ -89,72 +89,86 @@ export default function Header (){
     }, [headerMsg])
 
     return (
-        <HeaderDiv>
-            <div className="headerContent">
+        <>
+        {
+            width > 1000 ?
+            <HeaderDiv>
+                <div className="headerContent">
+                    <Link onClick={logoClickHandler} className="homeIcon" to="/">
+                        <AppLogo 
+                            $res="10" 
+                            $pos="sticky" 
+                            $left="5rem" 
+                            $zindex="2" 
+                            cursor="pointer" 
+                            alt="mainlogo"
+                        />
+                    </Link>
+                        <div className="authGrid">
+                            <InputContainerHeader $inputbor={loginInputBorder}>
+                                <InputHeader
+                                    type="text"
+                                    placeholder="Username / Email"
+                                    disabled={loginInputDisabled}
+                                    $background={loginBackgroundColor}
+                                    ref={userInput}
+                                    onClick={inputActive}
+                                />
+                            </InputContainerHeader> 
+                            <InputContainerHeader $inputbor={loginInputBorder}>
+                                <InputHeader
+                                    type={passwordInputType}
+                                    placeholder="Password:"
+                                    disabled={loginInputDisabled}
+                                    $background={loginBackgroundColor}
+                                    ref={passInput}
+                                    onClick={inputActive}
+                                />
+                                {
+                                loginBtnActive ?
+                                <PasswordVisIcon width="1.2em" src={passwordIcon} cursor={"arrow"}/> :
+                                <PasswordVisIcon width="1.2em" src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
+                                }
+                            </InputContainerHeader>       
+                            {
+                            loginBtnActive ?
+                            <AppButton.LoginHeaderBtnActive>Login</AppButton.LoginHeaderBtnActive> :
+                            <AppButton.LoginHeaderBtn onClick={loginClickHandler}>Login</AppButton.LoginHeaderBtn>
+                            }
+                            <span></span>
+                            <span className="msgContainer">{headerMsg}</span>
+                            <span><a onClick={forgotClickHandler}>Forgotten Password?</a></span>
+                            {
+                            joinBtnActive ?
+                            <AppButton.JoinHeaderBtnActive>Join Now</AppButton.JoinHeaderBtnActive> :
+                            <AppButton.JoinHeaderBtn onClick={joinClickHandler}>Join Now</AppButton.JoinHeaderBtn>
+                            }
+                        </div>
+                </div>
+            </HeaderDiv>
+            :
+            <HeaderSmallDiv>
                 <Link onClick={logoClickHandler} className="homeIcon" to="/">
                     <AppLogo 
                         $res="10" 
-                        $pos="sticky" 
-                        $left="5rem" 
+                        $pos="absolute" 
                         $zindex="2" 
                         cursor="pointer" 
                         alt="mainlogo"
                     />
                 </Link>
-                {
-                    width > 768 ?
-                    <div className="authGrid">
-                        <InputContainerHeader $inputbor={loginInputBorder}>
-                            <InputHeader
-                                type="text"
-                                placeholder="Username / Email"
-                                disabled={loginInputDisabled}
-                                $background={loginBackgroundColor}
-                                ref={userInput}
-                                onClick={inputActive}
-                            />
-                        </InputContainerHeader> 
-                        <InputContainerHeader $inputbor={loginInputBorder}>
-                            <InputHeader
-                                type={passwordInputType}
-                                placeholder="Password:"
-                                disabled={loginInputDisabled}
-                                $background={loginBackgroundColor}
-                                ref={passInput}
-                                onClick={inputActive}
-                            />
-                            {
-                            loginBtnActive ?
-                            <PasswordVisIcon width="1.2em" src={passwordIcon} cursor={"arrow"}/> :
-                            <PasswordVisIcon width="1.2em" src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
-                            }
-                        </InputContainerHeader>       
-                        {
-                        loginBtnActive ?
-                        <AppButton.LoginHeaderBtnActive>Login</AppButton.LoginHeaderBtnActive> :
-                        <AppButton.LoginHeaderBtn onClick={loginClickHandler}>Login</AppButton.LoginHeaderBtn>
-                        }
-                        <span></span>
-                        <span className="msgContainer">{headerMsg}</span>
-                        <span><a onClick={forgotClickHandler}>Forgotten Password?</a></span>
-                        {
-                        joinBtnActive ?
-                        <AppButton.JoinHeaderBtnActive>Join Now</AppButton.JoinHeaderBtnActive> :
-                        <AppButton.JoinHeaderBtn onClick={joinClickHandler}>Join Now</AppButton.JoinHeaderBtn>
-                        }
-                    </div>
-                    :
-                    <div className="authGridSmall">
-                       <AppButton.LoginHeaderBtnSmall onClick={loginClickHandlerSmall}>Login</AppButton.LoginHeaderBtnSmall>
-                        {
-                        joinBtnActive ?
-                        <AppButton.JoinHeaderBtnSmallActive>Join Now</AppButton.JoinHeaderBtnSmallActive> :
-                        <AppButton.JoinHeaderBtnSmall onClick={joinClickHandler}>Join Now</AppButton.JoinHeaderBtnSmall>
-                        }
-                    </div>
-                }
-            </div>
-        </HeaderDiv>
+                <div className="authGridSmall">
+                    <AppButton.LoginHeaderBtnSmall onClick={loginClickHandlerSmall}>Login</AppButton.LoginHeaderBtnSmall>
+                    {
+                    joinBtnActive ?
+                    <AppButton.JoinHeaderBtnSmallActive>Join Now</AppButton.JoinHeaderBtnSmallActive> :
+                    <AppButton.JoinHeaderBtnSmall onClick={joinClickHandler}>Join Now</AppButton.JoinHeaderBtnSmall>
+                    }
+                </div>
+            </HeaderSmallDiv>
+
+        }
+        </>
     );
 };
 
@@ -185,10 +199,6 @@ const HeaderDiv = styled.div`
             top: 1.7rem;
             right: 2%;
             gap: 0.7rem;
-
-            @media only screen and (max-width: 768px) {
-                display: none;                
-            }
         }
     
         a {
@@ -207,14 +217,26 @@ const HeaderDiv = styled.div`
             font-weight: 100;
             font-size: 90%;
         }
+    }
+`
 
+const HeaderSmallDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: ${AppColor.MainTheme1};
+    height: 7.8rem;
+    width: 100%;
+    font-weight: 300;
+    position: fixed;
+    top: 0;
+    z-index: 101;
+    padding: 0.7rem 3rem 1.15rem;
+    
         .authGridSmall{
             display:flex;
             flex-direction: row;
-            position: absolute;
-            top: 2.5rem;
-            left: 45rem;
+            align-items: center;
             gap: 1rem;
         }
-    }
 `

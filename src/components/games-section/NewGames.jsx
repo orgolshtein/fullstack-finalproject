@@ -36,7 +36,7 @@ export default function NewGames () {
     return(
         <>
         {
-          width > 800 ?
+          width > 900 ?
           <GameListDiv>
               {
               errorMessage ? (

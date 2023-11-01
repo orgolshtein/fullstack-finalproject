@@ -75,15 +75,15 @@ export const JoinHeaderBtnActive = styled.button`
 export const LoginHeaderBtnSmall = styled.button`
     background-color: ${AppColor.LoginBtn};
     color: ${AppColor.ButtonText};
-    min-width: 7.5rem;
-    font-size: 1.1rem;
+    min-width: 6rem;
+    font-size: 1rem;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 600;
     border: 0;
     border-radius: 0.1rem;
     text-align: center;
     cursor: pointer;
-    height: 3rem;
+    height: 2rem;
     transition: background-color .15s ease-out;
     transition: color .15s ease-out;
 
@@ -95,15 +95,15 @@ export const LoginHeaderBtnSmall = styled.button`
 export const JoinHeaderBtnSmall = styled.button`
     background-color: ${AppColor.JoinBtn};
     color: ${AppColor.ButtonText};
-    min-width: 7.5rem;
-    font-size: 1.1rem;
+    min-width: 6rem;
+    font-size: 1rem;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 600;
     border: 0;
     border-radius: 0.1rem;
     text-align: center;
     cursor: pointer;
-    height: 3rem;
+    height: 2rem;
     transition: background-color .15s ease-out;
     transition: color .15s ease-out;
 
@@ -115,14 +115,14 @@ export const JoinHeaderBtnSmall = styled.button`
 export const JoinHeaderBtnSmallActive = styled.button`
     color: ${darken(0.3, AppColor.ButtonText)};
     background-color: ${darken(0.2, AppColor.JoinBtn)};
-    min-width: 7.5rem;
-    font-size: 1.1rem;
+    min-width: 6rem;
+    font-size: 1rem;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 600;
     border: 0;
     border-radius: 0.1rem;
     text-align: center;
-    height: 3rem;
+    height: 2rem;
 `
 
 export const JoinGalleryBtn = styled.button`
@@ -145,10 +145,6 @@ export const JoinGalleryBtn = styled.button`
     border: none;
     transition: background-color .15s ease-out;
     transition: color .15s ease-out;
-
-    &:hover {
-      background-color: ${darken(0.1, AppColor.JoinBtn)};
-    }
 `
 
 export const JoinGalleryBtnActive = styled.button`
@@ -228,6 +224,11 @@ export const PopupCloseBtn = styled.span`
     cursor: pointer;
     display: inline-block;
     min-height: 2.5em;
+
+    @media only screen and (max-width: 400px) {
+        width: 1.5em;
+        height: 1.5em;
+    }
 `
 
 export const ForgotPasswordCta = styled.button`
@@ -370,6 +371,10 @@ export const GameThumbBtn = styled.button`
     left: ${(props)=>props.$left};
     z-index:3;
     cursor: pointer;
+
+    @media only screen and (max-width: 400px) {
+        width: 95%;                
+    }
 
     &:hover {
       background-color: ${darken(0.1, AppColor.JoinBtn)};

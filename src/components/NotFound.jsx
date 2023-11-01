@@ -18,6 +18,11 @@ const NotFoundDiv = styled.div`
     margin-top: 9.5rem;
     gap: 2rem;
 
+    @media only screen and (max-width: 768px) {
+            width: 100%; 
+            margin-bottom: 65%;       
+        }
+
     h1{
         font-size: 2rem;
         font-weight: 700;
@@ -36,13 +41,8 @@ const NotFoundDiv = styled.div`
         filter: grayscale(60%);
         animation: play 0s steps(1, end) 1;
 
-        @keyframes play {
-            0% {
-            background: url(image.gif);
-            }
-            100% {
-            background: url(image.png);
-            }
+        @media only screen and (max-width: 768px) {
+            width: 100%;        
         }
     }
 `;

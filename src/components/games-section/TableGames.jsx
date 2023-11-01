@@ -37,7 +37,7 @@ export default function TableGames () {
     return(
       <>
       {
-        width > 800 ?
+        width > 900 ?
         <GameListDiv>
             {
             errorMessage ? (
