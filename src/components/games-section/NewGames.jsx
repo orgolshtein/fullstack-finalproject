@@ -11,8 +11,8 @@ export default function NewGames () {
       width,
       gamesList, 
       getNewGamesList, 
-      errorMessage, 
-      fetchErrorHandler, 
+      gamesErrorMessage, 
+      fetchGamesError, 
       isLoading, 
       loadingIsFinished, 
       newActive, 
@@ -24,7 +24,7 @@ export default function NewGames () {
           try {
             await getNewGamesList();
           } catch {
-            fetchErrorHandler(errorMessage);
+            fetchGamesError("cannot display games");
           } finally {
             loadingIsFinished();
             newActive();
@@ -36,11 +36,11 @@ export default function NewGames () {
     return(
         <>
         {
-          width > 900 ?
+          width > 1000 ?
           <GameListDiv>
               {
-              errorMessage ? (
-                <h1 className="loading-failed">{errorMessage}</h1>
+              gamesErrorMessage ? (
+                <h1 className="loading-failed">{gamesErrorMessage}</h1>
               ) : isLoading ? (
                 <img src={loadingIcon} width="300rem" height="300rem" style = {{ marginLeft : 370 }}/>
               ) :
@@ -66,8 +66,8 @@ export default function NewGames () {
             :
           <GameListSmallDiv>
             {
-            errorMessage ? (
-              <h1 className="loading-failed">{errorMessage}</h1>
+            gamesErrorMessage ? (
+              <h1 className="loading-failed">{gamesErrorMessage}</h1>
             ) : isLoading ? (
               <img src={loadingIcon} width="300rem" height="300rem" style = {{ marginLeft : 100 }}/>
             ) :

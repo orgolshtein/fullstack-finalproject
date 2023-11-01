@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import slider_data from "../data/slider-data.json"
-import games_data from "../data/games-data.json";
+import * as api from "../api/App.api";
+// import slider_data from "../data/slider-data.json"
+// import games_data from "../data/games-data.json";
 import * as AppColor from "../styles/Colors"
 
 const AppContext = React.createContext();
@@ -27,7 +28,8 @@ const AppProvider = ({children}) =>{
   const [slotsLabelColor, setSlotsLabelColor] = useState(AppColor.GameTabLabel);
   const [tableLabelColor, setTableLabelColor] = useState(AppColor.GameTabLabel);
   const [isHamburgerNavOpen, setIsHamburgerNavOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [sliderErrorMessage, setSliderErrorMessage] = useState("");
+  const [gamesErrorMessage, setGamesErrorMessage] = useState("");
 
   const updateWidth = (x)=>{
     setWidth(x)
@@ -37,27 +39,32 @@ const AppProvider = ({children}) =>{
     setScrollY(x);
   }
   
-  const getSliderList = ()=>{
+  const getSliderList = async ()=>{
+    const slider_data = await api.fetchSliderData();
     const datalist = slider_data.map((item)=>({...item, show: true}));
     setSliderList(datalist);
   };
   
-  const getGamesList = ()=>{
+  const getGamesList = async ()=>{
+    const games_data = await api.fetchGameData();
     const datalist = games_data.map((item)=>({...item, show: true}));
     setGamesList(datalist);
   };
 
-  const getNewGamesList = ()=>{
+  const getNewGamesList = async ()=>{
+    const games_data = await api.fetchGameData();
     const datalist = games_data.filter((item) => item.new === true).map((item)=>({...item, show: true}));
     setGamesList(datalist);
   };
 
-  const getSlotGamesList = ()=>{
+  const getSlotGamesList = async ()=>{
+    const games_data = await api.fetchGameData();
     const datalist = games_data.filter((item) => item.type === "slot").map((item)=>({...item, show: true}));
     setGamesList(datalist);
   };
 
-  const getTableGamesList = ()=>{
+  const getTableGamesList = async ()=>{
+    const games_data = await api.fetchGameData();
     const datalist = games_data.filter((item) => item.type === "table").map((item)=>({...item, show: true}));
     setGamesList(datalist);
   };
@@ -146,8 +153,12 @@ const AppProvider = ({children}) =>{
     setIsHamburgerNavOpen(x);
   }
 
-  const fetchErrorHandler = (error) => {
-    setErrorMessage(`Connection error: ${error.message}`);
+  const fetchSliderError = (x) => {
+    setSliderErrorMessage(`Connection error: ${x}`);
+  };
+
+  const fetchGamesError = (x) => {
+    setGamesErrorMessage(`Connection error: ${x}`);
   };
 
   const state = {
@@ -171,7 +182,8 @@ const AppProvider = ({children}) =>{
     slotsLabelColor,
     tableLabelColor,
     isHamburgerNavOpen,
-    errorMessage
+    sliderErrorMessage,
+    gamesErrorMessage
   };
   
   const actions = {
@@ -195,7 +207,8 @@ const AppProvider = ({children}) =>{
     slotsActive,
     tableActive,
     updateHamburgerNavDisplay,
-    fetchErrorHandler
+    fetchSliderError,
+    fetchGamesError
   };
   
   return <Provider value={{ ...state, ...actions }}>{children}</Provider>;

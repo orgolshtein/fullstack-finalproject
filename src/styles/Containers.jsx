@@ -6,7 +6,7 @@ export const GameSectionDiv = styled.div`
     flex-direction: column;
     align-items:center;
 
-    @media only screen and (max-width: 900px){
+    @media only screen and (max-width: 1000px){
         width: 100%;
     }
 `;
@@ -20,7 +20,7 @@ export const GamesContainer = styled.div`
     border-bottom-left-radius: 0.3rem;
     border-bottom-right-radius: 0.3rem;
     
-    @media only screen and (max-width: 900px){
+    @media only screen and (max-width: 1000px){
         width: 100%;
     }
 `
@@ -36,6 +36,8 @@ export const GameListDiv = styled.div`
     left: 1%;
 
     .loading-failed{
+        grid-column-start: 1;
+        grid-column-end: 7;
         font-size: 2rem;
         font-weight: 700;
         margin: 1rem 0;

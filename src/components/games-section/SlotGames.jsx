@@ -12,8 +12,8 @@ export default function SlotGames () {
       width,
       gamesList, 
       getSlotGamesList, 
-      errorMessage, 
-      fetchErrorHandler, 
+      gamesErrorMessage, 
+      fetchGamesError, 
       isLoading, 
       loadingIsFinished, 
       slotsActive, 
@@ -25,7 +25,7 @@ export default function SlotGames () {
           try {
             await getSlotGamesList();
           } catch {
-            fetchErrorHandler(errorMessage);
+            fetchGamesError("cannot display games");
           } finally {
             loadingIsFinished();
             slotsActive();
@@ -37,11 +37,11 @@ export default function SlotGames () {
     return(
       <>
       {
-        width > 900 ?
+        width > 1000 ?
         <GameListDiv>
             {
-            errorMessage ? (
-              <h1 className="loading-failed">{errorMessage}</h1>
+            gamesErrorMessage ? (
+              <h1 className="loading-failed">{gamesErrorMessage}</h1>
             ) : isLoading ? (
               <img src={loadingIcon} width="300rem" height="300rem" style = {{ marginLeft : 370 }}/>
             ) :
@@ -84,8 +84,8 @@ export default function SlotGames () {
         :
         <GameListSmallDiv>
             {
-            errorMessage ? (
-              <h1 className="loading-failed">{errorMessage}</h1>
+            gamesErrorMessage ? (
+              <h1 className="loading-failed">{gamesErrorMessage}</h1>
             ) : isLoading ? (
               <img src={loadingIcon} width="300rem" height="300rem" style = {{ marginLeft : 100 }}/>
             ) :

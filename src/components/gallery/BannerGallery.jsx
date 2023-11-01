@@ -17,8 +17,8 @@ export default function BannerGallery () {
   const { width,
           sliderList, 
           getSliderList, 
-          errorMessage,
-          fetchErrorHandler,
+          sliderErrorMessage,
+          fetchSliderError,
           isLoading, 
           loadingIsFinished, 
           updateRegBlockDisplay,
@@ -31,7 +31,7 @@ export default function BannerGallery () {
       try {
         await getSliderList();
       } catch {
-        fetchErrorHandler(errorMessage);
+        fetchSliderError("cannot display content");
       } finally {
         loadingIsFinished();
       }
@@ -57,8 +57,8 @@ export default function BannerGallery () {
   $swiperheight={width > 800 ? "18rem" : "15rem"}
   $swiperwidth={width > 800 ? "90rem" : "100%"}>
    {
-    errorMessage ? (
-      <h1 className="loading-failed">{errorMessage}</h1>
+    sliderErrorMessage ? (
+      <h1 className="loading-failed">{sliderErrorMessage}</h1>
     ) : isLoading ? (
       <img src={loadingIcon} width="200rem" height="200rem" style = {{ position : "relative", left : "45%"}}/>
     ) :
@@ -108,7 +108,7 @@ export default function BannerGallery () {
               $top="3rem"
               $zindex="1"
               width="15rem"
-              $left="4.5rem" 
+              $left="3rem" 
               alt="Welcome Bonus"
             />
             {
@@ -175,5 +175,14 @@ const GalleryDIV = styled.div`
     .swiper-pagination-bullet-active {
       opacity: var(--swiper-pagination-bullet-opacity, 1);
       background: var(--swiper-pagination-color, var(--swiper-theme-color));
+    }
+
+    h1{
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 1rem 0;
+        line-height: 1.1;
+        color: ${AppColor.ErrorText};
+        text-align: center;
     }
 `

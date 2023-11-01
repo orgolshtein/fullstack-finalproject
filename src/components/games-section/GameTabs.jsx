@@ -8,6 +8,7 @@ import SearchGame from "./SearchGame";
 
 export default function GameTabs () {
     const { 
+        width,
         homeIcon, 
         newIcon, 
         slotsIcon, 
@@ -97,7 +98,7 @@ export default function GameTabs () {
         <li>
             <Link className="tableIcon" to="/table">
             <span />
-                TABLE GAMES</Link>
+            {width > 1000 ? "TABLE GAMES" : "TABLE"}</Link>
         </li>
         <SearchGame />
     </TabsUl>

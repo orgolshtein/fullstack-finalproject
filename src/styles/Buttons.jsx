@@ -178,7 +178,7 @@ export const JoinGalleryBtnSmall = styled.button`
     z-index: 1;
     width: 14rem;
     max-width: 100%;
-    margin-left: 5rem;
+    margin-left: 3.5rem;
     font-size: 1.3rem;
     cursor: pointer;
     padding-top: 0.1em;
