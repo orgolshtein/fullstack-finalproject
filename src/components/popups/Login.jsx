@@ -153,9 +153,10 @@ export default function Login () {
                                 </form>
                                 <div className="forgotPassLink" onClick={forgotPassClickHandler}>Lost your log in details?</div>
                                 <hr />
-                                <div className="joinLink">You don't have an account?</div>
+                                <div className="joinText">You don't have an account?</div>
                                 <WelcomeBonusOverlay 
-                                width="13rem"
+                                $widthwide="13rem"
+                                $nodisplay="none"
                                 alt="Welcome Bonus"
                             />
                             {
@@ -181,6 +182,10 @@ const LoginDiv = styled.div`
     justify-content: space-evenly;
     height: 35rem;
     padding: 2rem;
+
+    @media only screen and (max-height: 412px){
+        height: 28rem;
+    }
 
     form{
         width: 100%;
@@ -222,9 +227,13 @@ const LoginDiv = styled.div`
         border: none;
         z-index: 200;
         width: 100%;
+
+        @media only screen and (max-height: 412px){
+            display: none;
+        }
     }
 
-    .joinLink{
+    .joinText{
         font-weight: 300;
         font-size: 1.1rem;
     }

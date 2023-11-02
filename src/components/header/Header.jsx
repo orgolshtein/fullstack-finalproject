@@ -6,7 +6,7 @@ import { darken } from "polished";
 import * as AppColor from "../../styles/Colors";
 import loadingIcon from "../../assets/icons/loading.gif"
 import AppLogo from "../AppLogo";
-import * as AppButton from "../../styles/Buttons";
+import { LoginHeaderBtn, LoginHeaderBtnActive, JoinHeaderBtn, JoinHeaderBtnActive } from "../../styles/Buttons";
 import { InputContainerHeader, InputHeader } from "../../styles/Inputs";
 import { PasswordVisIcon } from "../../styles/Elements";
 
@@ -89,90 +89,90 @@ export default function Header (){
     }, [headerMsg])
 
     return (
-        <>
-        {
-            width > 1000 ?
-            <HeaderDiv>
-                <div className="headerContent">
-                    <Link onClick={logoClickHandler} className="homeIcon" to="/">
-                        <AppLogo 
-                            $res="10" 
-                            $pos="sticky" 
-                            $left="5rem" 
-                            $zindex="2" 
-                            cursor="pointer" 
-                            alt="mainlogo"
+    <>
+    {
+    width > 1024 ?
+    <StaticHeaderDiv>
+        <div className="headerContent">
+            <Link onClick={logoClickHandler} className="homeIcon" to="/">
+                <AppLogo 
+                    $res="10" 
+                    $pos="sticky" 
+                    $left="5rem" 
+                    $zindex="2" 
+                    cursor="pointer" 
+                    alt="mainlogo"
+                />
+            </Link>
+                <div className="authGrid">
+                    <InputContainerHeader $inputbor={loginInputBorder}>
+                        <InputHeader
+                            type="text"
+                            placeholder="Username / Email"
+                            disabled={loginInputDisabled}
+                            $background={loginBackgroundColor}
+                            ref={userInput}
+                            onClick={inputActive}
                         />
-                    </Link>
-                        <div className="authGrid">
-                            <InputContainerHeader $inputbor={loginInputBorder}>
-                                <InputHeader
-                                    type="text"
-                                    placeholder="Username / Email"
-                                    disabled={loginInputDisabled}
-                                    $background={loginBackgroundColor}
-                                    ref={userInput}
-                                    onClick={inputActive}
-                                />
-                            </InputContainerHeader> 
-                            <InputContainerHeader $inputbor={loginInputBorder}>
-                                <InputHeader
-                                    type={passwordInputType}
-                                    placeholder="Password:"
-                                    disabled={loginInputDisabled}
-                                    $background={loginBackgroundColor}
-                                    ref={passInput}
-                                    onClick={inputActive}
-                                />
-                                {
-                                loginBtnActive ?
-                                <PasswordVisIcon width="1.2em" src={passwordIcon} cursor={"arrow"}/> :
-                                <PasswordVisIcon width="1.2em" src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
-                                }
-                            </InputContainerHeader>       
-                            {
-                            loginBtnActive ?
-                            <AppButton.LoginHeaderBtnActive>Login</AppButton.LoginHeaderBtnActive> :
-                            <AppButton.LoginHeaderBtn onClick={loginClickHandler}>Login</AppButton.LoginHeaderBtn>
-                            }
-                            <span></span>
-                            <span className="msgContainer">{headerMsg}</span>
-                            <span><a onClick={forgotClickHandler}>Forgotten Password?</a></span>
-                            {
-                            joinBtnActive ?
-                            <AppButton.JoinHeaderBtnActive>Join Now</AppButton.JoinHeaderBtnActive> :
-                            <AppButton.JoinHeaderBtn onClick={joinClickHandler}>Join Now</AppButton.JoinHeaderBtn>
-                            }
-                        </div>
-                </div>
-            </HeaderDiv>
-            :
-            <HeaderSmallDiv>
-                <Link onClick={logoClickHandler} className="homeIcon" to="/">
-                    <AppLogo 
-                        $res="10" 
-                        $pos="absolute" 
-                        $zindex="2" 
-                        cursor="pointer" 
-                        alt="mainlogo"
-                    />
-                </Link>
-                <div className="authGridSmall">
-                    <AppButton.LoginHeaderBtnSmall onClick={loginClickHandlerSmall}>Login</AppButton.LoginHeaderBtnSmall>
+                    </InputContainerHeader> 
+                    <InputContainerHeader $inputbor={loginInputBorder}>
+                        <InputHeader
+                            type={passwordInputType}
+                            placeholder="Password:"
+                            disabled={loginInputDisabled}
+                            $background={loginBackgroundColor}
+                            ref={passInput}
+                            onClick={inputActive}
+                        />
+                        {
+                        loginBtnActive ?
+                        <PasswordVisIcon width="1.2em" src={passwordIcon} cursor={"arrow"}/> :
+                        <PasswordVisIcon width="1.2em" src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
+                        }
+                    </InputContainerHeader>       
+                    {
+                    loginBtnActive ?
+                    <LoginHeaderBtnActive>Login</LoginHeaderBtnActive> :
+                    <LoginHeaderBtn onClick={loginClickHandler}>Login</LoginHeaderBtn>
+                    }
+                    <span></span>
+                    <span className="msgContainer">{headerMsg}</span>
+                    <span><a onClick={forgotClickHandler}>Forgotten Password?</a></span>
                     {
                     joinBtnActive ?
-                    <AppButton.JoinHeaderBtnSmallActive>Join Now</AppButton.JoinHeaderBtnSmallActive> :
-                    <AppButton.JoinHeaderBtnSmall onClick={joinClickHandler}>Join Now</AppButton.JoinHeaderBtnSmall>
+                    <JoinHeaderBtnActive>Join Now</JoinHeaderBtnActive> :
+                    <JoinHeaderBtn onClick={joinClickHandler}>Join Now</JoinHeaderBtn>
                     }
                 </div>
-            </HeaderSmallDiv>
-
-        }
-        </>
+        </div>
+    </StaticHeaderDiv>
+    :
+    <ResponsiveHeaderDiv>
+        <Link onClick={logoClickHandler} className="homeIcon" to="/">
+            <AppLogo 
+                $res={width > 768 ? "10" : "6"} 
+                $pos="absolute" 
+                $zindex="2" 
+                $left="4rem"
+                cursor="pointer" 
+                alt="mainlogo"
+            />
+        </Link>
+        <div className="authResponsive">
+            <LoginHeaderBtn onClick={loginClickHandlerSmall}>Login</LoginHeaderBtn>
+            {
+            joinBtnActive ?
+            <JoinHeaderBtnActive>Join Now</JoinHeaderBtnActive> :
+            <JoinHeaderBtn onClick={joinClickHandler}>Join Now</JoinHeaderBtn>
+            }
+        </div>
+    </ResponsiveHeaderDiv>
+    }
+    </>
     );
 };
 
-const HeaderDiv = styled.div`
+const StaticHeaderDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items:center;
@@ -220,7 +220,7 @@ const HeaderDiv = styled.div`
     }
 `
 
-const HeaderSmallDiv = styled.div`
+const ResponsiveHeaderDiv = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -232,8 +232,12 @@ const HeaderSmallDiv = styled.div`
     top: 0;
     z-index: 101;
     padding: 0.7rem 3rem 1.15rem;
+
+    @media only screen and (max-width: 768px){
+        height: 5rem;
+    }
     
-        .authGridSmall{
+        .authResponsive{
             display:flex;
             flex-direction: row;
             align-items: center;

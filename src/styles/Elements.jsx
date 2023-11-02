@@ -16,7 +16,7 @@ export const PasswordVisIcon = styled.img`
 export const GameThumbNewTag = styled.span`
     background-color: ${AppColor.LoginBtn};
     width: 3rem;
-    display: ${(props)=>props.display};
+    display: inline-block;
     line-height: 1.7;
     font-size: 0.9rem;
     border-radius: 0.1rem;

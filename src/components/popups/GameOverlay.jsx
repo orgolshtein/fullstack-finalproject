@@ -26,7 +26,7 @@ export default function GameOverlay () {
             <div className={isGameOverlayDisplayed? "shown" : "hidden"}>
                 <PopupCloseBtn onClick={closeClickHandler} $url="src/assets/icons/cross_white_icon.svg"></PopupCloseBtn>
                 <h1>{selectedGame.title}</h1>
-                <GameImage image={selectedGame.thumb} $h={260} $w={260} title={selectedGame.title}/>
+                <GameImage image={selectedGame.thumb} $nodisplay="none" height="260" width="260" title={selectedGame.title}/>
                 <p>{selectedGame.descrition}</p>
                 <PlayPopupBtn onClick={ctaClickHandler}>play now</PlayPopupBtn>
             </div>
@@ -53,7 +53,7 @@ const GameOverlayDiv = styled.div`
         box-shadow: -2rem 1rem 4rem #000000;
         animation: slide-in 400ms;
 
-        @media only screen and (max-width: 500px) {
+        @media only screen and (max-width: 768px) {
             width: 100%;        
         }
     
@@ -86,7 +86,7 @@ const GameOverlayDiv = styled.div`
             height: 10rem;
             overflow-y: auto;
 
-            @media only screen and (max-width: 600px) {
+            @media only screen and (max-width: 768px) {
                 font-size: 1.5rem;
                 margin: 0;
                 padding: 3.2rem; 
@@ -141,7 +141,7 @@ const GameOverlayDiv = styled.div`
             height: 10rem;
             overflow-y: auto;
 
-            @media only screen and (max-width: 600px) {
+            @media only screen and (max-width: 768px) {
                 font-size: 1.5rem;
                 margin: 0;
                 padding: 3.2rem; 

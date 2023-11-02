@@ -7,10 +7,10 @@ import { GameThumbBtn } from "../../styles/Buttons";
 import GameImage from "../GameImage";
 
 export default function GameThumbWide ({ image, title, $new, $selectedgame, $class }) {
-  const [newTagDisplay, setNewTagDisplay] = useState("none");
+  const [isNewTag, setIsNewTag] = useState(false);
   const { updateSelectedGame, updateGameOverlayDisplay } = useContext(AppContext);
 
-  useOncePostMount(()=> $new ? setNewTagDisplay("inline-block"): null);
+  useOncePostMount(()=> $new ? setIsNewTag(true) : setIsNewTag(false));
 
   return (
       <GameThumbContainer className={$class} onClick={()=>{
@@ -21,8 +21,8 @@ export default function GameThumbWide ({ image, title, $new, $selectedgame, $cla
         },200)
       }}>
           <GameThumbBtn $top="6rem" $left="7rem">play now</GameThumbBtn>
-          <GameThumbNewTag display={newTagDisplay}>new</GameThumbNewTag>
-          <GameImage image={image} $h={180} $w={373} title={title} />
+          {isNewTag ? <GameThumbNewTag>new</GameThumbNewTag> : null}
+          <GameImage image={image} height="180" width="373" title={title} />
       </GameThumbContainer>
   );
 };

@@ -39,18 +39,19 @@ const FooterDiv = styled.div`
     margin-top: 5rem;
     margin-bottom:0;
 
-     @media only screen and (max-width: 800px) {
+     @media only screen and (max-width: 768px) {
         height: fit-content; 
         z-index: 0;  
         margin: 0;
         padding: 0;
+        padding-top: 2rem;
         padding-bottom: 2rem;   
     }
 
     img{
         width: 70rem;
 
-        @media only screen and (max-width: 800px) {
+        @media only screen and (max-width: 768px) {
             width: 90%;          
         }
     }
@@ -58,7 +59,7 @@ const FooterDiv = styled.div`
     p{
         line-height: 1.2rem;
         
-        @media only screen and (max-width: 800px) {
+        @media only screen and (max-width: 768px) {
             width: 100%;
             padding-left: 0.5rem;
             padding-right: 0.5rem;

@@ -20,6 +20,14 @@ export const LoginHeaderBtn = styled.button`
     transition: background-color .15s ease-out;
     transition: color .15s ease-out;
 
+    @media only screen and (max-width: 1024px){
+        min-width: 6rem;
+        font-size: 1rem;
+        font-weight: 600;
+        height: 2rem;
+        margin-top: 0.5rem;
+    }
+
     &:hover {
         background-color: ${darken(0.2, AppColor.LoginBtn)};
     }
@@ -33,6 +41,14 @@ export const LoginHeaderBtnActive = styled.button`
     font-weight: 700;
     border: 0;
     border-radius: 0.1rem;
+
+    @media only screen and (max-width: 1024px){
+        min-width: 6rem;
+        font-size: 1rem;
+        font-weight: 600;
+        height: 2rem;
+        margin-top: 0.5rem;
+    }
 `
 
 export const JoinHeaderBtn = styled.button`
@@ -52,6 +68,18 @@ export const JoinHeaderBtn = styled.button`
     grid-row-end: 4;
     transition: background-color .15s ease-out;
     transition: color .15s ease-out;
+
+    @media only screen and (max-width: 1024px){
+        min-width: 6rem;
+        font-size: 1rem;
+        font-weight: 600;
+        height: 2rem;
+        margin-top: 0.5rem;
+    }
+
+    @media only screen and (max-width: 340px){
+        display: none;
+    }
     
     &:hover {
         background-color: ${darken(0.1, AppColor.JoinBtn)};
@@ -70,59 +98,14 @@ export const JoinHeaderBtnActive = styled.button`
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 4;
-`
 
-export const LoginHeaderBtnSmall = styled.button`
-    background-color: ${AppColor.LoginBtn};
-    color: ${AppColor.ButtonText};
-    min-width: 6rem;
-    font-size: 1rem;
-    text-transform: uppercase;
-    font-weight: 600;
-    border: 0;
-    border-radius: 0.1rem;
-    text-align: center;
-    cursor: pointer;
-    height: 2rem;
-    transition: background-color .15s ease-out;
-    transition: color .15s ease-out;
-
-    &:hover {
-        background-color: ${darken(0.2, AppColor.LoginBtn)};
+    @media only screen and (max-width: 1024px){
+        min-width: 6rem;
+        font-size: 1rem;
+        font-weight: 600;
+        height: 2rem;
+        margin-top: 0.5rem;
     }
-`
-
-export const JoinHeaderBtnSmall = styled.button`
-    background-color: ${AppColor.JoinBtn};
-    color: ${AppColor.ButtonText};
-    min-width: 6rem;
-    font-size: 1rem;
-    text-transform: uppercase;
-    font-weight: 600;
-    border: 0;
-    border-radius: 0.1rem;
-    text-align: center;
-    cursor: pointer;
-    height: 2rem;
-    transition: background-color .15s ease-out;
-    transition: color .15s ease-out;
-
-    &:hover {
-        background-color: ${darken(0.1, AppColor.JoinBtn)};
-    }
-`
-
-export const JoinHeaderBtnSmallActive = styled.button`
-    color: ${darken(0.3, AppColor.ButtonText)};
-    background-color: ${darken(0.2, AppColor.JoinBtn)};
-    min-width: 6rem;
-    font-size: 1rem;
-    text-transform: uppercase;
-    font-weight: 600;
-    border: 0;
-    border-radius: 0.1rem;
-    text-align: center;
-    height: 2rem;
 `
 
 export const JoinGalleryBtn = styled.button`
@@ -145,6 +128,31 @@ export const JoinGalleryBtn = styled.button`
     border: none;
     transition: background-color .15s ease-out;
     transition: color .15s ease-out;
+
+    @media only screen and (max-width: 1024px){
+        top: 11rem;
+        width: 17rem;
+        margin-left: 9rem;
+        font-size: 1.4rem;
+    }
+    
+    @media only screen and (max-width: 768px){
+        top: 11rem;
+        width: 17rem;
+        margin-left: 1.5rem;
+        font-size: 1.3rem;
+    }
+
+    @media only screen and (max-width: 412px){
+        top: 7.5rem;
+        width: 11rem;
+        margin-left: 3rem;
+        font-size: 1rem;
+    }
+
+    &:hover {
+      background-color: ${darken(0.1, AppColor.JoinBtn)};
+    }
 `
 
 export const JoinGalleryBtnActive = styled.button`
@@ -167,50 +175,27 @@ export const JoinGalleryBtnActive = styled.button`
       border: none;
       transition: background-color .15s ease-out;
       transition: color .15s ease-out;
-`
 
-export const JoinGalleryBtnSmall = styled.button`
-    display: block;
-    font-family: 'Gotham Bold',sans-serif;
-    background-color:${AppColor.JoinBtn};
-    position: absolute;
-    top: 10rem;
-    z-index: 1;
-    width: 14rem;
-    max-width: 100%;
-    margin-left: 3.5rem;
-    font-size: 1.3rem;
-    cursor: pointer;
-    padding-top: 0.1em;
-    border-radius: 0.2rem;
-    font-weight: 700;
-    color: ${AppColor.MainText};
-    border: none;
-    transition: background-color .15s ease-out;
-    transition: color .15s ease-out;
-
-    &:hover {
-      background-color: ${darken(0.1, AppColor.JoinBtn)};
+      @media only screen and (max-width: 1024px){
+        top: 11rem;
+        width: 17rem;
+        margin-left: 9rem;
+        font-size: 1.4rem;
     }
-`
+    
+    @media only screen and (max-width: 768px){
+        top: 11rem;
+        width: 17rem;
+        margin-left: 1.5rem;
+        font-size: 1.3rem;
+    }
 
-export const JoinGalleryBtnSmallActive = styled.button`
-    color: ${darken(0.7, AppColor.MainText)};
-    background-color: ${darken(0.2, AppColor.JoinBtn)};  
-    display: block;
-    font-family: 'Gotham Bold',sans-serif;
-    position: absolute;
-    top: 10rem;
-    z-index: 1;
-    width: 14rem;
-    max-width: 100%;
-    margin-left: 5rem;
-    font-size: 1.3rem;
-    cursor: initial;
-    padding-top: 0.1em;
-    border-radius: 0.2rem;
-    font-weight: 700;
-    border: none;
+    @media only screen and (max-width: 412px){
+        top: 7.5rem;
+        width: 11rem;
+        margin-left: 3rem;
+        font-size: 1rem;
+    }
 `
 
 export const PopupCloseBtn = styled.span`
@@ -225,7 +210,7 @@ export const PopupCloseBtn = styled.span`
     display: inline-block;
     min-height: 2.5em;
 
-    @media only screen and (max-width: 400px) {
+    @media only screen and (max-width: 412px) {
         width: 1.5em;
         height: 1.5em;
     }
@@ -372,8 +357,10 @@ export const GameThumbBtn = styled.button`
     z-index:3;
     cursor: pointer;
 
-    @media only screen and (max-width: 400px) {
+    @media only screen and (max-width: 412px) {
         width: 95%;                
+        top: ${(props)=>props.$topsmall};
+        left: ${(props)=>props.$leftsmall};
     }
 
     &:hover {

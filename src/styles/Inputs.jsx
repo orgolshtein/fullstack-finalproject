@@ -86,18 +86,23 @@ export const SearchInputContainer = styled.div`
     top: 0.7rem;
     left: 1.6rem;
     line-height: 2.6em;
-    border: 1.5px solid ${AppColor.InputBorder};
-    border-radius: 0.2rem;
+    border-radius: 0.5rem;
     height: 2rem;
+
+    @media only screen and (max-width: 1024px){
+        left: -4rem;
+    }
 
     @media only screen and (max-width: 768px){
         width: 22rem;
         margin-top: 0.4rem;
-        position: relative;
         line-height: 2.6em;
-        border: 1.5px solid ${AppColor.InputBorder};
-        border-radius: 0.2rem;
         height: 3.6rem;
+        left: 1.6rem;
+    }
+
+    @media only screen and (max-width: 290px){
+        left: -4rem;
     }
 
     .searchIcon{
@@ -139,13 +144,11 @@ export const SearchInput = styled.input`
     }
 
     @media only screen and (max-width: 768px){
-        color: ${AppColor.InputText};
-        background-color: ${AppColor.InputBackground};
-        position: absolute;
         font-size: 1.8rem;
-        border: none;
         width: 100%;
-        height: 100%;
-        padding-left: 1.5rem;
+    }
+
+    @media only screen and (max-width: 290px){
+        width: 340%;
     }
 `

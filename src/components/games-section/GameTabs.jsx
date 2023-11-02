@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "../../state/AppContext";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -98,7 +98,7 @@ export default function GameTabs () {
         <li>
             <Link className="tableIcon" to="/table">
             <span />
-            {width > 1000 ? "TABLE GAMES" : "TABLE"}</Link>
+            {width > 1024 ? "TABLE GAMES" : "TABLE"}</Link>
         </li>
         <SearchGame />
     </TabsUl>
@@ -119,6 +119,7 @@ const TabsUl = styled.ul`
     gap: 7rem;
 
     @media only screen and (max-width: 768px){
+        top: 4.9rem;
         gap: 1rem;
     }
 
@@ -225,7 +226,7 @@ const HamburgerNavDiv = styled.div`
         display:none;
     }
     .hamburgerOpen{
-        display: inline-flex;
+        display: flex;
         flex-direction: row;
         justify-content: flex-start;
         align-items: flex-start;

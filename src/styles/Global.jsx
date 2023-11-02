@@ -24,7 +24,7 @@ html {
   );
     font-family: Arial,sans-serif;
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1024px) {
         width: 100%;                
     }
 }

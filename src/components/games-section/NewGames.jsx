@@ -34,55 +34,31 @@ export default function NewGames () {
       });
 
     return(
-        <>
-        {
-          width > 1000 ?
-          <GameListDiv>
-              {
-              gamesErrorMessage ? (
-                <h1 className="loading-failed">{gamesErrorMessage}</h1>
-              ) : isLoading ? (
-                <img src={loadingIcon} width="300rem" height="300rem" style = {{ marginLeft : 370 }}/>
-              ) :
-              gamesList?.filter((game) => game.show)
-              .map((item, i) => (
-                i === 6 ?
-                <GameThumbLarge 
-                  key={item.id} 
-                  $selectedgame={item} 
-                  image={item.thumb} 
-                  title={item.title} 
-                  $new={item.new}
-                /> :
-                <GameThumb 
-                  key={item.id} 
-                  $selectedgame={item} 
-                  image={item.thumb} 
-                  title={item.title} 
-                  $new={item.new}
-                />
-                  ))}
-          </GameListDiv>
-            :
-          <GameListSmallDiv>
-            {
-            gamesErrorMessage ? (
-              <h1 className="loading-failed">{gamesErrorMessage}</h1>
-            ) : isLoading ? (
-              <img src={loadingIcon} width="300rem" height="300rem" style = {{ marginLeft : 100 }}/>
-            ) :
-            gamesList?.filter((game) => game.show)
-            .map((item,) => (
-              <GameThumb 
-                key={item.id} 
-                $selectedgame={item} 
-                image={item.thumb} 
-                title={item.title} 
-                $new={item.new}
-              />
-                ))}
-          </GameListSmallDiv>
-        }
-        </>
+      <GameListDiv>
+          {
+          gamesErrorMessage ? (
+            <h1 className="loading-failed">{gamesErrorMessage}</h1>
+          ) : isLoading ? (
+            <img src={loadingIcon} width="300rem" height="300rem" style = {width > 1024 ? { marginLeft : 370 } : { marginLeft : 100 }}/>
+          ) :
+          gamesList?.filter((game) => game.show)
+          .map((item, i) => (
+            width > 1024 && i === 6 ?
+            <GameThumbLarge 
+              key={item.id} 
+              $selectedgame={item} 
+              image={item.thumb} 
+              title={item.title} 
+              $new={item.new}
+            /> :
+            <GameThumb 
+              key={item.id} 
+              $selectedgame={item} 
+              image={item.thumb} 
+              title={item.title} 
+              $new={item.new}
+            />
+              ))}
+      </GameListDiv>
     );
 }

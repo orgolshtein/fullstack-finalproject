@@ -10,7 +10,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import WelcomeBonusOverlay from "../WelcomeBonusOverlay";
-import { JoinGalleryBtn, JoinGalleryBtnActive, JoinGalleryBtnSmall, JoinGalleryBtnSmallActive } from "../../styles/Buttons";
+import { JoinGalleryBtn, JoinGalleryBtnActive } from "../../styles/Buttons";
 
 export default function BannerGallery () {
   const [ctaActive, setCtaActive] = useState(false);
@@ -53,9 +53,7 @@ export default function BannerGallery () {
 };
 
   return (
-  <GalleryDIV 
-  $swiperheight={width > 800 ? "18rem" : "15rem"}
-  $swiperwidth={width > 800 ? "90rem" : "100%"}>
+  <GalleryDIV>
    {
     sliderErrorMessage ? (
       <h1 className="loading-failed">{sliderErrorMessage}</h1>
@@ -73,7 +71,7 @@ export default function BannerGallery () {
       modules={[Autoplay, Pagination, Navigation]}
       >
          {
-          width > 800 ?
+          width > 768 ?
          sliderList
             ?.map((item) => (
               <SwiperSlide key={item.id}><img src={item.srcbig} alt={item.title} onClick={bannerClickHandler}></img></SwiperSlide>
@@ -84,15 +82,22 @@ export default function BannerGallery () {
                   <SwiperSlide key={item.id}><img src={item.srcsmall} alt={item.title} onClick={bannerClickHandler}></img></SwiperSlide>
                     ))
               }
-        {
-          width > 800 ?
-          <div>
+        <div>
             <WelcomeBonusOverlay 
               $position="absolute"
-              $top="2rem"
+              $topwide="2rem"
+              $topbig="3rem"
+              $topmedium="3rem"
+              $topsmall="2rem"
+              $widthwide="23rem"
+              $widthbig="18rem"
+              $widthmedium="18rem"
+              $widthsmall="12rem"
+              $leftwide="14.5%"
+              $leftbig="12%"
+              $leftmedium="1rem"
+              $leftsmall="2.5rem"
               $zindex="1"
-              width="23rem"
-              $left="14.5%" 
               alt="Welcome Bonus"
             />
             {
@@ -100,38 +105,43 @@ export default function BannerGallery () {
               <JoinGalleryBtnActive>JOIN NOW</JoinGalleryBtnActive> :
               <JoinGalleryBtn onClick={ctaClickHandler}>JOIN NOW</JoinGalleryBtn>
             }
-          </div>
-          :
-          <div>
-            <WelcomeBonusOverlay 
-              $position="absolute"
-              $top="3rem"
-              $zindex="1"
-              width="15rem"
-              $left="3rem" 
-              alt="Welcome Bonus"
-            />
-            {
-              ctaActive ?
-              <JoinGalleryBtnSmallActive>JOIN NOW</JoinGalleryBtnSmallActive> :
-              <JoinGalleryBtnSmall onClick={ctaClickHandler}>JOIN NOW</JoinGalleryBtnSmall>
-            }
-          </div>
-        }
+        </div>
     </Swiper>
    }
   </GalleryDIV>
   );
 } 
 const GalleryDIV = styled.div`
-    margin-top: 7.8rem;
+    margin-top: 7.5rem;
     position: relative;
     width: 100%;
     background: ${AppColor.GalleryBackground};
 
+    @media only screen and (max-width: 768px){
+      margin-top: 5rem;
+    }
+
+    @media only screen and (max-height: 412px){
+      display: none;
+    }
+
     .swiper {
-      width: ${(props)=>props.$swiperwidth};
-      height: ${(props)=>props.$swiperheight};
+      width: 90rem;
+      height: 18rem;
+
+      @media only screen and (max-width: 1024px){
+        width: 70rem;
+        height: 15rem;
+      }
+
+      @media only screen and (max-width: 768px){
+        width: 100%;
+        height: 18rem;
+      }
+
+      @media only screen and (max-width: 412px){
+        height: 12rem;
+      }
     }
 
     .swiper-slide img {
@@ -145,11 +155,11 @@ const GalleryDIV = styled.div`
         height: 100%;
         width: 100%;
         object-fit: fill;
-
-        @media only screen and (max-width: 400px) {
-                width: fit-content;
-                height: 15rem;                
-            }
+        
+        @media only screen and (max-width: 412px) {
+          width: fit-content;
+          height: 11.5rem;                
+        }
     }
 
     .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
@@ -167,7 +177,7 @@ const GalleryDIV = styled.div`
       background: ${AppColor.MainText};
       opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.4);
 
-      @media only screen and (max-width: 800px) {
+      @media only screen and (max-width: 768px) {
         display: none;            
       }
     }
@@ -178,6 +188,7 @@ const GalleryDIV = styled.div`
     }
 
     h1{
+        padding-top: 2rem;
         font-size: 2rem;
         font-weight: 700;
         margin: 1rem 0;
