@@ -35,7 +35,7 @@ export const GameListDiv = styled.div`
     }
 
     @media only screen and (max-height: 412px){
-        top: 7.8rem;
+        margin-top: 7.8rem;
     }
 
     .loading-failed{

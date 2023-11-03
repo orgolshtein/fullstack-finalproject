@@ -305,11 +305,19 @@ export const FooterDiv = styled.div`
         padding-bottom: 2rem;   
     }
 
+    @media only screen and (max-height: 412px){
+            width: 100%
+        }
+
     img{
         width: 70rem;
 
         @media only screen and (max-width: 768px) {
             width: 90%;          
+        }
+
+        @media only screen and (max-height: 412px){
+            width: 100%
         }
     }
 
