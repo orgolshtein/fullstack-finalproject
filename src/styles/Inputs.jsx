@@ -22,7 +22,6 @@ export const InputHeader = styled.input`
     }
 `
 
-
 export const ForgotPassInput = styled.input`
     display: block;
     max-width: 100%;

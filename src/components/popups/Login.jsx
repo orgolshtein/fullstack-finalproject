@@ -1,11 +1,10 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
 import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
-import styled from "styled-components";
-import { lighten } from "polished";
 import * as AppColor from "../../styles/Colors";
+import { PopupDiv } from "../../styles/ContainersMain";
+import { LoginDiv } from "../../styles/ContainersPopUp";
 import loadingIcon from "../../assets/icons/loading.gif";
-import { PopupDiv } from "../../styles/Containers";
 import { LoginPopupBtn, LoginPopupBtnActive, JoinPopupBtn, JoinPopupBtnActive, PopupCloseBtn } from "../../styles/Buttons";
 import { InputContainerLogin, InputLogin } from "../../styles/Inputs";
 import WelcomeBonusOverlay from "../WelcomeBonusOverlay"
@@ -103,138 +102,73 @@ export default function Login () {
     return (
         <>
         {
-            isLoginDisplayed ?
-            <PopupDiv width="26rem" $zindex="106" onClick={outsideClickHandler}>
-                <div className="flexContainer">
-                    <div className="inner" ref={loginRef}>
-                        <PopupCloseBtn onClick={closeClickHandler} $url="src/assets/icons/cross_gray_icon.svg"></PopupCloseBtn>
-                        <div className="content">
-                            <LoginDiv>
-                                <form action="">
-                                    <InputContainerLogin $inputbor={inputBorder}>
-                                        <img className="inputIcon" src={UserIcon} onClick={()=>{
-                                            userInput.current.focus();
-                                        }}/>
-                                        <InputLogin 
-                                            type="text"
-                                            placeholder="Username / Email" 
-                                            disabled={inputDisabled}
-                                            onClick={inputActive}
-                                            $background={inputBackgroundColor} 
-                                            ref={userInput}
-                                        />
-                                    </InputContainerLogin>
-                                    <InputContainerLogin $inputbor={inputBorder}>
-                                        <img className="inputIcon" src={PassIcon} onClick={()=>{
-                                            passInput.current.focus();
-                                        }}/>
-                                        <InputLogin type={passwordInputType}
-                                            placeholder="Password:" 
-                                            disabled={inputDisabled}
-                                            onClick={inputActive}
-                                            $background={inputBackgroundColor}
-                                            ref={passInput}
-                                        />
-                                        {
-                                        loginBtnActive ?
-                                        <PasswordVisIcon width="1.9rem" src={passwordIcon} cursor={"arrow"}/> :
-                                        <PasswordVisIcon width="1.9rem" src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
-                                        }
-                                    </InputContainerLogin>
+        isLoginDisplayed ?
+        <PopupDiv width="26rem" $zindex="106" onClick={outsideClickHandler}>
+            <div className="flexContainer">
+                <div className="inner" ref={loginRef}>
+                    <PopupCloseBtn onClick={closeClickHandler} $url="src/assets/icons/cross_gray_icon.svg"></PopupCloseBtn>
+                    <div className="content">
+                        <LoginDiv>
+                            <form action="">
+                                <InputContainerLogin $inputbor={inputBorder}>
+                                    <img className="inputIcon" src={UserIcon} onClick={()=>{
+                                        userInput.current.focus();
+                                    }}/>
+                                    <InputLogin 
+                                        type="text"
+                                        placeholder="Username / Email" 
+                                        disabled={inputDisabled}
+                                        onClick={inputActive}
+                                        $background={inputBackgroundColor} 
+                                        ref={userInput}
+                                    />
+                                </InputContainerLogin>
+                                <InputContainerLogin $inputbor={inputBorder}>
+                                    <img className="inputIcon" src={PassIcon} onClick={()=>{
+                                        passInput.current.focus();
+                                    }}/>
+                                    <InputLogin type={passwordInputType}
+                                        placeholder="Password:" 
+                                        disabled={inputDisabled}
+                                        onClick={inputActive}
+                                        $background={inputBackgroundColor}
+                                        ref={passInput}
+                                    />
                                     {
                                     loginBtnActive ?
-                                    <LoginPopupBtnActive>Login</LoginPopupBtnActive> :
-                                    <LoginPopupBtn onClick={loginClickHandler} type="button">Login</LoginPopupBtn>
+                                    <PasswordVisIcon width="1.9rem" src={passwordIcon} cursor={"arrow"}/> :
+                                    <PasswordVisIcon width="1.9rem" src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
                                     }
-                                    {
-                                    loginMsg !== "" ?
-                                    <div>{loginMsg}</div> : null                          
-                                    }
-                                </form>
-                                <div className="forgotPassLink" onClick={forgotPassClickHandler}>Lost your log in details?</div>
-                                <hr />
-                                <div className="joinText">You don't have an account?</div>
-                                <WelcomeBonusOverlay 
-                                $widthwide="13rem"
-                                $nodisplay="none"
-                                alt="Welcome Bonus"
-                            />
-                            {
-                                joinBtnActive ?
-                                <JoinPopupBtnActive>Register</JoinPopupBtnActive> :
-                                <JoinPopupBtn onClick={joinClickHandler}>Register</JoinPopupBtn>
-                            }
-                            </LoginDiv>
-                        </div>
+                                </InputContainerLogin>
+                                {
+                                loginBtnActive ?
+                                <LoginPopupBtnActive>Login</LoginPopupBtnActive> :
+                                <LoginPopupBtn onClick={loginClickHandler} type="button">Login</LoginPopupBtn>
+                                }
+                                {
+                                loginMsg !== "" ?
+                                <div>{loginMsg}</div> : null                          
+                                }
+                            </form>
+                            <div className="forgotPassLink" onClick={forgotPassClickHandler}>Lost your log in details?</div>
+                            <hr />
+                            <div className="joinText">You don't have an account?</div>
+                            <WelcomeBonusOverlay 
+                            $widthwide="13rem"
+                            $display="none"
+                            alt="Welcome Bonus"
+                        />
+                        {
+                            joinBtnActive ?
+                            <JoinPopupBtnActive>Register</JoinPopupBtnActive> :
+                            <JoinPopupBtn onClick={joinClickHandler}>Register</JoinPopupBtn>
+                        }
+                        </LoginDiv>
                     </div>
                 </div>
-            </PopupDiv> : null
+            </div>
+        </PopupDiv> : null
         }
         </>
     );
-}
-
-
-const LoginDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 35rem;
-    padding: 2rem;
-
-    @media only screen and (max-height: 412px){
-        height: 28rem;
-    }
-
-    form{
-        width: 100%;
-
-        div{
-            font-size: 1rem;
-            color: ${AppColor.ErrorText};
-            margin: .5rem 0;
-            height: 1rem;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .inputIcon{
-            left: 0.5rem;
-            top: 1.2rem;
-            width: 1.214em;
-            position: absolute;
-            display: inline-block;
-            opacity: .65;
-            transform: translate3d(0,-50%,0);
-            cursor: pointer;
-        }
-    }
-
-    .forgotPassLink{
-        font-size: 1.4rem;
-        text-decoration: underline;
-        cursor: pointer;
-
-        &:hover{
-            color: ${lighten(0.3, AppColor.PopupMainText)};
-        }
-    }
-
-    hr {
-        height: 0.5px;
-        background-color: ${AppColor.PopupMainText};;
-        border: none;
-        z-index: 200;
-        width: 100%;
-
-        @media only screen and (max-height: 412px){
-            display: none;
-        }
-    }
-
-    .joinText{
-        font-weight: 300;
-        font-size: 1.1rem;
-    }
-`;
+};

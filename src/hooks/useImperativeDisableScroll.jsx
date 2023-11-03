@@ -12,4 +12,4 @@ export default function useImperativeDisableScroll({ element, disabled }) {
             element.style.overflowY = 'scroll'
         }
     }, [disabled])
-}
+};

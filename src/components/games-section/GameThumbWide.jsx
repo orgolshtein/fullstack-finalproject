@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AppContext } from "../../state/AppContext";
 import { useOncePostMount } from "../../hooks/UseOnce";
-import { GameThumbContainer } from "../../styles/Containers";
+import { GameThumbContainer } from "../../styles/ContainersGames";
 import { GameThumbNewTag } from "../../styles/Elements";
 import { GameThumbBtn } from "../../styles/Buttons";
 import GameImage from "../GameImage";

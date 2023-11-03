@@ -1,9 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { darken } from "polished";
 import * as AppColor from "../../styles/Colors";
+import { HeaderDiv } from "../../styles/ContainersMain";
 import loadingIcon from "../../assets/icons/loading.gif"
 import AppLogo from "../AppLogo";
 import { LoginHeaderBtn, LoginHeaderBtnActive, JoinHeaderBtn, JoinHeaderBtnActive } from "../../styles/Buttons";
@@ -19,7 +18,12 @@ export default function Header (){
     const [loginBackgroundColor, setLoginBackgroundColor] = useState(AppColor.InputBackground);
     const [loginBtnActive, setLoginBtnActive] = useState(false);
     const [joinBtnActive, setJoinBtnActive] = useState(false);
-    const { width, updateforgotPasswordDisplay, updateRegBlockDisplay, updateGameOverlayDisplay, updateLoginDisplay } = useContext(AppContext);
+    const { 
+        updateforgotPasswordDisplay, 
+        updateRegBlockDisplay, 
+        updateGameOverlayDisplay, 
+        updateLoginDisplay 
+    } = useContext(AppContext);
 
     let userInput = useRef();
     let passInput = useRef();
@@ -63,7 +67,7 @@ export default function Header (){
         }
     };
 
-    const loginClickHandlerSmall = () => {
+    const loginResponsiveClickHandler = () => {
         updateGameOverlayDisplay(false);
         updateLoginDisplay(true);
     }
@@ -89,158 +93,70 @@ export default function Header (){
     }, [headerMsg])
 
     return (
-    <>
-    {
-    width > 1024 ?
-    <StaticHeaderDiv>
+    <HeaderDiv>
         <div className="headerContent">
             <Link onClick={logoClickHandler} className="homeIcon" to="/">
-                <AppLogo 
-                    $res="10" 
-                    $pos="sticky" 
-                    $left="5rem" 
-                    $zindex="2" 
-                    cursor="pointer" 
-                    alt="mainlogo"
-                />
-            </Link>
-                <div className="authGrid">
-                    <InputContainerHeader $inputbor={loginInputBorder}>
-                        <InputHeader
-                            type="text"
-                            placeholder="Username / Email"
-                            disabled={loginInputDisabled}
-                            $background={loginBackgroundColor}
-                            ref={userInput}
-                            onClick={inputActive}
-                        />
-                    </InputContainerHeader> 
-                    <InputContainerHeader $inputbor={loginInputBorder}>
-                        <InputHeader
-                            type={passwordInputType}
-                            placeholder="Password:"
-                            disabled={loginInputDisabled}
-                            $background={loginBackgroundColor}
-                            ref={passInput}
-                            onClick={inputActive}
-                        />
-                        {
-                        loginBtnActive ?
-                        <PasswordVisIcon width="1.2em" src={passwordIcon} cursor={"arrow"}/> :
-                        <PasswordVisIcon width="1.2em" src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
-                        }
-                    </InputContainerHeader>       
-                    {
-                    loginBtnActive ?
-                    <LoginHeaderBtnActive>Login</LoginHeaderBtnActive> :
-                    <LoginHeaderBtn onClick={loginClickHandler}>Login</LoginHeaderBtn>
-                    }
-                    <span></span>
-                    <span className="msgContainer">{headerMsg}</span>
-                    <span><a onClick={forgotClickHandler}>Forgotten Password?</a></span>
-                    {
-                    joinBtnActive ?
-                    <JoinHeaderBtnActive>Join Now</JoinHeaderBtnActive> :
-                    <JoinHeaderBtn onClick={joinClickHandler}>Join Now</JoinHeaderBtn>
-                    }
-                </div>
-        </div>
-    </StaticHeaderDiv>
-    :
-    <ResponsiveHeaderDiv>
-        <Link onClick={logoClickHandler} className="homeIcon" to="/">
             <AppLogo 
-                $res={width > 768 ? "10" : "6"} 
-                $pos="absolute" 
-                $zindex="2" 
+                $res="10"
+                $resmedium="6"  
+                $pos="sticky" 
+                $leftwide="5rem"
                 $left="4rem"
+                $zindex="2" 
                 cursor="pointer" 
                 alt="mainlogo"
             />
-        </Link>
-        <div className="authResponsive">
-            <LoginHeaderBtn onClick={loginClickHandlerSmall}>Login</LoginHeaderBtn>
-            {
-            joinBtnActive ?
-            <JoinHeaderBtnActive>Join Now</JoinHeaderBtnActive> :
-            <JoinHeaderBtn onClick={joinClickHandler}>Join Now</JoinHeaderBtn>
-            }
+            </Link>
+            <div className="authGrid">
+                <InputContainerHeader $inputbor={loginInputBorder}>
+                    <InputHeader
+                        type="text"
+                        placeholder="Username / Email"
+                        disabled={loginInputDisabled}
+                        $background={loginBackgroundColor}
+                        ref={userInput}
+                        onClick={inputActive}
+                    />
+                </InputContainerHeader> 
+                <InputContainerHeader $inputbor={loginInputBorder}>
+                    <InputHeader
+                        type={passwordInputType}
+                        placeholder="Password:"
+                        disabled={loginInputDisabled}
+                        $background={loginBackgroundColor}
+                        ref={passInput}
+                        onClick={inputActive}
+                    />
+                    <PasswordVisIcon 
+                        width="1.2em" 
+                        src={passwordIcon} 
+                        cursor={loginBtnActive ? "arrow" : "pointer"} 
+                        onClick={loginBtnActive ? null : passwordIconClickHandler}
+                    />
+                </InputContainerHeader>       
+                {
+                loginBtnActive ?
+                <LoginHeaderBtnActive>Login</LoginHeaderBtnActive> :
+                <LoginHeaderBtn onClick={loginClickHandler}>Login</LoginHeaderBtn>
+                }
+                <span></span>
+                <span className="msgContainer">{headerMsg}</span>
+                <span><a onClick={forgotClickHandler}>Forgotten Password?</a></span>
+                {
+                joinBtnActive ?
+                <JoinHeaderBtnActive>Join Now</JoinHeaderBtnActive> :
+                <JoinHeaderBtn onClick={joinClickHandler}>Join Now</JoinHeaderBtn>
+                }
+            </div>
+            <div className="authResponsive">
+                <LoginHeaderBtn onClick={loginResponsiveClickHandler}>Login</LoginHeaderBtn>
+                {
+                joinBtnActive ?
+                <JoinHeaderBtnActive>Join Now</JoinHeaderBtnActive> :
+                <JoinHeaderBtn onClick={joinClickHandler}>Join Now</JoinHeaderBtn>
+                }
+            </div>
         </div>
-    </ResponsiveHeaderDiv>
-    }
-    </>
+    </HeaderDiv>
     );
 };
-
-const StaticHeaderDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items:center;
-    background-color: ${AppColor.MainTheme1};
-    height: 7.8rem;
-    width: 100%;
-    font-weight: 300;
-    position: fixed;
-    top: 0;
-    z-index: 101;
-    
-    .headerContent{
-        width: 90rem;
-        display: block;
-        padding: 0.7rem 5rem 1.15rem;
-        height: 7.8rem;
-        position: fixed;
-    
-        .authGrid {
-            display: grid;
-            grid-template-columns: 12rem 12rem 8rem;
-            grid-template-rows: 2rem 0.1rem 1rem;
-            position: absolute;
-            top: 1.7rem;
-            right: 2%;
-            gap: 0.7rem;
-        }
-    
-        a {
-            font-weight: 550;
-            text-decoration: underline;
-            cursor: pointer;
-            transition: color .15s ease-out;
-            
-            &:hover {
-                color: ${darken(0.2, AppColor.MainText)};
-            }
-        }
-    
-        .msgContainer{
-            color: ${AppColor.ErrorText};
-            font-weight: 100;
-            font-size: 90%;
-        }
-    }
-`
-
-const ResponsiveHeaderDiv = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: ${AppColor.MainTheme1};
-    height: 7.8rem;
-    width: 100%;
-    font-weight: 300;
-    position: fixed;
-    top: 0;
-    z-index: 101;
-    padding: 0.7rem 3rem 1.15rem;
-
-    @media only screen and (max-width: 768px){
-        height: 5rem;
-    }
-    
-        .authResponsive{
-            display:flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 1rem;
-        }
-`

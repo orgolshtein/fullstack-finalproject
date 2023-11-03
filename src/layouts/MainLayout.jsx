@@ -1,8 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../state/AppContext";
+import { useOncePostMount } from "../hooks/UseOnce";
 import Header from "../components/header/Header";
 import BannerGallery from "../components/gallery/BannerGallery";
-import { GameSectionDiv, GamesContainer } from "../styles/Containers";
+import { GameSectionDiv } from "../styles/ContainersMain";
+import { GamesContainer } from "../styles/ContainersGames";
 import GameTabs from "../components/games-section/GameTabs";
 import { Outlet } from "react-router-dom";
 import ForgotPassword from "../components/popups/ForgotPassword";
@@ -15,13 +17,13 @@ import ToTop from "../components/ToTop";
 export default function MainLayout() {
   const { updateWidth, scrollY, updateScrollY, updateToTopDisplay } = useContext(AppContext);
 
-  useEffect(() => {
+  useOncePostMount(() => {
     const handleResizeWindow = () => updateWidth(window.innerWidth);
      window.addEventListener("resize", handleResizeWindow);
      return () => {
        window.removeEventListener("resize", handleResizeWindow);
      };
-   }, []);
+   });
   
   useEffect(() => {
     function watchScroll() {
@@ -65,4 +67,4 @@ export default function MainLayout() {
           <ToTop />
       </div>
   );
-}
+};

@@ -1,8 +1,7 @@
 import { useContext, useState } from "react";
 import { AppContext } from "../../state/AppContext";
 import { useOncePostMount } from "../../hooks/UseOnce";
-import styled from "styled-components";
-import * as AppColor from "../../styles/Colors";
+import { GalleryDiv } from "../../styles/ContainersMain";
 import loadingIcon from "../../assets/icons/loading.gif";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -53,7 +52,7 @@ export default function BannerGallery () {
 };
 
   return (
-  <GalleryDIV>
+  <GalleryDiv>
    {
     sliderErrorMessage ? (
       <h1 className="loading-failed">{sliderErrorMessage}</h1>
@@ -71,17 +70,13 @@ export default function BannerGallery () {
       modules={[Autoplay, Pagination, Navigation]}
       >
          {
-          width > 768 ?
-         sliderList
-            ?.map((item) => (
-              <SwiperSlide key={item.id}><img src={item.srcbig} alt={item.title} onClick={bannerClickHandler}></img></SwiperSlide>
+         sliderList?.map((item) => (
+              <SwiperSlide key={item.id}><img 
+                src={width > 768 ? item.srcbig : item.srcsmall} 
+                alt={item.title} onClick={bannerClickHandler} 
+              /></SwiperSlide>
                 ))
-                :
-                sliderList
-                ?.map((item) => (
-                  <SwiperSlide key={item.id}><img src={item.srcsmall} alt={item.title} onClick={bannerClickHandler}></img></SwiperSlide>
-                    ))
-              }
+          }
         <div>
             <WelcomeBonusOverlay 
               $position="absolute"
@@ -108,92 +103,6 @@ export default function BannerGallery () {
         </div>
     </Swiper>
    }
-  </GalleryDIV>
+  </GalleryDiv>
   );
-} 
-const GalleryDIV = styled.div`
-    margin-top: 7.5rem;
-    position: relative;
-    width: 100%;
-    background: ${AppColor.GalleryBackground};
-
-    @media only screen and (max-width: 768px){
-      margin-top: 5rem;
-    }
-
-    @media only screen and (max-height: 412px){
-      display: none;
-    }
-
-    .swiper {
-      width: 90rem;
-      height: 18rem;
-
-      @media only screen and (max-width: 1024px){
-        width: 70rem;
-        height: 15rem;
-      }
-
-      @media only screen and (max-width: 768px){
-        width: 100%;
-        height: 18rem;
-      }
-
-      @media only screen and (max-width: 412px){
-        height: 12rem;
-      }
-    }
-
-    .swiper-slide img {
-        cursor: pointer;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        display: block;
-        height: 100%;
-        width: 100%;
-        object-fit: fill;
-        
-        @media only screen and (max-width: 412px) {
-          width: fit-content;
-          height: 11.5rem;                
-        }
-    }
-
-    .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
-      bottom: var(--swiper-pagination-bottom, 10px);
-      top: var(--swiper-pagination-top, auto);
-      left: 0;
-      width: 100%;
-    }
-
-    .swiper-pagination-bullet {
-      width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 12px));
-      height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 12px));
-      display: inline-block;
-      border-radius: var(--swiper-pagination-bullet-border-radius, 50%);
-      background: ${AppColor.MainText};
-      opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.4);
-
-      @media only screen and (max-width: 768px) {
-        display: none;            
-      }
-    }
-
-    .swiper-pagination-bullet-active {
-      opacity: var(--swiper-pagination-bullet-opacity, 1);
-      background: var(--swiper-pagination-color, var(--swiper-theme-color));
-    }
-
-    h1{
-        padding-top: 2rem;
-        font-size: 2rem;
-        font-weight: 700;
-        margin: 1rem 0;
-        line-height: 1.1;
-        color: ${AppColor.ErrorText};
-        text-align: center;
-    }
-`
+};

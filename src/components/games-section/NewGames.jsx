@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { AppContext } from "../../state/AppContext";
 import { useOncePostMount } from "../../hooks/UseOnce";
+import { GameListDiv } from "../../styles/ContainersGames";
 import loadingIcon from "../../assets/icons/loading.gif";
-import { GameListDiv, GameListSmallDiv } from "../../styles/Containers";
 import GameThumb from "./GameThumb";
 import GameThumbLarge from "./GameThumbLarge";
 
@@ -36,11 +36,16 @@ export default function NewGames () {
     return(
       <GameListDiv>
           {
-          gamesErrorMessage ? (
+          gamesErrorMessage ? 
             <h1 className="loading-failed">{gamesErrorMessage}</h1>
-          ) : isLoading ? (
-            <img src={loadingIcon} width="300rem" height="300rem" style = {width > 1024 ? { marginLeft : 370 } : { marginLeft : 100 }}/>
-          ) :
+           : isLoading ? 
+            <img 
+              src={loadingIcon} 
+              width="300rem" 
+              height="300rem" 
+              style = {width > 1024 ? { marginLeft : 370 } : { marginLeft : 100 }}
+            />
+           :
           gamesList?.filter((game) => game.show)
           .map((item, i) => (
             width > 1024 && i === 6 ?
@@ -61,4 +66,4 @@ export default function NewGames () {
               ))}
       </GameListDiv>
     );
-}
+};

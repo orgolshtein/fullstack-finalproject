@@ -1,2 +1,2 @@
--Responsive design
+-loading icon compoment?
 -Server & Database

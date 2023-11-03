@@ -1,8 +1,8 @@
 import { useContext, useRef } from "react";
 import { AppContext } from "../../state/AppContext";
-import styled from "styled-components";
 import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
-import { PopupDiv } from "../../styles/Containers";
+import { PopupDiv } from "../../styles/ContainersMain";
+import { RegBlockDiv } from "../../styles/ContainersPopUp";
 
 export default function RegistrationBlock () {
     const { 
@@ -25,38 +25,22 @@ export default function RegistrationBlock () {
     return (
         <>
         {
-            isRegBlockDisplayed ?
-            <PopupDiv width="24rem" $zindex="110" $titleboxheight="4rem" onClick={outsideClickHandler}>
-                <div className="flexContainer">
-                    <div className="inner" ref={refBlockRef}>
-                        <div className="content">
-                            <div className="titlebox">
-                                <div>We're sorry...</div>
-                            </div>
-                            <RegBlockDiv>
-                                <div>Registration cannot be made in your region</div>
-                            </RegBlockDiv>
+        isRegBlockDisplayed ?
+        <PopupDiv width="24rem" $zindex="110" $titleboxheight="4rem" onClick={outsideClickHandler}>
+            <div className="flexContainer">
+                <div className="inner" ref={refBlockRef}>
+                    <div className="content">
+                        <div className="titlebox">
+                            <div>We're sorry...</div>
                         </div>
+                        <RegBlockDiv>
+                            <div>Registration cannot be made in your region</div>
+                        </RegBlockDiv>
                     </div>
                 </div>
-            </PopupDiv> : null
+            </div>
+        </PopupDiv> : null
         }
         </>
     );
-}
-
-
-const RegBlockDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    div{
-        display: block;
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        text-align: center;
-    }
-`;
+};

@@ -395,6 +395,10 @@ export const PlayPopupBtn = styled.button`
 export const ToTopButton = styled.div`
     background: transparent;
 
+    @media only screen and (max-width: 768px){
+        display: none;
+    }
+
     .shown{
         display: inline-block;
         background: url(/src/assets/icons/btop_icon.png) 50% 50%/contain no-repeat;
