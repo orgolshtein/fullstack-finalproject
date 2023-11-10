@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AppContext } from "../state/AppContext";
-import { ToTopButton } from "../styles/Buttons";
+import { ToTopButton } from "../styles/buttons";
 
 
 export default function ToTop () {

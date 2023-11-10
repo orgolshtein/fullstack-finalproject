@@ -1,22 +1,22 @@
 import { useContext, useState } from "react";
 import { AppContext } from "../../state/AppContext";
-import { useOncePostMount } from "../../hooks/UseOnce";
-import { GameThumbContainer } from "../../styles/ContainersGames";
-import { GameThumbNewTag } from "../../styles/Elements";
-import { GameThumbBtn } from "../../styles/Buttons";
+import { useOncePostMount } from "../../hooks/useOncePostMount";
+import { GameThumbContainer } from "../../styles/containersGames";
+import { GameThumbNewTag } from "../../styles/elements";
+import { GameThumbBtn } from "../../styles/buttons";
 import GameImage from "../GameImage";
 
-export default function GameThumb ({ image, title, $new, $selectedgame }) {
+export default function GameThumb ({ image, title, isnew, selectedgame }) {
   const [isNewTag, setIsNewTag] = useState(false);
   const { updateSelectedGame, updateGameOverlayDisplay } = useContext(AppContext);
 
-  useOncePostMount(()=> $new ? setIsNewTag(true) : setIsNewTag(false));
+  useOncePostMount(()=> isnew ? setIsNewTag(true) : setIsNewTag(false));
 
   return (
       <GameThumbContainer onClick={()=>{
         updateGameOverlayDisplay(false);
         setTimeout(()=>{
-          updateSelectedGame($selectedgame);
+          updateSelectedGame(selectedgame);
           updateGameOverlayDisplay(true);
         },200)
       }}>

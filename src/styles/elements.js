@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import * as AppColor from "./Colors";
+import * as AppColor from "./colors";
 
 export const AppLogoImg = styled.img`
   height: ${(props) => props.$res}rem;
@@ -24,7 +24,6 @@ export const WelcomeOverlayImg = styled.img`
     width: ${(props) => props.$widthwide};
     left: ${(props) => props.$leftwide};
     z-index: ${(props) => props.$zindex};
-    cursor: ${(props) => props.cursor || "arrow"};
 
     @media only screen and (max-width: 1024px){
         top: ${(props) => props.$topbig};
@@ -48,6 +47,18 @@ export const WelcomeOverlayImg = styled.img`
         display: ${(props) => props.$display};
     }
 `
+
+export const LoadingIconImg = styled.img`
+  width: ${(props) => props.$size};
+  height: ${(props) => props.$size};
+  position: ${(props) => props.$position};
+  left: ${(props) => props.$left};
+  margin-left: ${(props) => props.$marginleft};
+
+  @media only screen and (max-width: 1024px){
+    margin-left: ${(props) => props.$marginleftmedium}
+    }
+`;
 
 export const PasswordVisIcon = styled.img`
     height: 100%;

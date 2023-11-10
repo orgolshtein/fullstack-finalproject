@@ -1,44 +1,24 @@
-import { WelcomeOverlayImg } from "../styles/Elements";
+import { WelcomeOverlayImg } from "../styles/elements";
 import OverlaySrc from "../assets/overlays/welcome-bonus.png";
 
 const WelcomeBonusOverlay = ({ 
-    $position, 
-    $topwide,
-    $topbig,
-    $topmedium, 
-    $topsmall, 
-    $widthwide,
-    $widthbig,
-    $widthmedium,
-    $widthsmall, 
-    $leftwide,
-    $leftbig,
-    $leftmedium,
-    $leftsmall,
     $display,
+    $position, 
+    $topwide, $topbig, $topmedium, $topsmall, 
+    $widthwide, $widthbig, $widthmedium, $widthsmall, 
+    $leftwide, $leftbig, $leftmedium, $leftsmall,
     $zindex, 
-    cursor, 
-    alt 
+    cursor
     }) => (
     <WelcomeOverlayImg
         src={OverlaySrc}
-        $position={$position}
-        $topwide={$topwide}
-        $topbig={$topbig}
-        $topmedium={$topmedium}
-        $topsmall={$topsmall}
-        $widthwide={$widthwide}
-        $widthbig={$widthbig}
-        $widthmedium={$widthmedium}
-        $widthsmall={$widthsmall}
-        $leftwide={$leftwide}
-        $leftbig={$leftbig}
-        $leftmedium={$leftmedium}
-        $leftsmall={$leftsmall}
+        alt="Welcome Bonus"
         $display={$display}
-        cursor ={cursor} 
+        $position={$position}
+        $topwide={$topwide} $topbig={$topbig} $topmedium={$topmedium} $topsmall={$topsmall}
+        $widthwide={$widthwide} $widthbig={$widthbig} $widthmedium={$widthmedium} $widthsmall={$widthsmall}
+        $leftwide={$leftwide} $leftbig={$leftbig} $leftmedium={$leftmedium} $leftsmall={$leftsmall}
         $zindex={$zindex}
-        alt={alt}
     />
 );
 

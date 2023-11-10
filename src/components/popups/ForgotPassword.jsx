@@ -1,13 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
 import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
-import * as AppColor from "../../styles/Colors";
-import { PopupDiv } from "../../styles/ContainersMain";
-import { ForgotPasswordDiv } from "../../styles/ContainersPopUp";
-import loadingIcon from "../../assets/icons/loading.gif";
+import * as AppColor from "../../styles/colors";
+import { PopupDiv } from "../../styles/containersMain";
+import { ForgotPasswordDiv } from "../../styles/containersPopUp";
+import LoadingIcon from "../LoadingIcon";
 import AppLogo from "../AppLogo";
-import { ForgotPassInput } from "../../styles/Inputs";
-import { ForgotPasswordCta, ForgotPasswordCtaActive, PopupCloseBtn } from "../../styles/Buttons";
+import { ForgotPassInput } from "../../styles/inputs";
+import { ForgotPasswordCta, ForgotPasswordCtaActive, PopupCloseBtn } from "../../styles/buttons";
 
 export default function ForgotPassword () {
     const [ctaMsg, setCtaMsg] = useState("");
@@ -36,7 +36,7 @@ export default function ForgotPassword () {
             setCtaMsg("User or email address is required");
             setInputBorder(AppColor.InputErrorBorder)
         } else{
-            setCtaMsg(<img src={loadingIcon} width="30rem" height="30rem" />)
+            setCtaMsg(<LoadingIcon $size="2rem" />)
             setInputDisabled(true);
             setInputBackgroundColor(AppColor.DisbledInputBackground);
             setCtaActive(true);

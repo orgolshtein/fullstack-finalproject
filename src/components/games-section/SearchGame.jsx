@@ -1,6 +1,6 @@
 import { useContext, useRef } from "react";
 import { AppContext } from "../../state/AppContext";
-import { SearchInputContainer, SearchInput } from "../../styles/Inputs";
+import { SearchInputContainer, SearchInput } from "../../styles/inputs";
 
 export default function SearchGame () {
     const { width, gamesList, updateGamesList, updateGameOverlayDisplay } = useContext(AppContext);

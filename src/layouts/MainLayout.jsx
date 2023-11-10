@@ -1,10 +1,9 @@
 import { useContext, useEffect } from "react";
 import { AppContext } from "../state/AppContext";
-import { useOncePostMount } from "../hooks/UseOnce";
+import { useOncePostMount } from "../hooks/useOncePostMount";
 import Header from "../components/header/Header";
 import BannerGallery from "../components/gallery/BannerGallery";
-import { GameSectionDiv } from "../styles/ContainersMain";
-import { GamesContainer } from "../styles/ContainersGames";
+import { GamesContainer } from "../styles/containersGames";
 import GameTabs from "../components/games-section/GameTabs";
 import { Outlet } from "react-router-dom";
 import ForgotPassword from "../components/popups/ForgotPassword";
@@ -13,52 +12,30 @@ import Footer from "../components/footer/Footer";
 import Login from "../components/popups/Login";
 import GameOverlay from "../components/popups/GameOverlay";
 import ToTop from "../components/ToTop";
+import MainContent from "../components/main-content/MainContent";
 
 export default function MainLayout() {
   const { updateWidth, scrollY, updateScrollY, updateToTopDisplay } = useContext(AppContext);
 
   useOncePostMount(() => {
-    const handleResizeWindow = () => updateWidth(window.innerWidth);
-     window.addEventListener("resize", handleResizeWindow);
-     return () => {
-       window.removeEventListener("resize", handleResizeWindow);
-     };
+    window.addEventListener("resize", () => updateWidth(window.innerWidth));
    });
-  
+
   useEffect(() => {
-    function watchScroll() {
-      window.addEventListener("scroll", ()=>{
-        updateScrollY(window.scrollY);
-        if (scrollY > 265){
-          updateToTopDisplay(true)
-        } else{
-          updateToTopDisplay(false)
-        }
-      });
-    }
-    watchScroll();
-    return () => {
-      window.removeEventListener("scroll", ()=>{
-        updateScrollY(window.scrollY);
-        if (scrollY > 265){
-          updateToTopDisplay(true)
-        } else{
-          updateToTopDisplay(false)
-        }
-      });
-    };
-  });
+    window.addEventListener("scroll", () => {
+      updateScrollY(window.scrollY);
+      scrollY > 265 ?
+        updateToTopDisplay(true) :
+        updateToTopDisplay(false)
+    });
+  },[scrollY]);
 
   return (
       <div>
           <Header />
-          <BannerGallery />
-          <GameSectionDiv>
-            <GamesContainer>
-              <GameTabs />
-              <Outlet />
-            </GamesContainer>
-          </GameSectionDiv>
+          <MainContent>
+            <Outlet />
+          </MainContent>
           <Footer />
           <ForgotPassword />
           <RegistrationBlock />

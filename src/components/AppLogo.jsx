@@ -1,4 +1,4 @@
-import { AppLogoImg } from "../styles/Elements";
+import { AppLogoImg } from "../styles/elements";
 import Logo from "../assets/logos/unagibet-logo.png";
 
 const AppLogo = ({ $res, $resmedium, $leftwide, $left, $zindex, cursor, alt }) =>(

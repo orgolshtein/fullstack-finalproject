@@ -1,4 +1,4 @@
-import { GameImageImg } from "../styles/Elements";
+import { GameImageImg } from "../styles/elements";
 
 const GameImage = ({image, title, height, $heightsmall, width, $widthsmall, $display}) => (
   <GameImageImg 

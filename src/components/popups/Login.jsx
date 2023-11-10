@@ -1,14 +1,14 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
 import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
-import * as AppColor from "../../styles/Colors";
-import { PopupDiv } from "../../styles/ContainersMain";
-import { LoginDiv } from "../../styles/ContainersPopUp";
-import loadingIcon from "../../assets/icons/loading.gif";
-import { LoginPopupBtn, LoginPopupBtnActive, JoinPopupBtn, JoinPopupBtnActive, PopupCloseBtn } from "../../styles/Buttons";
-import { InputContainerLogin, InputLogin } from "../../styles/Inputs";
+import * as AppColor from "../../styles/colors";
+import { PopupDiv } from "../../styles/containersMain";
+import { LoginDiv } from "../../styles/containersPopUp";
+import LoadingIcon from "../LoadingIcon";
+import { LoginPopupBtn, LoginPopupBtnActive, JoinPopupBtn, JoinPopupBtnActive, PopupCloseBtn } from "../../styles/buttons";
+import { InputContainerLogin, InputLogin } from "../../styles/inputs";
 import WelcomeBonusOverlay from "../WelcomeBonusOverlay"
-import { PasswordVisIcon } from "../../styles/Elements";
+import { PasswordVisIcon } from "../../styles/elements";
 import UserIcon from "../../assets/icons/login_user_icon.svg";
 import PassIcon from "../../assets/icons/login_password_icon.svg";
 
@@ -58,7 +58,7 @@ export default function Login () {
         if (userInput.current.value === "" || passInput.current.value === "") {
             setLoginMsg("Username/Email and Password are required");
         } else {
-            setLoginMsg(<img src={loadingIcon} width="30rem" height="30rem" />);
+            setLoginMsg(<LoadingIcon $size="2rem" />);
             setInputDisabled(true);
             setInputBackgroundColor(AppColor.DisbledInputBackground);
             setLoginBtnActive(true);

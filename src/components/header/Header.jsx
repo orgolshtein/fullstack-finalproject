@@ -1,13 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
 import { Link } from "react-router-dom";
-import * as AppColor from "../../styles/Colors";
-import { HeaderDiv } from "../../styles/ContainersMain";
-import loadingIcon from "../../assets/icons/loading.gif"
+import * as AppColor from "../../styles/colors";
+import { HeaderDiv } from "../../styles/containersMain";
 import AppLogo from "../AppLogo";
-import { LoginHeaderBtn, LoginHeaderBtnActive, JoinHeaderBtn, JoinHeaderBtnActive } from "../../styles/Buttons";
-import { InputContainerHeader, InputHeader } from "../../styles/Inputs";
-import { PasswordVisIcon } from "../../styles/Elements";
+import LoadingIcon from "../LoadingIcon"
+import { LoginHeaderBtn, LoginHeaderBtnActive, JoinHeaderBtn, JoinHeaderBtnActive } from "../../styles/buttons";
+import { InputContainerHeader, InputHeader } from "../../styles/inputs";
+import { PasswordVisIcon } from "../../styles/elements";
 
 export default function Header (){
     const [headerMsg, setHeaderMsg] = useState("");
@@ -34,13 +34,12 @@ export default function Header (){
 
     const passwordIconClickHandler = () => {
         updateGameOverlayDisplay(false);
-        if (passwordInputType === "password") {
-            setPasswordInputType("text");
-            setPasswordIcon("/src/assets/icons/password_visible_icon.svg");
-          } else {
+        passwordInputType === "password" ? 
+            setPasswordInputType("text") : 
             setPasswordInputType("password");
+        passwordInputType === "password" ? 
+            setPasswordIcon("/src/assets/icons/password_visible_icon.svg") : 
             setPasswordIcon("/src/assets/icons/password_invisible_icon.svg");
-          }
     };
 
     const forgotClickHandler = () => {
@@ -51,10 +50,10 @@ export default function Header (){
     const loginClickHandler = () =>{
         updateGameOverlayDisplay(false);
         setHeaderMsg("");
-        if (userInput.current.value === "" || passInput.current.value === "") {
-            setHeaderMsg("Username/Email and Password are required");
-        } else {
-            setHeaderMsg(<img src={loadingIcon} width="30rem" height="30rem" style={{ marginLeft: "5rem" }}/>);
+        userInput.current.value === "" || passInput.current.value === "" ? 
+            setHeaderMsg("Username/Email and Password are required") :
+        (() => {
+            setHeaderMsg(<LoadingIcon $size="2.7rem" $marginleft="4.5rem" />);
             setLoginInputDisabled(true);
             setLoginBackgroundColor(AppColor.DisbledInputBackground);
             setLoginBtnActive(true);
@@ -64,7 +63,7 @@ export default function Header (){
                 setLoginBackgroundColor(AppColor.InputBackground);
                 setLoginBtnActive(false);
             }, Math.floor(Math.random() * (5000-1000)+1000));
-        }
+        })();
     };
 
     const loginResponsiveClickHandler = () => {
@@ -95,17 +94,17 @@ export default function Header (){
     return (
     <HeaderDiv>
         <div className="headerContent">
-            <Link onClick={logoClickHandler} className="homeIcon" to="/">
-            <AppLogo 
-                $res="10"
-                $resmedium="6"  
-                $pos="sticky" 
-                $leftwide="5rem"
-                $left="4rem"
-                $zindex="2" 
-                cursor="pointer" 
-                alt="mainlogo"
-            />
+            <Link to="/" onClick={logoClickHandler}>
+                <AppLogo 
+                    $res="10"
+                    $resmedium="6"  
+                    $pos="sticky" 
+                    $leftwide="5rem"
+                    $left="4rem"
+                    $zindex="2" 
+                    cursor="pointer" 
+                    alt="mainlogo"
+                />
             </Link>
             <div className="authGrid">
                 <InputContainerHeader $inputbor={loginInputBorder}>

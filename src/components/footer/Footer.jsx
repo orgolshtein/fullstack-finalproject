@@ -1,4 +1,4 @@
-import { FooterDiv } from "../../styles/ContainersMain";
+import { FooterDiv } from "../../styles/containersMain";
 import paymentLine from "../../assets/overlays/footer-en.png";
 
 const Footer = () => (

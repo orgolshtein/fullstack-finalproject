@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import * as AppColor from "./Colors";
+import * as AppColor from "./colors";
 
 export const InputContainerHeader = styled.span`
     position: relative;

@@ -1,8 +1,10 @@
 import { useContext } from "react";
+import * as api from "../../api/app.api";
+// import games_data from "../../data/games-data.json";
 import { AppContext } from "../../state/AppContext";
-import { useOncePostMount } from "../../hooks/UseOnce";
-import { GameListDiv } from "../../styles/ContainersGames";
-import loadingIcon from "../../assets/icons/loading.gif";
+import { useOncePostMount } from "../../hooks/useOncePostMount";
+import { GameListDiv } from "../../styles/containersGames";
+import LoadingIcon from "../LoadingIcon";
 import GameThumb from "./GameThumb";
 import GameThumbLarge from "./GameThumbLarge";
 import GameThumbWide from "./GameThumbWide";
@@ -11,24 +13,24 @@ export default function Home () {
     const { 
       width,
       gamesList, 
-      getGamesList, 
+      updateGamesList, 
       gamesErrorMessage, 
       fetchGamesError, 
-      isLoading, 
-      loadingIsFinished, 
-      homeActive, 
+      areGamesLoading, 
+      gamesLoadingFinish, 
       updateGameOverlayDisplay 
     } = useContext(AppContext);
 
     useOncePostMount(() => {
         (async () => {
           try {
-            await getGamesList();
+            const games_data = await api.fetchGameData();
+            const datalist = games_data.map((item)=>({...item, show: true}));
+            updateGamesList(datalist);
           } catch {
             fetchGamesError("cannot display games");
           } finally {
-            loadingIsFinished();
-            homeActive();
+            gamesLoadingFinish();
             updateGameOverlayDisplay(false);
           }
         })();
@@ -39,12 +41,11 @@ export default function Home () {
             {
             gamesErrorMessage ? 
               <h1 className="loading-failed">{gamesErrorMessage}</h1>
-             : isLoading ? 
-              <img 
-                src={loadingIcon} 
-                width="300rem" 
-                height="300rem" 
-                style = {width > 1024 ? { marginLeft : 370 } : { marginLeft : 100 }}
+             : areGamesLoading ? 
+              <LoadingIcon 
+                $size="20rem" 
+                $marginleft="30rem"
+                $marginleftmedium="2rem"
               />
              :
             gamesList?.filter((game) => game.show)
@@ -52,26 +53,26 @@ export default function Home () {
               width > 1024 && i === 3 ?
               <GameThumbLarge 
                 key={item.id} 
-                $selectedgame={item} 
+                selectedgame={item} 
                 image={item.thumb} 
                 title={item.title} 
-                $new={item.new}
+                isnew={item.new}
               /> :
               width > 1024 && i === 2 ?
               <GameThumbWide 
                 key={item.id} 
-                $selectedgame={item} 
+                selectedgame={item} 
                 image={item.thumbwide} 
                 title={item.title} 
-                $new={item.new}
-                $class="wide-top"
+                isnew={item.new}
+                wideclass="wide-top"
               /> :
               <GameThumb 
                 key={item.id} 
-                $selectedgame={item} 
+                selectedgame={item} 
                 image={item.thumb} 
                 title={item.title} 
-                $new={item.new}
+                isnew={item.new}
               />
                 ))}
         </GameListDiv>

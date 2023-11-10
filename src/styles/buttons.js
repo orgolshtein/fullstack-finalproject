@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { darken } from "polished";
-import * as AppColor from "./Colors";
+import * as AppColor from "./colors";
 
 export const LoginHeaderBtn = styled.button`
     background-color: ${AppColor.LoginBtn};

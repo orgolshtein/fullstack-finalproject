@@ -1,8 +1,8 @@
 import { useContext, useRef } from "react";
 import { AppContext } from "../../state/AppContext";
 import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
-import { PopupDiv } from "../../styles/ContainersMain";
-import { RegBlockDiv } from "../../styles/ContainersPopUp";
+import { PopupDiv } from "../../styles/containersMain";
+import { RegBlockDiv } from "../../styles/containersPopUp";
 
 export default function RegistrationBlock () {
     const { 

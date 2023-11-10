@@ -16,23 +16,5 @@
         "title": "Green Wizard",
         "srcbig": "/src/assets/slides/GreenWizard.jpg",
         "srcsmall": "/src/assets/slides/GreenWizardMob.jpg"
-    },
-    {
-        "id": 4,
-        "title": "European Roulette",
-        "srcbig": "/src/assets/slides/EuropeanRoulette.jpg",
-        "srcsmall": "/src/assets/slides/EuropeanRouletteMob.jpg"
-    },
-    {
-        "id": 5,
-        "title": "Silver Bullet Bandit",
-        "srcbig": "/src/assets/slides/SilverBulletBandit.jpg",
-        "srcsmall": "/src/assets/slides/SilverBulletBanditMob.jpg"
-    },
-    {
-        "id": 6,
-        "title": "Joker Rush",
-        "srcbig": "/src/assets/slides/JokerRush.jpg",
-        "srcsmall": "/src/assets/slides/JokerRushMob.jpg"
     }
 ]

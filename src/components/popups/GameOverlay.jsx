@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { AppContext } from "../../state/AppContext";
-import { GameOverlayDiv } from "../../styles/ContainersPopUp";
+import { GameOverlayDiv } from "../../styles/containersPopUp";
 import GameImage from "../GameImage";
-import { PlayPopupBtn, PopupCloseBtn } from "../../styles/Buttons";
+import { PlayPopupBtn, PopupCloseBtn } from "../../styles/buttons";
 
 export default function GameOverlay () {
     const { 

@@ -1,4 +1,4 @@
-import { NotFoundDiv } from "../styles/ContainersMain";
+import { NotFoundDiv } from "../styles/containersMain";
 import gif from "../assets/gif/salmon-skin-roll.gif"
 
 const NotFound = () => (

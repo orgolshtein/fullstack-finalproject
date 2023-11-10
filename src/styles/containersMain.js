@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { darken } from "polished";
-import * as AppColor from "./Colors";
+import * as AppColor from "./colors";
 
 export const HeaderDiv = styled.div`
     display: flex;
@@ -175,7 +175,7 @@ export const GalleryDiv = styled.div`
     }
 `
 
-export const GameSectionDiv = styled.div`
+export const MainContentDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items:center;
@@ -243,16 +243,12 @@ export const PopupDiv = styled.div`
 `
 
 export const NotFoundDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     margin-top: 9.5rem;
-    gap: 2rem;
+    height: 100vh;
 
     @media only screen and (max-width: 768px) {
-            width: 100%; 
-            margin-bottom: 65%;       
-        }
+        width: 100%;
+    }
 
     h1{
         font-size: 2rem;
@@ -273,7 +269,7 @@ export const NotFoundDiv = styled.div`
         animation: play 0s steps(1, end) 1;
 
         @media only screen and (max-width: 768px) {
-            width: 100%;        
+            width: 100%;
         }
     }
 `;
@@ -302,7 +298,7 @@ export const FooterDiv = styled.div`
         margin: 0;
         padding: 0;
         padding-top: 2rem;
-        padding-bottom: 2rem;   
+        padding-bottom: 2rem;  
     }
 
     @media only screen and (max-height: 412px){

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { lighten } from "polished";
-import * as AppColor from "./Colors";
+import * as AppColor from "./colors";
 
 export const ForgotPasswordDiv = styled.div`
     display: flex;
