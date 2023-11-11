@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
 import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
+import useOuterClick from "../../hooks/useOuterClick";
 import * as AppColor from "../../styles/colors";
 import { PopupDiv } from "../../styles/containersMain";
 import { LoginDiv } from "../../styles/containersPopUp";
@@ -94,9 +95,7 @@ export default function Login () {
     },[loginMsg]);
 
     const outsideClickHandler = (event) => {
-        if (loginRef.current && !loginRef.current.contains(event.target)){
-            closeClickHandler();
-        }
+        useOuterClick(event,loginRef,closeClickHandler)
     };
 
     return (

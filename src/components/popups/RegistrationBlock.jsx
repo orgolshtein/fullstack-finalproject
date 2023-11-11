@@ -1,6 +1,7 @@
 import { useContext, useRef } from "react";
 import { AppContext } from "../../state/AppContext";
 import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
+import useOuterClick from "../../hooks/useOuterClick";
 import { PopupDiv } from "../../styles/containersMain";
 import { RegBlockDiv } from "../../styles/containersPopUp";
 
@@ -17,9 +18,7 @@ export default function RegistrationBlock () {
     useImperativeDisableScroll({ element: document.body, disabled: false });
 
     const outsideClickHandler = (event) => {
-        if (refBlockRef.current && !refBlockRef.current.contains(event.target)){
-            updateRegBlockDisplay(false);
-        }
+        useOuterClick(event,refBlockRef,updateRegBlockDisplay,false)
     };
 
     return (

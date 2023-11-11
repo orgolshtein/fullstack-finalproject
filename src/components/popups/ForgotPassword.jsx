@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
 import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
+import useOuterClick from "../../hooks/useOuterClick";
 import * as AppColor from "../../styles/colors";
 import { PopupDiv } from "../../styles/containersMain";
 import { ForgotPasswordDiv } from "../../styles/containersPopUp";
@@ -60,9 +61,7 @@ export default function ForgotPassword () {
     }, [ctaMsg]);
 
     const outsideClickHandler = (event) => {
-        if (forgotPassRef.current && !forgotPassRef.current.contains(event.target)){
-            closeClickHandler();
-        }
+        useOuterClick(event,forgotPassRef,closeClickHandler)
     };
 
     return (
