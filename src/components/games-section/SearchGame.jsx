@@ -24,7 +24,8 @@ export default function SearchGame () {
                 searchInputTxt.current.focus();
             }}/>
             <SearchInput 
-                type="text" 
+                type="text"
+                autoComplete="on"
                 placeholder={width > 500 ? "Search Game" : "Search"}
                 ref={searchInputTxt}
                 onClick={inputClickHandler}

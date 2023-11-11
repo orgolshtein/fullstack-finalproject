@@ -115,6 +115,7 @@ export default function Login () {
                                     }}/>
                                     <InputLogin 
                                         type="text"
+                                        autoComplete="on"
                                         placeholder="Username / Email" 
                                         disabled={inputDisabled}
                                         onClick={inputActive}
@@ -126,7 +127,9 @@ export default function Login () {
                                     <img className="inputIcon" src={PassIcon} onClick={()=>{
                                         passInput.current.focus();
                                     }}/>
-                                    <InputLogin type={passwordInputType}
+                                    <InputLogin 
+                                        type={passwordInputType}
+                                        autoComplete="on"
                                         placeholder="Password:" 
                                         disabled={inputDisabled}
                                         onClick={inputActive}

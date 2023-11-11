@@ -110,6 +110,7 @@ export default function Header (){
                 <InputContainerHeader $inputbor={loginInputBorder}>
                     <InputHeader
                         type="text"
+                        autoComplete="on"
                         placeholder="Username / Email"
                         disabled={loginInputDisabled}
                         $background={loginBackgroundColor}
@@ -120,6 +121,7 @@ export default function Header (){
                 <InputContainerHeader $inputbor={loginInputBorder}>
                     <InputHeader
                         type={passwordInputType}
+                        autoComplete="on"
                         placeholder="Password:"
                         disabled={loginInputDisabled}
                         $background={loginBackgroundColor}

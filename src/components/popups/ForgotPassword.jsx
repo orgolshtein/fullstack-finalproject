@@ -79,7 +79,9 @@ export default function ForgotPassword () {
                         </div>
                         <ForgotPasswordDiv >
                             <div>Please insert one of the following</div>
-                            <ForgotPassInput type="email"
+                            <ForgotPassInput 
+                                type="email"
+                                autoComplete="on"
                                 placeholder="Enter user or email address" 
                                 disabled={inputDisabled}
                                 $inputbor={inputBorder}

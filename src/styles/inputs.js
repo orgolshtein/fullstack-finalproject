@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import * as AppColor from "./colors";
 
-export const InputContainerHeader = styled.span`
+export const InputContainerHeader = styled.form`
     position: relative;
     font-size: 1rem;
     border: ${(props)=>props.$inputbor} 1.7px solid;
@@ -46,7 +46,7 @@ export const ForgotPassInput = styled.input`
         }
 `
 
-export const InputContainerLogin = styled.span`
+export const InputContainerLogin = styled.form`
     display: inline-block;
     max-width: 100%;
     position: relative;
@@ -79,7 +79,7 @@ export const InputLogin = styled.input`
     }
 `
 
-export const SearchInputContainer = styled.div`
+export const SearchInputContainer = styled.form`
     width: 13rem;
     position: relative;
     top: 0.7rem;
