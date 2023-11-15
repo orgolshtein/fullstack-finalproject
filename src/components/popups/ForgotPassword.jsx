@@ -1,12 +1,11 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
-import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
+import useImpDisableScrollHandler from "../../hooks/useImperativeDisableScroll";
 import useOuterClick from "../../hooks/useOuterClick";
 import * as AppColor from "../../styles/colors";
 import { PopupDiv } from "../../styles/containersMain";
 import { ForgotPasswordDiv } from "../../styles/containersPopUp";
-import LoadingIcon from "../LoadingIcon";
-import AppLogo from "../AppLogo";
+import { AppLogo } from "../../styles/elements";
 import { ForgotPassInput } from "../../styles/inputs";
 import { ForgotPasswordCta, ForgotPasswordCtaActive, PopupCloseBtn } from "../../styles/buttons";
 
@@ -16,43 +15,12 @@ export default function ForgotPassword () {
     const [inputBorder, setInputBorder] = useState(AppColor.InputBorder);
     const [inputBackgroundColor, setInputBackgroundColor] = useState(AppColor.InputBackground);
     const [ctaActive, setCtaActive] = useState(false);
-    const { isForgotPassDisplayed, updateforgotPasswordDisplay } = useContext(AppContext);
+    const { isForgotPassDisplayed, setIsForgotPassDisplayed, loginAttempt } = useContext(AppContext);
 
-    let userInput = useRef();
-    let forgotPassRef = useRef();
+    let userInput = useRef(null);
+    let forgotPassRef = useRef(null);
 
-    isForgotPassDisplayed ?
-    useImperativeDisableScroll({ element: document.body, disabled: true }):
-    useImperativeDisableScroll({ element: document.body, disabled: false });
-    
-    const closeClickHandler = () =>{
-        updateforgotPasswordDisplay(false);
-        setCtaMsg("");
-        userInput.current.value = "";
-    };
-
-    const ctaClickHandler = () =>{
-        setCtaMsg("");
-        if (userInput.current.value === "") {
-            setCtaMsg("User or email address is required");
-            setInputBorder(AppColor.InputErrorBorder)
-        } else{
-            setCtaMsg(<LoadingIcon $size="2rem" />)
-            setInputDisabled(true);
-            setInputBackgroundColor(AppColor.DisbledInputBackground);
-            setCtaActive(true);
-            setTimeout(()=>{
-                setCtaMsg("User not found");
-                setInputDisabled(false);
-                setInputBackgroundColor(AppColor.InputBackground);
-                setCtaActive(false);
-            }, (3000-1000)+1000);
-        }
-    };
-
-    const inputActive = () => {
-        setCtaMsg("");
-    };
+    useImpDisableScrollHandler(isForgotPassDisplayed);
 
     useEffect(()=>{
         ctaMsg.length > 0 ?
@@ -60,8 +28,26 @@ export default function ForgotPassword () {
         setInputBorder(AppColor.InputBorder)
     }, [ctaMsg]);
 
+    const forgotCtaClickHandler = () =>{
+        loginAttempt({
+            setMsg: setCtaMsg,
+            msgBlank: "User or email address is required",
+            msgError: "User not found",
+            userInput: userInput,
+            passInput: userInput,
+            setInputDisabled: setInputDisabled,
+            setBgColor: setInputBackgroundColor,
+            setBtnActive: setCtaActive,
+            size: "2rem"
+        })
+    };
+
     const outsideClickHandler = (event) => {
-        useOuterClick(event,forgotPassRef,closeClickHandler)
+        useOuterClick(event,forgotPassRef,() =>{
+            setIsForgotPassDisplayed(false);
+            setCtaMsg("");
+            userInput.current.value = "";
+        })
     };
 
     return (
@@ -71,10 +57,15 @@ export default function ForgotPassword () {
         <PopupDiv width="24rem" $zindex="110" $titleboxheight="12rem" onClick={outsideClickHandler}>
             <div className="flexContainer">
                 <div className="inner" ref={forgotPassRef}>
-                    <PopupCloseBtn onClick={closeClickHandler} $url="src/assets/icons/cross_white_icon.svg"></PopupCloseBtn>
+                    <PopupCloseBtn onClick={() =>{
+                        setIsForgotPassDisplayed(false);
+                        setCtaMsg("");
+                        userInput.current.value = "";
+                    }} 
+                    $url="src/assets/icons/cross_white_icon.svg" />
                     <div className="content">
                         <div className="titlebox">
-                            <AppLogo $res="6" alt="popuplogo"/>
+                            <AppLogo $size="6" alt="popuplogo"/>
                             <div>Forgot user / password assistance</div>
                         </div>
                         <ForgotPasswordDiv >
@@ -86,7 +77,7 @@ export default function ForgotPassword () {
                                 disabled={inputDisabled}
                                 $inputbor={inputBorder}
                                 $background={inputBackgroundColor}
-                                onClick={inputActive}
+                                onClick={() => setCtaMsg("")}
                                 ref={userInput}
                             />
                             {
@@ -96,7 +87,7 @@ export default function ForgotPassword () {
                             {
                                 ctaActive ?
                                 <ForgotPasswordCtaActive>continue</ForgotPasswordCtaActive> :
-                                <ForgotPasswordCta onClick={ctaClickHandler}>continue</ForgotPasswordCta>
+                                <ForgotPasswordCta onClick={forgotCtaClickHandler}>continue</ForgotPasswordCta>
                             }
                         </ForgotPasswordDiv>
                     </div>

@@ -1,2 +1,3 @@
--Refactoring: Components vs styled componenets
+-Refactoring: Components vs styled componenets + uniting styled
 -Server & Database
+-Admin interface ?

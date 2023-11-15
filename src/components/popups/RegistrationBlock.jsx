@@ -1,6 +1,6 @@
 import { useContext, useRef } from "react";
 import { AppContext } from "../../state/AppContext";
-import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
+import useImpDisableScrollHandler from "../../hooks/useImperativeDisableScroll";
 import useOuterClick from "../../hooks/useOuterClick";
 import { PopupDiv } from "../../styles/containersMain";
 import { RegBlockDiv } from "../../styles/containersPopUp";
@@ -8,24 +8,20 @@ import { RegBlockDiv } from "../../styles/containersPopUp";
 export default function RegistrationBlock () {
     const { 
         isRegBlockDisplayed,
-        updateRegBlockDisplay
+        setIsRegBlockDisplayed
     } = useContext(AppContext);
 
     let refBlockRef = useRef();
 
-    isRegBlockDisplayed ?
-    useImperativeDisableScroll({ element: document.body, disabled: true }):
-    useImperativeDisableScroll({ element: document.body, disabled: false });
-
-    const outsideClickHandler = (event) => {
-        useOuterClick(event,refBlockRef,updateRegBlockDisplay,false)
-    };
+    useImpDisableScrollHandler(isRegBlockDisplayed);
 
     return (
         <>
         {
         isRegBlockDisplayed ?
-        <PopupDiv width="24rem" $zindex="110" $titleboxheight="4rem" onClick={outsideClickHandler}>
+        <PopupDiv width="24rem" $zindex="110" $titleboxheight="4rem" onClick={(event) => {
+            useOuterClick(event,refBlockRef,setIsRegBlockDisplayed,false)
+        }}>
             <div className="flexContainer">
                 <div className="inner" ref={refBlockRef}>
                     <div className="content">

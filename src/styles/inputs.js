@@ -7,7 +7,6 @@ export const InputContainerHeader = styled.form`
     border: ${(props)=>props.$inputbor} 1.7px solid;
     color: ${AppColor.InputText};
     border-radius: 0.2rem;
-    
     `
 
 export const InputHeader = styled.input`
@@ -46,7 +45,7 @@ export const ForgotPassInput = styled.input`
         }
 `
 
-export const InputContainerLogin = styled.form`
+export const InputContainerLogin = styled.span`
     display: inline-block;
     max-width: 100%;
     position: relative;

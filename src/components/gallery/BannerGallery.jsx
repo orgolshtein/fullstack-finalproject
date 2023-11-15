@@ -1,8 +1,5 @@
 import { useContext, useState } from "react";
-import * as api from "../../api/app.api";
-// import slider_data from "../../data/slider-data.json"
 import { AppContext } from "../../state/AppContext";
-import { useOncePostMount } from "../../hooks/useOncePostMount";
 import { GalleryDiv } from "../../styles/containersMain";
 import LoadingIcon from "../LoadingIcon";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,47 +7,19 @@ import "swiper/css";
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import WelcomeBonusOverlay from "../WelcomeBonusOverlay";
+import { WelcomeBonusOverlay } from "../../styles/elements";
 import { JoinGalleryBtn, JoinGalleryBtnActive } from "../../styles/buttons";
 
 export default function BannerGallery () {
-  const [isSliderLoading, setIsSliderLoading] = useState(true);
-  const [sliderList, setSliderList] = useState([]);  
   const [ctaActive, setCtaActive] = useState(false);
-  const [sliderErrorMessage, setSliderErrorMessage] = useState("");
   const { width,
-          updateRegBlockDisplay,
-          updateLoginDisplay,
-          updateGameOverlayDisplay
+          sliderList,
+          isSliderLoading,
+          openLoginPopup,
+          openRegBlockPopup,
+          sliderErrorMessage,
+          setIsGameOverlayDisplayed
         } = useContext(AppContext);
-
-  useOncePostMount(() => {
-    (async () => {
-      try {
-        const slider_data = await api.fetchSliderData();
-        const datalist = slider_data.map((item)=>({...item, show: true}));
-        setSliderList(datalist);
-      } catch {
-        setSliderErrorMessage("Connection error: cannot display content");
-      } finally {
-        setIsSliderLoading(false);
-      }
-    })();
-  });
-
-  const bannerClickHandler = () => {
-    updateGameOverlayDisplay(false);
-    updateLoginDisplay(true);
-  };
-
-  const ctaClickHandler = () => {
-    updateGameOverlayDisplay(false);
-    setCtaActive(true);
-    setTimeout(()=>{
-        updateRegBlockDisplay(true);
-        setCtaActive(false);
-    }, Math.floor(Math.random() * (2000-1000)+1000));
-};
 
   return (
   <GalleryDiv>
@@ -73,7 +42,7 @@ export default function BannerGallery () {
          sliderList?.map((item) => (
               <SwiperSlide key={item.id}><img 
                 src={width > 768 ? item.srcbig : item.srcsmall} 
-                alt={item.title} onClick={bannerClickHandler} 
+                alt={item.title} onClick={()=>openLoginPopup(setIsGameOverlayDisplayed)} 
               /></SwiperSlide>
                 ))
           }
@@ -88,7 +57,7 @@ export default function BannerGallery () {
             {
               ctaActive ?
               <JoinGalleryBtnActive>JOIN NOW</JoinGalleryBtnActive> :
-              <JoinGalleryBtn onClick={ctaClickHandler}>JOIN NOW</JoinGalleryBtn>
+              <JoinGalleryBtn onClick={()=>openRegBlockPopup(setCtaActive, setIsGameOverlayDisplayed)}>JOIN NOW</JoinGalleryBtn>
             }
         </div>
     </Swiper>

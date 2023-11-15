@@ -1,33 +1,34 @@
 import { useContext } from "react";
 import { AppContext } from "../../state/AppContext";
 import { GameOverlayDiv } from "../../styles/containersPopUp";
-import GameImage from "../GameImage";
+import { GameImg } from "../../styles/elements";
 import { PlayPopupBtn, PopupCloseBtn } from "../../styles/buttons";
 
 export default function GameOverlay () {
     const { 
         selectedGame, 
         isGameOverlayDisplayed, 
-        updateGameOverlayDisplay, 
-        updateLoginDisplay 
+        setIsGameOverlayDisplayed, 
+        openLoginPopup 
     } = useContext(AppContext);
-
-    const closeClickHandler = () => {
-        updateGameOverlayDisplay(false);
-    };
-
-    const ctaClickHandler = () => {
-        updateLoginDisplay(true);
-    };
 
     return (
         <GameOverlayDiv>
             <div className={isGameOverlayDisplayed? "shown" : "hidden"}>
-                <PopupCloseBtn onClick={closeClickHandler} $url="src/assets/icons/cross_white_icon.svg"></PopupCloseBtn>
+                <PopupCloseBtn onClick={() => setIsGameOverlayDisplayed(false)} 
+                    $url="src/assets/icons/cross_white_icon.svg" />
                 <h1>{selectedGame.title}</h1>
-                <GameImage image={selectedGame.thumb} $display="none" height="260" width="260" title={selectedGame.title}/>
+                <GameImg 
+                    src={selectedGame.thumb} 
+                    $display="none" 
+                    height="260" 
+                    width="260" 
+                    title={selectedGame.title}
+                />
                 <p>{selectedGame.descrition}</p>
-                <PlayPopupBtn onClick={ctaClickHandler}>play now</PlayPopupBtn>
+                <PlayPopupBtn onClick={() => {
+                    openLoginPopup(null);
+                }}>play now</PlayPopupBtn>
             </div>
         </GameOverlayDiv>
     );

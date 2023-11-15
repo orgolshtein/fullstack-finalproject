@@ -1,6 +1,4 @@
 import { useContext } from "react";
-import * as api from "../../api/app.api";
-// import games_data from "../../data/games-data.json";
 import { AppContext } from "../../state/AppContext";
 import { useOncePostMount } from "../../hooks/useOncePostMount";
 import { GameListDiv } from "../../styles/containersGames";
@@ -10,31 +8,17 @@ import GameThumbLarge from "./GameThumbLarge";
 import GameThumbWide from "./GameThumbWide";
 
 export default function TableGames () {
-   const { 
-      width,
-      gamesList,
-      updateGamesList, 
-      gamesErrorMessage, 
-      fetchGamesError, 
-      areGamesLoading, 
-      gamesLoadingFinish,  
-      updateGameOverlayDisplay 
-    } = useContext(AppContext);
+  const { 
+    width,
+    tableGamesList,
+    gamesErrorMessage, 
+    areGamesLoading,
+    setIsGameOverlayDisplayed 
+  } = useContext(AppContext);
 
     useOncePostMount(() => {
-        (async () => {
-          try {
-            const games_data = await api.fetchGameData();
-            const datalist = games_data.filter((item) => item.type === "table").map((item)=>({...item, show: true}));
-            updateGamesList(datalist);
-          } catch {
-            fetchGamesError("cannot display games");
-          } finally {
-            gamesLoadingFinish();
-            updateGameOverlayDisplay(false);
-          }
-        })();
-      });
+      setIsGameOverlayDisplayed(false);
+    });
 
     return(
       <GameListDiv>
@@ -48,7 +32,7 @@ export default function TableGames () {
             $marginleftmedium="2rem"
           />
          :
-        gamesList?.filter((game) => game.show)
+        tableGamesList?.filter((game) => game.show)
         .map((item, i) => (
           width > 1024 && i === 3 ?
           <GameThumbLarge 

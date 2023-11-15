@@ -1,22 +1,20 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
-import useImperativeDisableScroll from "../../hooks/useImperativeDisableScroll";
+import useImpDisableScrollHandler from "../../hooks/useImperativeDisableScroll";
 import useOuterClick from "../../hooks/useOuterClick";
 import * as AppColor from "../../styles/colors";
 import { PopupDiv } from "../../styles/containersMain";
 import { LoginDiv } from "../../styles/containersPopUp";
-import LoadingIcon from "../LoadingIcon";
 import { LoginPopupBtn, LoginPopupBtnActive, JoinPopupBtn, JoinPopupBtnActive, PopupCloseBtn } from "../../styles/buttons";
 import { InputContainerLogin, InputLogin } from "../../styles/inputs";
-import WelcomeBonusOverlay from "../WelcomeBonusOverlay"
-import { PasswordVisIcon } from "../../styles/elements";
+import { WelcomeBonusOverlay, PasswordVisIcon } from "../../styles/elements";
 import UserIcon from "../../assets/icons/login_user_icon.svg";
 import PassIcon from "../../assets/icons/login_password_icon.svg";
 
 export default function Login () {
     const [loginMsg, setLoginMsg] = useState("");
-    const [passwordInputType, setPasswordInputType] = useState("password");
-    const [passwordIcon, setPasswordIcon] = useState("/src/assets/icons/password_invisible_icon.svg");
+    const [passInputType, setPassInputType] = useState("password");
+    const [passIcon, setPassIcon] = useState("/src/assets/icons/password_invisible_icon.svg");
     const [inputDisabled, setInputDisabled] = useState(false);
     const [inputBorder, setInputBorder] = useState(AppColor.InputBorder);
     const [inputBackgroundColor, setInputBackgroundColor] = useState(AppColor.InputBackground);
@@ -24,69 +22,18 @@ export default function Login () {
     const [joinBtnActive, setJoinBtnActive] = useState(false);
     const { 
         isLoginDisplayed, 
-        updateLoginDisplay,
-        updateforgotPasswordDisplay,
-        updateRegBlockDisplay
+        setIsLoginDisplayed,
+        setIsForgotPassDisplayed,
+        passIconVisToggle,
+        loginAttempt,
+        openRegBlockPopup
     } = useContext(AppContext);
 
-    let userInput = useRef();
-    let passInput = useRef();
-    let loginRef = useRef();
+    let userInput = useRef(null);
+    let passInput = useRef(null);
+    let loginRef = useRef(null);
 
-    isLoginDisplayed ?
-    useImperativeDisableScroll({ element: document.body, disabled: true }):
-    useImperativeDisableScroll({ element: document.body, disabled: false });
-    
-    const closeClickHandler = () =>{
-        updateLoginDisplay(false);
-        setLoginMsg("");
-        userInput.current.value = "";
-        passInput.current.value = "";
-    };
-
-    const passwordIconClickHandler = () => {
-        if (passwordInputType === "password") {
-            setPasswordInputType("text");
-            setPasswordIcon("/src/assets/icons/password_visible_icon.svg");
-          } else {
-            setPasswordInputType("password");
-            setPasswordIcon("/src/assets/icons/password_invisible_icon.svg");
-          }
-    };
-
-    const loginClickHandler = () =>{
-        setLoginMsg("");
-        if (userInput.current.value === "" || passInput.current.value === "") {
-            setLoginMsg("Username/Email and Password are required");
-        } else {
-            setLoginMsg(<LoadingIcon $size="2rem" />);
-            setInputDisabled(true);
-            setInputBackgroundColor(AppColor.DisbledInputBackground);
-            setLoginBtnActive(true);
-            setTimeout(()=>{
-                setLoginMsg("Username or Password not valid");
-                setInputDisabled(false);
-                setInputBackgroundColor(AppColor.InputBackground);
-                setLoginBtnActive(false);
-            }, Math.floor(Math.random() * (5000-1000)+1000));
-        }
-    };
-
-    const forgotPassClickHandler = () =>{
-        updateforgotPasswordDisplay(true);
-    };
-
-    const joinClickHandler = () =>{
-        setJoinBtnActive(true);
-        setTimeout(()=>{
-            updateRegBlockDisplay(true);
-            setJoinBtnActive(false);
-        }, Math.floor(Math.random() * (2000-1000)+1000));
-    };
-
-    const inputActive = () => {
-        setLoginMsg("");
-    };
+    useImpDisableScrollHandler(isLoginDisplayed);
 
     useEffect(()=>{
         loginMsg.length > 0 ?
@@ -94,8 +41,31 @@ export default function Login () {
         setInputBorder(AppColor.InputBorder)
     },[loginMsg]);
 
+     const loginClickHandler = () =>{
+        loginAttempt({
+            setMsg: setLoginMsg,
+            msgBlank: "Username/Email and Password are required",
+            msgError: "Username or Password not valid",
+            userInput: userInput, 
+            passInput: passInput,
+            setInputDisabled: setInputDisabled,
+            setBgColor: setInputBackgroundColor,
+            setBtnActive: setLoginBtnActive,
+            size: "2rem"
+        })
+    };
+
+    const passIconClickHandler = () =>{
+        passIconVisToggle(passInputType, setPassInputType, setPassIcon);
+    }
+
     const outsideClickHandler = (event) => {
-        useOuterClick(event,loginRef,closeClickHandler)
+        useOuterClick(event,loginRef,() =>{
+            setIsLoginDisplayed(false);
+            setLoginMsg("");
+            userInput.current.value = "";
+            passInput.current.value = "";
+        })
     };
 
     return (
@@ -105,7 +75,13 @@ export default function Login () {
         <PopupDiv width="26rem" $zindex="106" onClick={outsideClickHandler}>
             <div className="flexContainer">
                 <div className="inner" ref={loginRef}>
-                    <PopupCloseBtn onClick={closeClickHandler} $url="src/assets/icons/cross_gray_icon.svg"></PopupCloseBtn>
+                    <PopupCloseBtn onClick={() =>{
+                        setIsLoginDisplayed(false);
+                        setLoginMsg("");
+                        userInput.current.value = "";
+                        passInput.current.value = "";
+                    }} 
+                    $url="src/assets/icons/cross_gray_icon.svg" />
                     <div className="content">
                         <LoginDiv>
                             <form action="">
@@ -118,7 +94,9 @@ export default function Login () {
                                         autoComplete="on"
                                         placeholder="Username / Email" 
                                         disabled={inputDisabled}
-                                        onClick={inputActive}
+                                        onClick={() => {
+                                            setLoginMsg("");
+                                        }}
                                         $background={inputBackgroundColor} 
                                         ref={userInput}
                                     />
@@ -128,18 +106,25 @@ export default function Login () {
                                         passInput.current.focus();
                                     }}/>
                                     <InputLogin 
-                                        type={passwordInputType}
+                                        type={passInputType}
                                         autoComplete="on"
                                         placeholder="Password:" 
                                         disabled={inputDisabled}
-                                        onClick={inputActive}
+                                        onClick={() => {
+                                            setLoginMsg("");
+                                        }}
                                         $background={inputBackgroundColor}
                                         ref={passInput}
                                     />
                                     {
                                     loginBtnActive ?
-                                    <PasswordVisIcon width="1.9rem" src={passwordIcon} cursor={"arrow"}/> :
-                                    <PasswordVisIcon width="1.9rem" src={passwordIcon} cursor={"pointer"} onClick={passwordIconClickHandler}/>
+                                    <PasswordVisIcon width="1.9rem" src={passIcon} cursor={"arrow"}/> :
+                                    <PasswordVisIcon 
+                                        width="1.9rem" 
+                                        src={passIcon} 
+                                        cursor={"pointer"} 
+                                        onClick={passIconClickHandler}
+                                    />
                                     }
                                 </InputContainerLogin>
                                 {
@@ -152,18 +137,20 @@ export default function Login () {
                                 <div>{loginMsg}</div> : null                          
                                 }
                             </form>
-                            <div className="forgotPassLink" onClick={forgotPassClickHandler}>Lost your log in details?</div>
+                            <div className="forgotPassLink" onClick={() =>{
+                                setIsForgotPassDisplayed(true);
+                            }}>Lost your log in details?</div>
                             <hr />
                             <div className="joinText">You don't have an account?</div>
                             <WelcomeBonusOverlay 
-                            $widthwide="13rem"
-                            $display="none"
-                            alt="Welcome Bonus"
-                        />
+                                $widthwide="13rem"
+                                $display="none"
+                                alt="Welcome Bonus"
+                            />
                         {
                             joinBtnActive ?
                             <JoinPopupBtnActive>Register</JoinPopupBtnActive> :
-                            <JoinPopupBtn onClick={joinClickHandler}>Register</JoinPopupBtn>
+                            <JoinPopupBtn onClick={()=>openRegBlockPopup(setJoinBtnActive)}>Register</JoinPopupBtn>
                         }
                         </LoginDiv>
                     </div>

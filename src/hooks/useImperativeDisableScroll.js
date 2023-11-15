@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function useImperativeDisableScroll({ element, disabled }) {
+export function useImperativeDisableScroll({ element, disabled }) {
     useEffect(() => {
         if (!element) {
             return
@@ -12,4 +12,10 @@ export default function useImperativeDisableScroll({ element, disabled }) {
             element.style.overflowY = 'scroll'
         }
     }, [disabled])
+};
+
+export default function useImpDisableScrollHandler (popupDisplay){
+    popupDisplay ?
+    useImperativeDisableScroll({ element: document.body, disabled: true }):
+    useImperativeDisableScroll({ element: document.body, disabled: false });
 };

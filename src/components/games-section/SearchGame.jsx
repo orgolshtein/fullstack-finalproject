@@ -3,20 +3,8 @@ import { AppContext } from "../../state/AppContext";
 import { SearchInputContainer, SearchInput } from "../../styles/inputs";
 
 export default function SearchGame () {
-    const { width, gamesList, updateGamesList, updateGameOverlayDisplay } = useContext(AppContext);
+    const { width, gameSearchHandler, setIsGameOverlayDisplayed  } = useContext(AppContext);
     let searchInputTxt = useRef("");
-
-    const inputClickHandler = () => {
-        updateGameOverlayDisplay(false);
-    }
-    
-    const inputTypeHandler = () => {
-        const searchedGamesList = gamesList.map((item)=>{
-            item.show = item.title.toLowerCase().includes(searchInputTxt.current.value.toLowerCase());
-            return item;
-        });
-        updateGamesList(searchedGamesList);
-    }
 
     return (
         <SearchInputContainer>
@@ -28,8 +16,10 @@ export default function SearchGame () {
                 autoComplete="on"
                 placeholder={width > 500 ? "Search Game" : "Search"}
                 ref={searchInputTxt}
-                onClick={inputClickHandler}
-                onChange={inputTypeHandler}
+                onClick={() => {
+                    setIsGameOverlayDisplayed(false);
+                }}
+                onChange={()=> gameSearchHandler(searchInputTxt)}
             />
         </SearchInputContainer>
     );

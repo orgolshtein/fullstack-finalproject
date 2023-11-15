@@ -1,6 +1,4 @@
 import { useContext } from "react";
-import * as api from "../../api/app.api";
-// import games_data from "../../data/games-data.json";
 import { AppContext } from "../../state/AppContext";
 import { useOncePostMount } from "../../hooks/useOncePostMount";
 import { GameListDiv } from "../../styles/containersGames";
@@ -10,31 +8,17 @@ import GameThumbLarge from "./GameThumbLarge";
 import GameThumbWide from "./GameThumbWide";
 
 export default function Home () {
-    const { 
-      width,
-      gamesList, 
-      updateGamesList, 
-      gamesErrorMessage, 
-      fetchGamesError, 
-      areGamesLoading, 
-      gamesLoadingFinish, 
-      updateGameOverlayDisplay 
-    } = useContext(AppContext);
+  const { 
+    width,
+    gamesList,
+    gamesErrorMessage, 
+    areGamesLoading,
+    setIsGameOverlayDisplayed 
+  } = useContext(AppContext);
 
-    useOncePostMount(() => {
-        (async () => {
-          try {
-            const games_data = await api.fetchGameData();
-            const datalist = games_data.map((item)=>({...item, show: true}));
-            updateGamesList(datalist);
-          } catch {
-            fetchGamesError("cannot display games");
-          } finally {
-            gamesLoadingFinish();
-            updateGameOverlayDisplay(false);
-          }
-        })();
-      });
+  useOncePostMount(() => {
+    setIsGameOverlayDisplayed(false);
+  });
 
     return(
         <GameListDiv>

@@ -409,20 +409,13 @@ export const ToTopButton = styled.div`
         width: 3.8em;
         height: 3.8em;
         cursor: pointer;
-        animation: slide-up 300ms;
-    
-        @keyframes slide-up {
-            from {
-                transform: translateY(100%); opacity: 0;
-            }
-            to {
-                transform: translateY(0%); opacity: 1;
-            }
-        }
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 200ms linear;
     }
 
     .hidden{
-        display:none;
+        display: inline-block;
         background: url(/src/assets/icons/btop_icon.png) 50% 50%/contain no-repeat;
         position: fixed;
         z-index: 100;
@@ -431,15 +424,8 @@ export const ToTopButton = styled.div`
         width: 3.8em;
         height: 3.8em;
         cursor: pointer;
-        animation: slide-down 300ms;
-    
-        @keyframes slide-down {
-            from { 
-                display: block; 
-            }
-            to { 
-                transform: translateY(100%); opacity: 0;
-            }
-        }
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s 100ms, opacity 100ms linear;
     }
 `

@@ -1,27 +1,30 @@
 import styled from "styled-components";
 import * as AppColor from "./colors";
 
-export const AppLogoImg = styled.img`
-  height: ${(props) => props.$res}rem;
-  width: ${(props) => props.$res}rem;
-  left: ${(props) => props.$leftwide};
+export const AppLogo = styled.div`
+  content: url("src/assets/logos/unagibet-logo.png");
+  display: inline-block;
+  background-size: ${(props) => props.$size}rem ${(props) => props.$size}rem;
+  height: ${(props) => props.$size}rem;
+  width: fit-content;
+  left: ${(props) => props.$leftwide}rem;
   z-index: ${(props) => props.$zindex};
-  cursor: ${(props) => props.cursor || "arrow"};
 
   @media only screen and (max-width: 1024px){
-    left: ${(props) => props.$left};
+    left: ${(props) => props.$left}rem;
       }
   
   @media only screen and (max-width: 768px){
-    height: ${(props) => props.$resmedium}rem;
-    width: ${(props) => props.$resmedium}rem;
+    background-size: ${(props) => props.$sizemedium}rem ${(props) => props.$sizemedium}rem;
+    height: ${(props) => props.$sizemedium}rem;
       }
 `;
 
-export const WelcomeOverlayImg = styled.img`
+export const WelcomeBonusOverlay = styled.img`
+    content: url("src/assets/overlays/welcome-bonus.png");
+    width: ${(props) => props.$widthwide};
     position: ${(props) => props.$position};
     top: ${(props) => props.$topwide};
-    width: ${(props) => props.$widthwide};
     left: ${(props) => props.$leftwide};
     z-index: ${(props) => props.$zindex};
 
@@ -90,7 +93,7 @@ export const GameThumbNewTag = styled.span`
     opacity: .9;
 `
 
-export const GameImageImg = styled.img`
+export const GameImg = styled.img`
   height: ${(props) => props.height}px;
   width: ${(props) => props.width}px;
 
