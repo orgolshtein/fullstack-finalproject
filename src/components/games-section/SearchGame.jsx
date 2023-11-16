@@ -3,7 +3,7 @@ import { AppContext } from "../../state/AppContext";
 import { SearchInputContainer, SearchInput } from "../../styles/inputs";
 
 export default function SearchGame () {
-    const { width, gameSearchHandler, setIsGameOverlayDisplayed  } = useContext(AppContext);
+    const { width, filterGames, setIsGameOverlayDisplayed  } = useContext(AppContext);
     let searchInputTxt = useRef("");
 
     return (
@@ -19,7 +19,7 @@ export default function SearchGame () {
                 onClick={() => {
                     setIsGameOverlayDisplayed(false);
                 }}
-                onChange={()=> gameSearchHandler(searchInputTxt)}
+                onChange={()=> filterGames(searchInputTxt)}
             />
         </SearchInputContainer>
     );

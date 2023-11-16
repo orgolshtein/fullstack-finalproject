@@ -1,3 +1,4 @@
--Refactoring: Components vs styled componenets + uniting styled
--Server & Database
--Admin interface ?
+- React forms
+- Refactoring: Merging styled components
+- Server & Database
+- Admin interface ?

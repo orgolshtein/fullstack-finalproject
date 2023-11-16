@@ -51,7 +51,8 @@ export const WelcomeBonusOverlay = styled.img`
     }
 `
 
-export const LoadingIconImg = styled.img`
+export const Loader = styled.img`
+  content: url("src/assets/icons/loading.gif");
   width: ${(props) => props.$size};
   height: ${(props) => props.$size};
   position: ${(props) => props.$position};
@@ -59,6 +60,7 @@ export const LoadingIconImg = styled.img`
   margin-left: ${(props) => props.$marginleft};
 
   @media only screen and (max-width: 1024px){
+    left: ${(props) => props.$mediumleft};
     margin-left: ${(props) => props.$marginleftmedium}
     }
 `;

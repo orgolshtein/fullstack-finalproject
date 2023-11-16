@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AppContext } from "../../state/AppContext";
 import { useOncePostMount } from "../../hooks/useOncePostMount";
 import { GameListDiv } from "../../styles/containersGames";
-import LoadingIcon from "../LoadingIcon";
+import { Loader } from "../../styles/elements";
 import GameThumb from "./GameThumb";
 import GameThumbLarge from "./GameThumbLarge";
 
@@ -25,7 +25,7 @@ export default function NewGames () {
           gamesErrorMessage ? 
             <h1 className="loading-failed">{gamesErrorMessage}</h1>
            : areGamesLoading ? 
-           <LoadingIcon 
+           <Loader 
             $size="20rem" 
             $marginleft="30rem"
             $marginleftmedium="2rem"

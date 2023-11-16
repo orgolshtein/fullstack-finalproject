@@ -1,13 +1,12 @@
 import { useContext, useState } from "react";
 import { AppContext } from "../../state/AppContext";
 import { GalleryDiv } from "../../styles/containersMain";
-import LoadingIcon from "../LoadingIcon";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { WelcomeBonusOverlay } from "../../styles/elements";
+import { Loader, WelcomeBonusOverlay } from "../../styles/elements";
 import { JoinGalleryBtn, JoinGalleryBtnActive } from "../../styles/buttons";
 
 export default function BannerGallery () {
@@ -27,10 +26,11 @@ export default function BannerGallery () {
     sliderErrorMessage ? 
       <h1>{sliderErrorMessage}</h1>
      : isSliderLoading ? 
-      <LoadingIcon 
-        $size="20%" 
+      <Loader 
+        $size="20rem" 
         $position="relative" 
-        $left="38%" 
+        $left="40%"
+        $mediumleft="20%"
       />
      :
     <Swiper

@@ -15,7 +15,7 @@ export default function ForgotPassword () {
     const [inputBorder, setInputBorder] = useState(AppColor.InputBorder);
     const [inputBackgroundColor, setInputBackgroundColor] = useState(AppColor.InputBackground);
     const [ctaActive, setCtaActive] = useState(false);
-    const { isForgotPassDisplayed, setIsForgotPassDisplayed, loginAttempt } = useContext(AppContext);
+    const { isForgotPassDisplayed, setIsForgotPassDisplayed, onSubmit } = useContext(AppContext);
 
     let userInput = useRef(null);
     let forgotPassRef = useRef(null);
@@ -29,16 +29,16 @@ export default function ForgotPassword () {
     }, [ctaMsg]);
 
     const forgotCtaClickHandler = () =>{
-        loginAttempt({
-            setMsg: setCtaMsg,
-            msgBlank: "User or email address is required",
-            msgError: "User not found",
-            userInput: userInput,
-            passInput: userInput,
-            setInputDisabled: setInputDisabled,
-            setBgColor: setInputBackgroundColor,
-            setBtnActive: setCtaActive,
-            size: "2rem"
+        onSubmit({
+            msg: setCtaMsg,
+            required: "User or email address is required",
+            notfound: "User not found",
+            userinput: userInput,
+            passinput: userInput,
+            inputdisabled: setInputDisabled,
+            bgcolor: setInputBackgroundColor,
+            buttonactive: setCtaActive,
+            loadersize: "2rem"
         })
     };
 

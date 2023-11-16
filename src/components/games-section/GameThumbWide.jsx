@@ -8,12 +8,12 @@ import { GameImg } from "../../styles/elements";
 
 export default function GameThumbWide ({ image, title, isnew, selectedgame, wideclass }) {
   const [isNewTag, setIsNewTag] = useState(false);
-  const { gameThumbClickHandler } = useContext(AppContext);
+  const { openGameOverlay } = useContext(AppContext);
 
   useOncePostMount(()=> isnew ? setIsNewTag(true) : setIsNewTag(false));
 
   return (
-      <GameThumbContainer className={wideclass} onClick={()=>gameThumbClickHandler(selectedgame)}>
+      <GameThumbContainer className={wideclass} onClick={()=>openGameOverlay(selectedgame)}>
           <GameThumbBtn $top="6rem" $left="7rem">play now</GameThumbBtn>
           {isNewTag ? <GameThumbNewTag>new</GameThumbNewTag> : null}
           <GameImg src={image} height="180" width="373" title={title} />

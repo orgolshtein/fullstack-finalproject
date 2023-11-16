@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as api from "../api/app.api";
 import * as AppColor from "../styles/colors";
 import { useOncePostMount } from "../hooks/useOncePostMount";
-import LoadingIcon from "../components/LoadingIcon";
+import { Loader } from "../styles/elements";
 // import slider_data from "../data/slider-data.json"
 // import games_data from "../data/games-data.json";
 
@@ -82,21 +82,21 @@ const AppProvider = ({children}) =>{
     setIsLoginDisplayed(true);
   };
 
-  const loginAttempt = ({...login}) =>{
-    login.overlayDisplayed? login.overlayDisplayed(false): null;
-    login.setMsg("");
-    login.userInput.current.value === "" || login.passInput.current.value === "" ? 
-    login.setMsg(login.msgBlank) :
+  const onSubmit = ({...submit}) =>{
+    submit.displaygameoverlay? submit.displaygameoverlay(false): null;
+    submit.msg("");
+    submit.userinput.current.value === "" || submit.passinput.current.value === "" ? 
+    submit.msg(submit.required) :
       (() => {
-        login.setMsg(<LoadingIcon $size={login.size} $marginleft={login.mleft? login.mleft : null} />);
-        login.setInputDisabled(true);
-        login.setBgColor(AppColor.DisbledInputBackground);
-        login.setBtnActive(true);
+        submit.msg(<Loader $size={submit.loadersize} $marginleft={submit.loaderleft? submit.loaderleft : null} />);
+        submit.inputdisabled(true);
+        submit.bgcolor(AppColor.DisbledInputBackground);
+        submit.buttonactive(true);
           setTimeout(()=>{
-            login.setMsg(login.msgError);
-            login.setInputDisabled(false);
-            login.setBgColor(AppColor.InputBackground);
-            login.setBtnActive(false);
+            submit.msg(submit.notfound);
+            submit.inputdisabled(false);
+            submit.bgcolor(AppColor.InputBackground);
+            submit.buttonactive(false);
           }, Math.floor(Math.random() * (5000-1000)+1000));
       })();
   };
@@ -110,7 +110,7 @@ const AppProvider = ({children}) =>{
     }, Math.floor(Math.random() * (2000-1000)+1000));
   };
 
-  const gameThumbClickHandler = (selectedgame) => {
+  const openGameOverlay = (selectedgame) => {
     setIsGameOverlayDisplayed(false);
     setTimeout(()=>{
       setSelectedGame(selectedgame);
@@ -118,24 +118,24 @@ const AppProvider = ({children}) =>{
     },200)
   };
 
-  const gameSearchHandler = (ref) => {
+  const filterGames = (input) => {
     const searchedGamesList = gamesList.map((item)=>{
-        item.show = item.title.toLowerCase().includes(ref.current.value.toLowerCase());
+        item.show = item.title.toLowerCase().includes(input.current.value.toLowerCase());
         return item;
     });
     setGamesList(searchedGamesList);
     const searchedNewGamesList = newGamesList.map((item)=>{
-        item.show = item.title.toLowerCase().includes(ref.current.value.toLowerCase());
+        item.show = item.title.toLowerCase().includes(input.current.value.toLowerCase());
         return item;
     });
     setNewGamesList(searchedNewGamesList);
     const searchedSlotsGamesList = slotsGamesList.map((item)=>{
-        item.show = item.title.toLowerCase().includes(ref.current.value.toLowerCase());
+        item.show = item.title.toLowerCase().includes(input.current.value.toLowerCase());
         return item;
     });
     setSlotsGamesList(searchedSlotsGamesList);
     const searchedTableGamesList = tableGamesList.map((item)=>{
-        item.show = item.title.toLowerCase().includes(ref.current.value.toLowerCase());
+        item.show = item.title.toLowerCase().includes(input.current.value.toLowerCase());
         return item;
     });
     setTableGamesList(searchedTableGamesList);
@@ -170,14 +170,14 @@ const AppProvider = ({children}) =>{
     setSlotsGamesList,
     setTableGamesList,
     setSelectedGame,
-    gameSearchHandler,
-    gameThumbClickHandler,
+    filterGames,
+    openGameOverlay,
     setIsForgotPassDisplayed,
     setIsRegBlockDisplayed,
     openRegBlockPopup,
     setIsLoginDisplayed,
     openLoginPopup,
-    loginAttempt,
+    onSubmit,
     setIsGameOverlayDisplayed,
     setIsToTopDisplayed,
     setSliderErrorMessage,

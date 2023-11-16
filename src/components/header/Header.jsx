@@ -22,7 +22,7 @@ export default function Header (){
         setIsGameOverlayDisplayed,
         passIconVisToggle,
         openLoginPopup,
-        loginAttempt,
+        onSubmit,
         openRegBlockPopup
     } = useContext(AppContext);
 
@@ -40,18 +40,18 @@ export default function Header (){
     };
 
     const loginClickHandler = () =>{
-        loginAttempt({
-            setMsg: setHeaderMsg,
-            msgBlank: "Username/Email and Password are required",
-            msgError: "Username/Email or Password does not exist",
-            userInput: userInput, 
-            passInput: passInput,
-            setInputDisabled: setLoginInputDisabled,
-            setBgColor: setLoginBackgroundColor,
-            setBtnActive: setLoginBtnActive,
-            size: "2.7rem",
-            mleft: "4.5rem",
-            overlayDisplayed: setIsGameOverlayDisplayed
+        onSubmit({
+            msg: setHeaderMsg,
+            required: "Username/Email and Password are required",
+            notfound: "Username/Email or Password does not exist",
+            userinput: userInput, 
+            passinput: passInput,
+            inputdisabled: setLoginInputDisabled,
+            bgcolor: setLoginBackgroundColor,
+            buttonactive: setLoginBtnActive,
+            loadersize: "2.7rem",
+            loaderleft: "4.5rem",
+            displaygameoverlay: setIsGameOverlayDisplayed
         })
     };
 

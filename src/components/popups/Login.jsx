@@ -25,7 +25,7 @@ export default function Login () {
         setIsLoginDisplayed,
         setIsForgotPassDisplayed,
         passIconVisToggle,
-        loginAttempt,
+        onSubmit,
         openRegBlockPopup
     } = useContext(AppContext);
 
@@ -42,16 +42,16 @@ export default function Login () {
     },[loginMsg]);
 
      const loginClickHandler = () =>{
-        loginAttempt({
-            setMsg: setLoginMsg,
-            msgBlank: "Username/Email and Password are required",
-            msgError: "Username or Password not valid",
-            userInput: userInput, 
-            passInput: passInput,
-            setInputDisabled: setInputDisabled,
-            setBgColor: setInputBackgroundColor,
-            setBtnActive: setLoginBtnActive,
-            size: "2rem"
+        onSubmit({
+            msg: setLoginMsg,
+            required: "Username/Email and Password are required",
+            notfound: "Username or Password not valid",
+            userinput: userInput, 
+            passinput: passInput,
+            inputdisabled: setInputDisabled,
+            bgcolor: setInputBackgroundColor,
+            buttonactive: setLoginBtnActive,
+            loadersize: "2rem"
         })
     };
 
