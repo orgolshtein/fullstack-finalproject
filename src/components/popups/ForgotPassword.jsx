@@ -1,10 +1,11 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
+import { useForm } from "react-hook-form";
 import useImpDisableScrollHandler from "../../hooks/useImperativeDisableScroll";
 import useOuterClick from "../../hooks/useOuterClick";
 import * as AppColor from "../../styles/colors";
 import { PopupDiv } from "../../styles/containersMain";
-import { ForgotPasswordDiv } from "../../styles/containersPopUp";
+import { ForgotPasswordForm } from "../../styles/containersPopUp";
 import { AppLogo } from "../../styles/elements";
 import { ForgotPassInput } from "../../styles/inputs";
 import { ForgotPasswordCta, ForgotPasswordCtaActive, PopupCloseBtn } from "../../styles/buttons";
@@ -17,8 +18,16 @@ export default function ForgotPassword () {
     const [ctaActive, setCtaActive] = useState(false);
     const { isForgotPassDisplayed, setIsForgotPassDisplayed, onSubmit } = useContext(AppContext);
 
-    let userInput = useRef(null);
-    let forgotPassRef = useRef(null);
+    const {
+        register,
+        handleSubmit,
+        setValue,
+        setFocus,
+        clearErrors,
+        formState: { errors }
+      } = useForm();
+
+    let forgotPassRef = useRef();
 
     useImpDisableScrollHandler(isForgotPassDisplayed);
 
@@ -28,13 +37,10 @@ export default function ForgotPassword () {
         setInputBorder(AppColor.InputBorder)
     }, [ctaMsg]);
 
-    const forgotCtaClickHandler = () =>{
+    const submitHandler = () =>{
         onSubmit({
             msg: setCtaMsg,
-            required: "User or email address is required",
             notfound: "User not found",
-            userinput: userInput,
-            passinput: userInput,
             inputdisabled: setInputDisabled,
             bgcolor: setInputBackgroundColor,
             buttonactive: setCtaActive,
@@ -46,7 +52,8 @@ export default function ForgotPassword () {
         useOuterClick(event,forgotPassRef,() =>{
             setIsForgotPassDisplayed(false);
             setCtaMsg("");
-            userInput.current.value = "";
+            setValue("user", "");
+            clearErrors();
         })
     };
 
@@ -60,7 +67,8 @@ export default function ForgotPassword () {
                     <PopupCloseBtn onClick={() =>{
                         setIsForgotPassDisplayed(false);
                         setCtaMsg("");
-                        userInput.current.value = "";
+                        setValue("user", "");
+                        clearErrors();
                     }} 
                     $url="src/assets/icons/cross_white_icon.svg" />
                     <div className="content">
@@ -68,28 +76,33 @@ export default function ForgotPassword () {
                             <AppLogo $size="6" alt="popuplogo"/>
                             <div>Forgot user / password assistance</div>
                         </div>
-                        <ForgotPasswordDiv >
+                        <ForgotPasswordForm onSubmit={handleSubmit(submitHandler)}>
                             <div>Please insert one of the following</div>
                             <ForgotPassInput 
-                                type="email"
+                                type="text"
                                 autoComplete="on"
                                 placeholder="Enter user or email address" 
                                 disabled={inputDisabled}
                                 $inputbor={inputBorder}
                                 $background={inputBackgroundColor}
                                 onClick={() => setCtaMsg("")}
-                                ref={userInput}
+                                $error_styled={errors.user}
+                                {...register("user", {
+                                required: "User or email address is required",
+                                minLength: { value:3, message: "Input is too short" }
+                                })}
                             />
+                            {errors.user?<span>{errors.user.message}</span> : null}
                             {
                                 ctaMsg !== "" ?
                                 <span>{ctaMsg}</span> : null                          
                             }
                             {
                                 ctaActive ?
-                                <ForgotPasswordCtaActive>continue</ForgotPasswordCtaActive> :
-                                <ForgotPasswordCta onClick={forgotCtaClickHandler}>continue</ForgotPasswordCta>
+                                <ForgotPasswordCtaActive disabled={true}>continue</ForgotPasswordCtaActive> :
+                                <ForgotPasswordCta>continue</ForgotPasswordCta>
                             }
-                        </ForgotPasswordDiv>
+                        </ForgotPasswordForm>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,3 @@
-- React forms
 - Refactoring: Merging styled components
 - Server & Database
 - Admin interface ?

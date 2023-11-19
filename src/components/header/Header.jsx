@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import * as AppColor from "../../styles/colors";
 import { HeaderDiv } from "../../styles/containersMain";
@@ -26,8 +27,14 @@ export default function Header (){
         openRegBlockPopup
     } = useContext(AppContext);
 
-    let userInput = useRef(null);
-    let passInput = useRef(null);
+    const {
+        register,
+        handleSubmit,
+        setValue,
+        setFocus,
+        clearErrors,
+        formState: { errors }
+      } = useForm();
 
     useEffect(()=>{
         headerMsg.length > 0 ?
@@ -39,13 +46,10 @@ export default function Header (){
         passIconVisToggle(passInputType, setPassInputType, setPassIcon, setIsGameOverlayDisplayed)
     };
 
-    const loginClickHandler = () =>{
+    const submitHandler = () =>{
         onSubmit({
             msg: setHeaderMsg,
-            required: "Username/Email and Password are required",
             notfound: "Username/Email or Password does not exist",
-            userinput: userInput, 
-            passinput: passInput,
             inputdisabled: setLoginInputDisabled,
             bgcolor: setLoginBackgroundColor,
             buttonactive: setLoginBtnActive,
@@ -70,33 +74,41 @@ export default function Header (){
                     alt="mainlogo"
                 />
             </Link>
-            <div className="authGrid">
-                <InputContainerHeader $inputbor={loginInputBorder}>
-                    <InputHeader
+            <form className="authGrid" onSubmit={handleSubmit(submitHandler)}>
+                <InputContainerHeader >
+                    <InputHeader $inputbor={loginInputBorder}
                         type="text"
                         autoComplete="on"
                         placeholder="Username / Email"
                         disabled={loginInputDisabled}
                         $background={loginBackgroundColor}
-                        ref={userInput}
                         onClick={() => {
                             setIsGameOverlayDisplayed(false);
                             setHeaderMsg("");
                         }}
+                        $error_styled={errors.username}
+                        {...register("username", {
+                        required: "Username/Email is required",
+                        minLength: { value:3, message: "Username/Email is too short" }
+                        })}
                     />
                 </InputContainerHeader> 
-                <InputContainerHeader $inputbor={loginInputBorder}>
-                    <InputHeader
+                <InputContainerHeader>
+                    <InputHeader $inputbor={loginInputBorder}
                         type={passInputType}
                         autoComplete="on"
                         placeholder="Password:"
                         disabled={loginInputDisabled}
                         $background={loginBackgroundColor}
-                        ref={passInput}
                         onClick={() => {
                             setIsGameOverlayDisplayed(false);
                             setHeaderMsg("");
                         }}
+                        $error_styled={errors.password}
+                        {...register("password", {
+                        required: "Password is required",
+                        minLength: { value:3, message: "Password is too short" }
+                        })}
                     />
                     <PasswordVisIcon 
                         width="1.2em" 
@@ -104,24 +116,25 @@ export default function Header (){
                         cursor={loginBtnActive ? "arrow" : "pointer"} 
                         onClick={loginBtnActive ? null : passVisClickHandler}
                     />
-                </InputContainerHeader>       
+                </InputContainerHeader>  
                 {
                 loginBtnActive ?
-                <LoginHeaderBtnActive>Login</LoginHeaderBtnActive> :
-                <LoginHeaderBtn onClick={loginClickHandler}>Login</LoginHeaderBtn>
+                <LoginHeaderBtnActive disabled={true}>Login</LoginHeaderBtnActive> :
+                <LoginHeaderBtn>Login</LoginHeaderBtn>
                 }
-                <span></span>
-                <span className="msgContainer">{headerMsg}</span>
+                {errors.username?<p>{errors.username.message}</p> :<span></span> }
+                {errors.password?<p>{errors.password.message}</p> :<span className="msgContainer">{headerMsg}</span> }
                 <span><a onClick={() => {
                     setIsGameOverlayDisplayed(false);
                     setIsForgotPassDisplayed(true);
                 }}>Forgotten Password?</a></span>
+                <span></span>
                 {
                 joinBtnActive ?
-                <JoinHeaderBtnActive>Join Now</JoinHeaderBtnActive> :
-                <JoinHeaderBtn onClick={()=>openRegBlockPopup(setJoinBtnActive, setIsGameOverlayDisplayed)}>Join Now</JoinHeaderBtn>
+                <JoinHeaderBtnActive type="button" >Join Now</JoinHeaderBtnActive> :
+                <JoinHeaderBtn type="button" onClick={()=>openRegBlockPopup(setJoinBtnActive, setIsGameOverlayDisplayed)}>Join Now</JoinHeaderBtn>
                 }
-            </div>
+            </form>
             <div className="authResponsive">
                 <LoginHeaderBtn onClick={() => {
                     openLoginPopup(null);

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { lighten } from "polished";
 import * as AppColor from "./colors";
 
-export const ForgotPasswordDiv = styled.div`
+export const ForgotPasswordForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -164,6 +164,15 @@ export const LoginDiv = styled.div`
             height: 1rem;
             text-align: center;
             font-weight: bold;
+        }
+
+        p{
+            font-size: .9rem;
+            color: ${AppColor.ErrorText};
+            text-align: center;
+            font-weight: bold;
+            height: 1.5rem;
+            padding-top: 0.3rem;
         }
 
         .inputIcon{

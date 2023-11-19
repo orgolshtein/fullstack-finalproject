@@ -1,17 +1,16 @@
 import styled from "styled-components";
 import * as AppColor from "./colors";
 
-export const InputContainerHeader = styled.form`
+export const InputContainerHeader = styled.span`
     position: relative;
-    font-size: 1rem;
-    border: ${(props)=>props.$inputbor} 1.7px solid;
-    color: ${AppColor.InputText};
-    border-radius: 0.2rem;
-    `
+`
 
 export const InputHeader = styled.input`
-    border:none;
+    border: 1.5px solid ${(props)=>(props.$error_styled ? AppColor.InputErrorBorder : props.$inputbor)};
+    border-radius: 0.2rem;
     background-color: ${(props)=>(props.$background)};
+    font-size: 1rem;
+    color: ${AppColor.InputText};
     width: 100%;
     padding: 0 2.5em 0 0.56em;
     height: 100%;
@@ -27,15 +26,13 @@ export const ForgotPassInput = styled.input`
     margin-bottom: 1em;
     font-size: 1rem;
     color: ${AppColor.InputText};
-    border-color: ${(props)=>props.$inputbor};
+    border: 1.5px solid ${(props)=>(props.$error_styled ? AppColor.InputErrorBorder : props.$inputbor)};
     border-radius: 3px;
     box-shadow: none;
-    border-width: 1.5px;
     height: 2.5em;
     padding: 0 2.5em 0 0.56em;
     width: 100%;
     font-weight: 400;
-    border-style: solid;
     background-color: ${(props)=>(props.$background)};
     transition: box-shadow 100ms,border 100ms;
     line-height: 1;
@@ -49,30 +46,25 @@ export const InputContainerLogin = styled.span`
     display: inline-block;
     max-width: 100%;
     position: relative;
-    margin-bottom: 1em;
     font-size: 1rem;
     color: ${AppColor.InputText};
-    border-color: ${(props)=>props.$inputbor};
-    border-radius: 3px;
     box-shadow: none;
-    border-width: 1.5px;
     height: 2.5em;
     padding: 0 .1rem 0 0.1rem;
     width: 100%;
     font-weight: 400;
-    border-style: solid;
     transition: box-shadow 100ms,border 100ms;
     line-height: 1;
-    
-    `
+`
 
 export const InputLogin = styled.input`
-    border:none;
     background-color: ${(props)=>props.$background};
+    border: 1.5px solid ${(props)=>(props.$error_styled ? AppColor.InputErrorBorder : props.$inputbor)};
+    border-radius: 3px;
     width: 100%;
     padding-left: 2rem;
     height: 100%;
-
+    
     &:focus{
         outline-width: 0;
     }

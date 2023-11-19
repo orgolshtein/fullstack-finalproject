@@ -13,10 +13,10 @@ export const LoginHeaderBtn = styled.button`
     border-radius: 0.1rem;
     text-align: center;
     cursor: pointer;
-    grid-column-start: 3;
+    /* grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 1;
-    grid-row-end: 2;
+    grid-row-end: 2; */
     transition: background-color .15s ease-out;
     transition: color .15s ease-out;
 
@@ -65,7 +65,7 @@ export const JoinHeaderBtn = styled.button`
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 2;
-    grid-row-end: 4;
+    grid-row-end: 5;
     transition: background-color .15s ease-out;
     transition: color .15s ease-out;
 
@@ -97,7 +97,7 @@ export const JoinHeaderBtnActive = styled.button`
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 2;
-    grid-row-end: 4;
+    grid-row-end: 5;
 
     @media only screen and (max-width: 1024px){
         min-width: 6rem;

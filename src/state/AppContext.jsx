@@ -85,20 +85,16 @@ const AppProvider = ({children}) =>{
   const onSubmit = ({...submit}) =>{
     submit.displaygameoverlay? submit.displaygameoverlay(false): null;
     submit.msg("");
-    submit.userinput.current.value === "" || submit.passinput.current.value === "" ? 
-    submit.msg(submit.required) :
-      (() => {
-        submit.msg(<Loader $size={submit.loadersize} $marginleft={submit.loaderleft? submit.loaderleft : null} />);
-        submit.inputdisabled(true);
-        submit.bgcolor(AppColor.DisbledInputBackground);
-        submit.buttonactive(true);
-          setTimeout(()=>{
-            submit.msg(submit.notfound);
-            submit.inputdisabled(false);
-            submit.bgcolor(AppColor.InputBackground);
-            submit.buttonactive(false);
-          }, Math.floor(Math.random() * (5000-1000)+1000));
-      })();
+    submit.msg(<Loader $size={submit.loadersize} $marginleft={submit.loaderleft? submit.loaderleft : null} />);
+    submit.inputdisabled(true);
+    submit.bgcolor(AppColor.DisbledInputBackground);
+    submit.buttonactive(true);
+      setTimeout(()=>{
+        submit.msg(submit.notfound);
+        submit.inputdisabled(false);
+        submit.bgcolor(AppColor.InputBackground);
+        submit.buttonactive(false);
+      }, Math.floor(Math.random() * (5000-1000)+1000));
   };
 
   const openRegBlockPopup = (ctaActive, overlayDisplayed) => {

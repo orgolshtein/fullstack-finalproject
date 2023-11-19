@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../state/AppContext";
+import { useForm } from "react-hook-form";
 import useImpDisableScrollHandler from "../../hooks/useImperativeDisableScroll";
 import useOuterClick from "../../hooks/useOuterClick";
 import * as AppColor from "../../styles/colors";
@@ -29,9 +30,16 @@ export default function Login () {
         openRegBlockPopup
     } = useContext(AppContext);
 
-    let userInput = useRef(null);
-    let passInput = useRef(null);
-    let loginRef = useRef(null);
+    const {
+        register,
+        handleSubmit,
+        setValue,
+        setFocus,
+        clearErrors,
+        formState: { errors }
+      } = useForm();
+
+    let loginRef = useRef();
 
     useImpDisableScrollHandler(isLoginDisplayed);
 
@@ -41,13 +49,10 @@ export default function Login () {
         setInputBorder(AppColor.InputBorder)
     },[loginMsg]);
 
-     const loginClickHandler = () =>{
+     const submitHandler = () =>{
         onSubmit({
             msg: setLoginMsg,
-            required: "Username/Email and Password are required",
             notfound: "Username or Password not valid",
-            userinput: userInput, 
-            passinput: passInput,
             inputdisabled: setInputDisabled,
             bgcolor: setInputBackgroundColor,
             buttonactive: setLoginBtnActive,
@@ -63,8 +68,9 @@ export default function Login () {
         useOuterClick(event,loginRef,() =>{
             setIsLoginDisplayed(false);
             setLoginMsg("");
-            userInput.current.value = "";
-            passInput.current.value = "";
+            setValue("username", "");
+            setValue("password", "");
+            clearErrors();
         })
     };
 
@@ -78,16 +84,17 @@ export default function Login () {
                     <PopupCloseBtn onClick={() =>{
                         setIsLoginDisplayed(false);
                         setLoginMsg("");
-                        userInput.current.value = "";
-                        passInput.current.value = "";
+                        setValue("username", "");
+                        setValue("password", "");
+                        clearErrors();
                     }} 
                     $url="src/assets/icons/cross_gray_icon.svg" />
                     <div className="content">
                         <LoginDiv>
-                            <form action="">
-                                <InputContainerLogin $inputbor={inputBorder}>
+                            <form onSubmit={handleSubmit(submitHandler)}>
+                                <InputContainerLogin>
                                     <img className="inputIcon" src={UserIcon} onClick={()=>{
-                                        userInput.current.focus();
+                                        setFocus("username");
                                     }}/>
                                     <InputLogin 
                                         type="text"
@@ -98,14 +105,20 @@ export default function Login () {
                                             setLoginMsg("");
                                         }}
                                         $background={inputBackgroundColor} 
-                                        ref={userInput}
+                                        $inputbor={inputBorder}
+                                        $error_styled={errors.username}
+                                        {...register("username", {
+                                        required: "Username/Email is required",
+                                        minLength: { value:3, message: "Username/Email is too short" }
+                                        })}
                                     />
                                 </InputContainerLogin>
-                                <InputContainerLogin $inputbor={inputBorder}>
+                                <p>{errors.username?.message}</p>
+                                <InputContainerLogin>
                                     <img className="inputIcon" src={PassIcon} onClick={()=>{
-                                        passInput.current.focus();
+                                        setFocus("password");;
                                     }}/>
-                                    <InputLogin 
+                                    <InputLogin
                                         type={passInputType}
                                         autoComplete="on"
                                         placeholder="Password:" 
@@ -114,7 +127,12 @@ export default function Login () {
                                             setLoginMsg("");
                                         }}
                                         $background={inputBackgroundColor}
-                                        ref={passInput}
+                                        $inputbor={inputBorder}
+                                        $error_styled={errors.password}
+                                        {...register("password", {
+                                        required: "Password is required",
+                                        minLength: { value: 3, message: "Password is too short" }
+                                        })}
                                     />
                                     {
                                     loginBtnActive ?
@@ -127,10 +145,11 @@ export default function Login () {
                                     />
                                     }
                                 </InputContainerLogin>
+                                <p>{errors.password?.message}</p>
                                 {
                                 loginBtnActive ?
-                                <LoginPopupBtnActive>Login</LoginPopupBtnActive> :
-                                <LoginPopupBtn onClick={loginClickHandler} type="button">Login</LoginPopupBtn>
+                                <LoginPopupBtnActive disabled={true}>Login</LoginPopupBtnActive> :
+                                <LoginPopupBtn>Login</LoginPopupBtn>
                                 }
                                 {
                                 loginMsg !== "" ?

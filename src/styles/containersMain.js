@@ -47,11 +47,11 @@ export const HeaderDiv = styled.div`
         .authGrid {
             display: grid;
             grid-template-columns: 12rem 12rem 8rem;
-            grid-template-rows: 2rem 0.1rem 1rem;
+            grid-template-rows: 2rem .3rem .65rem;
             position: absolute;
             top: 1.7rem;
             right: 2%;
-            gap: 0.7rem;
+            gap: 0.5rem;
 
             @media only screen and (max-width: 1024px){
                 display: none;
@@ -72,6 +72,12 @@ export const HeaderDiv = styled.div`
                 color: ${AppColor.ErrorText};
                 font-weight: 100;
                 font-size: 90%;
+            }
+
+            p {
+                color: ${AppColor.ErrorText};
+                font-weight: 100;
+                font-size: 60%;
             }
         }
 
