@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export function useImperativeDisableScroll({ element, disabled }) {
+function useImperativeDisableScroll({ element, disabled }) {
     useEffect(() => {
         if (!element) {
             return

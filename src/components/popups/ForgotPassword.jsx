@@ -1,33 +1,30 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { AppContext } from "../../state/AppContext";
 import { useForm } from "react-hook-form";
+
+import { AppContext } from "../../state/AppContext";
+import { AppLogo } from "../../styles/global";
 import useImpDisableScrollHandler from "../../hooks/useImperativeDisableScroll";
 import useOuterClick from "../../hooks/useOuterClick";
 import * as AppColor from "../../styles/colors";
-import { PopupDiv } from "../../styles/containersMain";
-import { ForgotPasswordForm } from "../../styles/containersPopUp";
-import { AppLogo } from "../../styles/elements";
-import { ForgotPassInput } from "../../styles/inputs";
-import { ForgotPasswordCta, ForgotPasswordCtaActive, PopupCloseBtn } from "../../styles/buttons";
+import * as FP from "../../styles/popups";
 
 export default function ForgotPassword () {
     const [ctaMsg, setCtaMsg] = useState("");
-    const [inputDisabled, setInputDisabled] = useState(false);
     const [inputBorder, setInputBorder] = useState(AppColor.InputBorder);
     const [inputBackgroundColor, setInputBackgroundColor] = useState(AppColor.InputBackground);
-    const [ctaActive, setCtaActive] = useState(false);
+    const [isInputDisabled, setIsInputDisabled] = useState(false);
+    const [isCtaActive, setIsCtaActive] = useState(false);
     const { isForgotPassDisplayed, setIsForgotPassDisplayed, onSubmit } = useContext(AppContext);
 
     const {
         register,
         handleSubmit,
         setValue,
-        setFocus,
         clearErrors,
         formState: { errors }
       } = useForm();
 
-    let forgotPassRef = useRef();
+    const forgotPassRef = useRef();
 
     useImpDisableScrollHandler(isForgotPassDisplayed);
 
@@ -41,9 +38,9 @@ export default function ForgotPassword () {
         onSubmit({
             msg: setCtaMsg,
             notfound: "User not found",
-            inputdisabled: setInputDisabled,
+            inputdisabled: setIsInputDisabled,
             bgcolor: setInputBackgroundColor,
-            buttonactive: setCtaActive,
+            buttonactive: setIsCtaActive,
             loadersize: "2rem"
         })
     };
@@ -61,10 +58,10 @@ export default function ForgotPassword () {
         <>
         {
         isForgotPassDisplayed ?
-        <PopupDiv width="24rem" $zindex="110" $titleboxheight="12rem" onClick={outsideClickHandler}>
+        <FP.PopupDiv width="24rem" $zindex="110" $titleboxheight="12rem" onClick={outsideClickHandler}>
             <div className="flexContainer">
                 <div className="inner" ref={forgotPassRef}>
-                    <PopupCloseBtn onClick={() =>{
+                    <FP.PopupCloseBtn onClick={() =>{
                         setIsForgotPassDisplayed(false);
                         setCtaMsg("");
                         setValue("user", "");
@@ -76,13 +73,13 @@ export default function ForgotPassword () {
                             <AppLogo $size="6" alt="popuplogo"/>
                             <div>Forgot user / password assistance</div>
                         </div>
-                        <ForgotPasswordForm onSubmit={handleSubmit(submitHandler)}>
+                        <FP.ForgotPasswordForm onSubmit={handleSubmit(submitHandler)}>
                             <div>Please insert one of the following</div>
-                            <ForgotPassInput 
+                            <FP.ForgotPassInput 
                                 type="text"
                                 autoComplete="on"
                                 placeholder="Enter user or email address" 
-                                disabled={inputDisabled}
+                                disabled={isInputDisabled}
                                 $inputbor={inputBorder}
                                 $background={inputBackgroundColor}
                                 onClick={() => setCtaMsg("")}
@@ -97,16 +94,14 @@ export default function ForgotPassword () {
                                 ctaMsg !== "" ?
                                 <span>{ctaMsg}</span> : null                          
                             }
-                            {
-                                ctaActive ?
-                                <ForgotPasswordCtaActive disabled={true}>continue</ForgotPasswordCtaActive> :
-                                <ForgotPasswordCta>continue</ForgotPasswordCta>
-                            }
-                        </ForgotPasswordForm>
+                            <FP.ForgotPasswordCta 
+                                disabled={isCtaActive ? true : false}
+                            >continue</FP.ForgotPasswordCta>
+                        </FP.ForgotPasswordForm>
                     </div>
                 </div>
             </div>
-        </PopupDiv> : null
+        </FP.PopupDiv> : null
         }
         </>
     );

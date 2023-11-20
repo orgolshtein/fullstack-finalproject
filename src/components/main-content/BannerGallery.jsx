@@ -1,16 +1,16 @@
 import { useContext, useState } from "react";
-import { AppContext } from "../../state/AppContext";
-import { GalleryDiv } from "../../styles/containersMain";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { Loader, WelcomeBonusOverlay } from "../../styles/elements";
-import { JoinGalleryBtn, JoinGalleryBtnActive } from "../../styles/buttons";
+
+import { AppContext } from "../../state/AppContext";
+import { GalleryDiv, JoinGalleryBtn } from "../../styles/main.content";
+import { Loader, WelcomeBonusOverlay } from "../../styles/global";
 
 export default function BannerGallery () {
-  const [ctaActive, setCtaActive] = useState(false);
+  const [isCtaActive, setIsCtaActive] = useState(false);
   const { width,
           sliderList,
           isSliderLoading,
@@ -40,10 +40,12 @@ export default function BannerGallery () {
       >
          {
          sliderList?.map((item) => (
-              <SwiperSlide key={item.id}><img 
-                src={width > 768 ? item.srcbig : item.srcsmall} 
-                alt={item.title} onClick={()=>openLoginPopup(setIsGameOverlayDisplayed)} 
-              /></SwiperSlide>
+              <SwiperSlide key={item.id}>
+                <img 
+                  src={width > 768 ? item.srcbig : item.srcsmall} 
+                  alt={item.title} onClick={()=>openLoginPopup(setIsGameOverlayDisplayed)} 
+                />
+              </SwiperSlide>
                 ))
           }
         <div>
@@ -54,11 +56,10 @@ export default function BannerGallery () {
               $leftwide="14.5%" $leftbig="12%" $leftmedium="1rem" $leftsmall="2.5rem"
               $zindex="1"
             />
-            {
-              ctaActive ?
-              <JoinGalleryBtnActive>JOIN NOW</JoinGalleryBtnActive> :
-              <JoinGalleryBtn onClick={()=>openRegBlockPopup(setCtaActive, setIsGameOverlayDisplayed)}>JOIN NOW</JoinGalleryBtn>
-            }
+            <JoinGalleryBtn 
+              disabled={isCtaActive ? true : false} 
+              onClick={()=>openRegBlockPopup(setIsCtaActive, setIsGameOverlayDisplayed)}
+            >JOIN NOW</JoinGalleryBtn>
         </div>
     </Swiper>
    }

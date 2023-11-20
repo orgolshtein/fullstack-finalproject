@@ -1,11 +1,10 @@
 import { useContext } from "react";
+
 import { AppContext } from "../../state/AppContext";
 import { useOncePostMount } from "../../hooks/useOncePostMount";
-import { GameListDiv } from "../../styles/containersGames";
-import { Loader } from "../../styles/elements";
+import { GameListDiv } from "../../styles/main.content";
+import { Loader } from "../../styles/global";
 import GameThumb from "./GameThumb";
-import GameThumbLarge from "./GameThumbLarge";
-import GameThumbWide from "./GameThumbWide";
 
 export default function TableGames () {
   const { 
@@ -34,38 +33,18 @@ export default function TableGames () {
          :
         tableGamesList?.filter((game) => game.show)
         .map((item, i) => (
-          width > 1024 && i === 3 ?
-          <GameThumbLarge 
-          key={item.id} 
-          selectedgame={item} 
-          image={item.thumb} 
-          title={item.title} 
-          isnew={item.new}
-          /> :
-          width > 1024 && i === 2 ?
-          <GameThumbWide 
-            key={item.id} 
-            selectedgame={item} 
-            image={item.thumbwide} 
-            title={item.title} 
-            isnew={item.new}
-            wideclass="wide-top"
-          /> :
-          width > 1024 && i === 8 ?
-          <GameThumbWide 
-            key={item.id} 
-            selectedgame={item} 
-            image={item.thumbwide} 
-            title={item.title} 
-            isnew={item.new}
-            wideclass="wide-bottom"
-          /> :
           <GameThumb 
             key={item.id} 
             selectedgame={item} 
-            image={item.thumb} 
+            image={width > 1024 && (i === 2 || i === 8) ? item.thumbwide : item.thumb} 
             title={item.title} 
             isnew={item.new}
+            type={
+              width > 1024 && i === 2 ? "wide-top" : 
+              width > 1024 && i === 8 ? "wide-bottom" : 
+              width > 1024 && i === 3 ? "big" : 
+              "normal"
+            }
           />
             ))}
       </GameListDiv>

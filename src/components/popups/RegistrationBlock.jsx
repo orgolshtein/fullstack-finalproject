@@ -1,9 +1,10 @@
 import { useContext, useRef } from "react";
+
 import { AppContext } from "../../state/AppContext";
 import useImpDisableScrollHandler from "../../hooks/useImperativeDisableScroll";
 import useOuterClick from "../../hooks/useOuterClick";
-import { PopupDiv } from "../../styles/containersMain";
-import { RegBlockDiv } from "../../styles/containersPopUp";
+import { PopupDiv } from "../../styles/popups";
+import { RegBlockDiv } from "../../styles/popups";
 
 export default function RegistrationBlock () {
     const { 
@@ -11,7 +12,7 @@ export default function RegistrationBlock () {
         setIsRegBlockDisplayed
     } = useContext(AppContext);
 
-    let refBlockRef = useRef();
+    const refBlockRef = useRef();
 
     useImpDisableScrollHandler(isRegBlockDisplayed);
 

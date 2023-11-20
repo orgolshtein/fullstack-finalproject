@@ -1,10 +1,11 @@
 import { useContext, useRef } from "react";
+
 import { AppContext } from "../../state/AppContext";
-import { SearchInputContainer, SearchInput } from "../../styles/inputs";
+import { SearchInputContainer, SearchInput } from "../../styles/main.content";
 
 export default function SearchGame () {
     const { width, filterGames, setIsGameOverlayDisplayed  } = useContext(AppContext);
-    let searchInputTxt = useRef("");
+    const searchInputTxt = useRef("");
 
     return (
         <SearchInputContainer>

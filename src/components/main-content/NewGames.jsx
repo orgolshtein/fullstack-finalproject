@@ -1,10 +1,10 @@
 import { useContext } from "react";
+
 import { AppContext } from "../../state/AppContext";
 import { useOncePostMount } from "../../hooks/useOncePostMount";
-import { GameListDiv } from "../../styles/containersGames";
-import { Loader } from "../../styles/elements";
+import { GameListDiv } from "../../styles/main.content";
+import { Loader } from "../../styles/global";
 import GameThumb from "./GameThumb";
-import GameThumbLarge from "./GameThumbLarge";
 
 export default function NewGames () {
   const { 
@@ -33,20 +33,13 @@ export default function NewGames () {
            :
           newGamesList?.filter((game) => game.show)
           .map((item, i) => (
-            width > 1024 && i === 6 ?
-            <GameThumbLarge 
-              key={item.id} 
-              selectedgame={item} 
-              image={item.thumb} 
-              title={item.title} 
-              isnew={item.new}
-            /> :
             <GameThumb 
               key={item.id} 
               selectedgame={item} 
               image={item.thumb} 
               title={item.title} 
               isnew={item.new}
+              type={width > 1024 && i === 6 ? "big" : "normal"}
             />
               ))}
       </GameListDiv>

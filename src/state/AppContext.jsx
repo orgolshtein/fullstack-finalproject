@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
+
 import * as api from "../api/app.api";
 import * as AppColor from "../styles/colors";
 import { useOncePostMount } from "../hooks/useOncePostMount";
-import { Loader } from "../styles/elements";
-// import slider_data from "../data/slider-data.json"
-// import games_data from "../data/games-data.json";
+import { Loader } from "../styles/global";
 
 const AppContext = React.createContext();
 const { Provider } = AppContext;

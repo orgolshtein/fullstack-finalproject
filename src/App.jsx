@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import InnerLayout from "./layouts/InnerLayout";
-import Home from "./components/games-section/Home";
-import NewGames from "./components/games-section/NewGames";
-import SlotGames from "./components/games-section/SlotGames";
-import TableGames from "./components/games-section/TableGames";
-import NotFound from "./components/NotFound";
+import Home from "./components/main-content/Home";
+import NewGames from "./components/main-content/NewGames";
+import SlotGames from "./components/main-content/SlotGames";
+import TableGames from "./components/main-content/TableGames";
+import NotFound from "./components/main-content/NotFound";
 
 function App() {
   

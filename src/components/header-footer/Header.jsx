@@ -1,23 +1,21 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { AppContext } from "../../state/AppContext";
-import { useForm } from "react-hook-form";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
+import { AppContext } from "../../state/AppContext";
 import * as AppColor from "../../styles/colors";
-import { HeaderDiv } from "../../styles/containersMain";
-import { AppLogo } from "../../styles/elements";
-import { LoginHeaderBtn, LoginHeaderBtnActive, JoinHeaderBtn, JoinHeaderBtnActive } from "../../styles/buttons";
-import { InputContainerHeader, InputHeader } from "../../styles/inputs";
-import { PasswordVisIcon } from "../../styles/elements";
+import { HeaderDiv, LoginHeaderBtn, JoinHeaderBtn, InputHeader } from "../../styles/header.footer";
+import { AppLogo, PasswordVisIcon } from "../../styles/global";
 
 export default function Header (){
     const [headerMsg, setHeaderMsg] = useState("");
     const [passInputType, setPassInputType] = useState("password");
     const [passwordIcon, setPassIcon] = useState("/src/assets/icons/password_invisible_icon.svg");
     const [loginInputBorder, setLoginInputBorder] = useState(AppColor.InputBorder);
-    const [loginInputDisabled, setLoginInputDisabled] = useState(false);
     const [loginBackgroundColor, setLoginBackgroundColor] = useState(AppColor.InputBackground);
-    const [loginBtnActive, setLoginBtnActive] = useState(false);
-    const [joinBtnActive, setJoinBtnActive] = useState(false);
+    const [isLoginInputDisabled, setIsLoginInputDisabled] = useState(false);
+    const [isLoginBtnActive, setIsLoginBtnActive] = useState(false);
+    const [isJoinBtnActive, setIsJoinBtnActive] = useState(false);
     const { 
         setIsForgotPassDisplayed, 
         setIsGameOverlayDisplayed,
@@ -30,8 +28,6 @@ export default function Header (){
     const {
         register,
         handleSubmit,
-        setValue,
-        setFocus,
         clearErrors,
         formState: { errors }
       } = useForm();
@@ -50,9 +46,9 @@ export default function Header (){
         onSubmit({
             msg: setHeaderMsg,
             notfound: "Username/Email or Password does not exist",
-            inputdisabled: setLoginInputDisabled,
+            inputdisabled: setIsLoginInputDisabled,
             bgcolor: setLoginBackgroundColor,
-            buttonactive: setLoginBtnActive,
+            buttonactive: setIsLoginBtnActive,
             loadersize: "2.7rem",
             loaderleft: "4.5rem",
             displaygameoverlay: setIsGameOverlayDisplayed
@@ -71,20 +67,22 @@ export default function Header (){
                     $left="4"
                     $zindex="2" 
                     cursor="pointer" 
-                    alt="mainlogo"
+                    alt="Main Logo"
                 />
             </Link>
             <form className="authGrid" onSubmit={handleSubmit(submitHandler)}>
-                <InputContainerHeader >
-                    <InputHeader $inputbor={loginInputBorder}
+                <span className="inputContainer">
+                    <InputHeader 
+                        $inputbor={loginInputBorder}
                         type="text"
                         autoComplete="on"
                         placeholder="Username / Email"
-                        disabled={loginInputDisabled}
+                        disabled={isLoginInputDisabled}
                         $background={loginBackgroundColor}
                         onClick={() => {
                             setIsGameOverlayDisplayed(false);
                             setHeaderMsg("");
+                            clearErrors();
                         }}
                         $error_styled={errors.username}
                         {...register("username", {
@@ -92,17 +90,19 @@ export default function Header (){
                         minLength: { value:3, message: "Username/Email is too short" }
                         })}
                     />
-                </InputContainerHeader> 
-                <InputContainerHeader>
-                    <InputHeader $inputbor={loginInputBorder}
+                </span> 
+                <span className="inputContainer">
+                    <InputHeader 
+                        $inputbor={loginInputBorder}
                         type={passInputType}
                         autoComplete="on"
                         placeholder="Password:"
-                        disabled={loginInputDisabled}
+                        disabled={isLoginInputDisabled}
                         $background={loginBackgroundColor}
                         onClick={() => {
                             setIsGameOverlayDisplayed(false);
                             setHeaderMsg("");
+                            clearErrors();
                         }}
                         $error_styled={errors.password}
                         {...register("password", {
@@ -113,39 +113,34 @@ export default function Header (){
                     <PasswordVisIcon 
                         width="1.2em" 
                         src={passwordIcon} 
-                        cursor={loginBtnActive ? "arrow" : "pointer"} 
-                        onClick={loginBtnActive ? null : passVisClickHandler}
+                        cursor={isLoginBtnActive ? "arrow" : "pointer"} 
+                        onClick={isLoginBtnActive ? null : passVisClickHandler}
                     />
-                </InputContainerHeader>  
-                {
-                loginBtnActive ?
-                <LoginHeaderBtnActive disabled={true}>Login</LoginHeaderBtnActive> :
-                <LoginHeaderBtn>Login</LoginHeaderBtn>
-                }
+                </span>  
+                <LoginHeaderBtn disabled={isLoginBtnActive ? true : false}>Login</LoginHeaderBtn>
                 {errors.username?<p>{errors.username.message}</p> :<span></span> }
-                {errors.password?<p>{errors.password.message}</p> :<span className="msgContainer">{headerMsg}</span> }
+                {errors.password?
+                <p>{errors.password.message}</p> :
+                <span className="msgContainer">{headerMsg}</span> }
                 <span><a onClick={() => {
                     setIsGameOverlayDisplayed(false);
                     setIsForgotPassDisplayed(true);
                 }}>Forgotten Password?</a></span>
                 <span></span>
-                {
-                joinBtnActive ?
-                <JoinHeaderBtnActive type="button" >Join Now</JoinHeaderBtnActive> :
-                <JoinHeaderBtn type="button" onClick={()=>openRegBlockPopup(setJoinBtnActive, setIsGameOverlayDisplayed)}>Join Now</JoinHeaderBtn>
-                }
+                <JoinHeaderBtn 
+                    type="button" 
+                    disabled={isJoinBtnActive ? true : false} 
+                    onClick={()=>openRegBlockPopup(setIsJoinBtnActive, setIsGameOverlayDisplayed)}
+                >Join Now</JoinHeaderBtn>
             </form>
             <div className="authResponsive">
                 <LoginHeaderBtn onClick={() => {
-                    openLoginPopup(null);
+                    openLoginPopup();
                 }}>Login</LoginHeaderBtn>
-                {
-                joinBtnActive ?
-                <JoinHeaderBtnActive>Join Now</JoinHeaderBtnActive> :
-                <JoinHeaderBtn onClick={
-                    ()=>openRegBlockPopup(setJoinBtnActive, setIsGameOverlayDisplayed)
-                }>Join Now</JoinHeaderBtn>
-                }
+                <JoinHeaderBtn 
+                    disabled={isJoinBtnActive ? true : false}
+                    onClick={()=>openRegBlockPopup(setIsJoinBtnActive, setIsGameOverlayDisplayed)}
+                >Join Now</JoinHeaderBtn>
             </div>
         </div>
     </HeaderDiv>

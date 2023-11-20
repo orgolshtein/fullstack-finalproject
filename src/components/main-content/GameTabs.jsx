@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { HamburgerNavDiv, TabsUl } from "../../styles/containersGames";
+
 import * as AppColor from "../../styles/colors"
+import { HamburgerNavDiv, TabsUl } from "../../styles/main.content";
 import SearchGame from "./SearchGame";
 
 export default function GameTabs () {
@@ -111,7 +112,7 @@ return (
             $slotsLabelColor={slotsLabelColor} 
             $tableLabelColor={tableLabelColor}
         >
-            <ul className={isHamburgerNavOpen ? "hamburgerOpen" : "hamburgerClosed"}>
+            <ul className={isHamburgerNavOpen ? "hamburgerNavOpen" : "hamburgerNavClosed"}>
                 <li>
                     <Link className="homeIcon" to="/">
                     <span />
@@ -133,7 +134,7 @@ return (
                         TABLE</Link>
                 </li>
             </ul>
-            <div className="hamburgerContainer" onClick={toggleHamburger}>
+            <div className="hamburgerIcon" onClick={toggleHamburger}>
                 <div className={isHamburgerNavOpen ? "hamburgerX" : "hamburger"}>
                     <div />
                     <div />

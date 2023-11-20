@@ -1,7 +1,7 @@
-import BannerGallery from "../components/gallery/BannerGallery";
-import { GamesContainer } from "../styles/containersGames";
-import GameTabs from "../components/games-section/GameTabs";
 import { Outlet } from "react-router-dom";
+import BannerGallery from "../components/main-content/BannerGallery";
+import { GamesContainer } from "../styles/main.content";
+import GameTabs from "../components/main-content/GameTabs";
 
 const InnerLayout = () => (
   <>

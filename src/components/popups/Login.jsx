@@ -1,14 +1,12 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { AppContext } from "../../state/AppContext";
 import { useForm } from "react-hook-form";
+
+import { AppContext } from "../../state/AppContext";
 import useImpDisableScrollHandler from "../../hooks/useImperativeDisableScroll";
 import useOuterClick from "../../hooks/useOuterClick";
 import * as AppColor from "../../styles/colors";
-import { PopupDiv } from "../../styles/containersMain";
-import { LoginDiv } from "../../styles/containersPopUp";
-import { LoginPopupBtn, LoginPopupBtnActive, JoinPopupBtn, JoinPopupBtnActive, PopupCloseBtn } from "../../styles/buttons";
-import { InputContainerLogin, InputLogin } from "../../styles/inputs";
-import { WelcomeBonusOverlay, PasswordVisIcon } from "../../styles/elements";
+import * as L from "../../styles/popups";
+import { WelcomeBonusOverlay, PasswordVisIcon } from "../../styles/global";
 import UserIcon from "../../assets/icons/login_user_icon.svg";
 import PassIcon from "../../assets/icons/login_password_icon.svg";
 
@@ -39,7 +37,7 @@ export default function Login () {
         formState: { errors }
       } = useForm();
 
-    let loginRef = useRef();
+    const loginRef = useRef();
 
     useImpDisableScrollHandler(isLoginDisplayed);
 
@@ -78,10 +76,10 @@ export default function Login () {
         <>
         {
         isLoginDisplayed ?
-        <PopupDiv width="26rem" $zindex="106" onClick={outsideClickHandler}>
+        <L.PopupDiv width="26rem" $zindex="106" onClick={outsideClickHandler}>
             <div className="flexContainer">
                 <div className="inner" ref={loginRef}>
-                    <PopupCloseBtn onClick={() =>{
+                    <L.PopupCloseBtn onClick={() =>{
                         setIsLoginDisplayed(false);
                         setLoginMsg("");
                         setValue("username", "");
@@ -90,13 +88,13 @@ export default function Login () {
                     }} 
                     $url="src/assets/icons/cross_gray_icon.svg" />
                     <div className="content">
-                        <LoginDiv>
+                        <L.LoginDiv>
                             <form onSubmit={handleSubmit(submitHandler)}>
-                                <InputContainerLogin>
+                                <L.InputContainerLogin>
                                     <img className="inputIcon" src={UserIcon} onClick={()=>{
                                         setFocus("username");
                                     }}/>
-                                    <InputLogin 
+                                    <L.InputLogin 
                                         type="text"
                                         autoComplete="on"
                                         placeholder="Username / Email" 
@@ -112,13 +110,13 @@ export default function Login () {
                                         minLength: { value:3, message: "Username/Email is too short" }
                                         })}
                                     />
-                                </InputContainerLogin>
+                                </L.InputContainerLogin>
                                 <p>{errors.username?.message}</p>
-                                <InputContainerLogin>
+                                <L.InputContainerLogin>
                                     <img className="inputIcon" src={PassIcon} onClick={()=>{
                                         setFocus("password");;
                                     }}/>
-                                    <InputLogin
+                                    <L.InputLogin
                                         type={passInputType}
                                         autoComplete="on"
                                         placeholder="Password:" 
@@ -144,12 +142,12 @@ export default function Login () {
                                         onClick={passIconClickHandler}
                                     />
                                     }
-                                </InputContainerLogin>
+                                </L.InputContainerLogin>
                                 <p>{errors.password?.message}</p>
                                 {
                                 loginBtnActive ?
-                                <LoginPopupBtnActive disabled={true}>Login</LoginPopupBtnActive> :
-                                <LoginPopupBtn>Login</LoginPopupBtn>
+                                <L.LoginPopupBtnActive disabled={true}>Login</L.LoginPopupBtnActive> :
+                                <L.LoginPopupBtn>Login</L.LoginPopupBtn>
                                 }
                                 {
                                 loginMsg !== "" ?
@@ -168,14 +166,14 @@ export default function Login () {
                             />
                         {
                             joinBtnActive ?
-                            <JoinPopupBtnActive>Register</JoinPopupBtnActive> :
-                            <JoinPopupBtn onClick={()=>openRegBlockPopup(setJoinBtnActive)}>Register</JoinPopupBtn>
+                            <L.JoinPopupBtnActive>Register</L.JoinPopupBtnActive> :
+                            <L.JoinPopupBtn onClick={()=>openRegBlockPopup(setJoinBtnActive)}>Register</L.JoinPopupBtn>
                         }
-                        </LoginDiv>
+                        </L.LoginDiv>
                     </div>
                 </div>
             </div>
-        </PopupDiv> : null
+        </L.PopupDiv> : null
         }
         </>
     );
