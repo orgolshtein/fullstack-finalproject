@@ -302,7 +302,7 @@ export const TabsUl = styled.ul`
         }
 
         .new{
-            color: ${(props)=>props.$new_labal_color};
+            color: ${(props)=>props.$new_label_color};
 
             span{
                 background: url(${(props)=>props.$new_icon}) no-repeat;
