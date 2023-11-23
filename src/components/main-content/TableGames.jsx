@@ -27,8 +27,8 @@ export default function TableGames () {
          : areGamesLoading ? 
           <Loader 
             $size="20rem" 
-            $marginleft="30rem"
-            $marginleftmedium="2rem"
+            $margin_left="30rem"
+            $margin_left_medium="2rem"
           />
          :
         tableGamesList?.filter((game) => game.show)

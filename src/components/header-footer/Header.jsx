@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
@@ -6,9 +6,10 @@ import { AppContext } from "../../state/AppContext";
 import * as AppColor from "../../styles/colors";
 import { HeaderDiv, LoginHeaderBtn, JoinHeaderBtn, InputHeader } from "../../styles/header.footer";
 import { AppLogo, PasswordVisIcon } from "../../styles/global";
+import useInputBorderToggle from "../../hooks/useInputBorderToggle";
 
 export default function Header (){
-    const [headerMsg, setHeaderMsg] = useState("");
+    const [submitErrMsg, setSubmitErrMsg] = useState("");
     const [passInputType, setPassInputType] = useState("password");
     const [passwordIcon, setPassIcon] = useState("/src/assets/icons/password_invisible_icon.svg");
     const [loginInputBorder, setLoginInputBorder] = useState(AppColor.InputBorder);
@@ -32,28 +33,7 @@ export default function Header (){
         formState: { errors }
       } = useForm();
 
-    useEffect(()=>{
-        headerMsg.length > 0 ?
-        setLoginInputBorder(AppColor.InputErrorBorder) :
-        setLoginInputBorder(AppColor.InputBorder)
-    }, [headerMsg]);
-
-    const passVisClickHandler = () => {
-        passIconVisToggle(passInputType, setPassInputType, setPassIcon, setIsGameOverlayDisplayed)
-    };
-
-    const submitHandler = () =>{
-        onSubmit({
-            msg: setHeaderMsg,
-            notfound: "Username/Email or Password does not exist",
-            inputdisabled: setIsLoginInputDisabled,
-            bgcolor: setLoginBackgroundColor,
-            buttonactive: setIsLoginBtnActive,
-            loadersize: "2.7rem",
-            loaderleft: "4.5rem",
-            displaygameoverlay: setIsGameOverlayDisplayed
-        })
-    };
+    useInputBorderToggle(submitErrMsg, setLoginInputBorder, AppColor.InputErrorBorder, AppColor.InputBorder);
 
     return (
     <HeaderDiv>
@@ -61,19 +41,30 @@ export default function Header (){
             <Link to="/" onClick={()=>setIsGameOverlayDisplayed(false)}>
                 <AppLogo 
                     $size="10"
-                    $sizemedium="6"  
+                    $size_medium="6"  
                     $position="sticky" 
-                    $leftwide="5"
+                    $left_wide="5"
                     $left="4"
-                    $zindex="2" 
+                    $z_index="2" 
                     cursor="pointer" 
                     alt="Main Logo"
                 />
             </Link>
-            <form className="authGrid" onSubmit={handleSubmit(submitHandler)}>
+            <form className="authGrid" onSubmit={handleSubmit(() =>{
+                onSubmit({
+                    msg: setSubmitErrMsg,
+                    notfound: "Username/Email or Password does not exist",
+                    inputdisabled: setIsLoginInputDisabled,
+                    bgcolor: setLoginBackgroundColor,
+                    buttonactive: setIsLoginBtnActive,
+                    loadersize: "2.7rem",
+                    loaderleft: "4.5rem",
+                    displaygameoverlay: setIsGameOverlayDisplayed
+                })
+            })}>
                 <span className="inputContainer">
                     <InputHeader 
-                        $inputbor={loginInputBorder}
+                        $input_border={loginInputBorder}
                         type="text"
                         autoComplete="on"
                         placeholder="Username / Email"
@@ -81,7 +72,7 @@ export default function Header (){
                         $background={loginBackgroundColor}
                         onClick={() => {
                             setIsGameOverlayDisplayed(false);
-                            setHeaderMsg("");
+                            setSubmitErrMsg("");
                             clearErrors();
                         }}
                         $error_styled={errors.username}
@@ -93,7 +84,7 @@ export default function Header (){
                 </span> 
                 <span className="inputContainer">
                     <InputHeader 
-                        $inputbor={loginInputBorder}
+                        $input_border={loginInputBorder}
                         type={passInputType}
                         autoComplete="on"
                         placeholder="Password:"
@@ -101,7 +92,7 @@ export default function Header (){
                         $background={loginBackgroundColor}
                         onClick={() => {
                             setIsGameOverlayDisplayed(false);
-                            setHeaderMsg("");
+                            setSubmitErrMsg("");
                             clearErrors();
                         }}
                         $error_styled={errors.password}
@@ -113,15 +104,24 @@ export default function Header (){
                     <PasswordVisIcon 
                         width="1.2em" 
                         src={passwordIcon} 
-                        cursor={isLoginBtnActive ? "arrow" : "pointer"} 
-                        onClick={isLoginBtnActive ? null : passVisClickHandler}
+                        cursor={isLoginBtnActive ? "default" : "pointer"} 
+                        onClick={isLoginBtnActive ? null : () => {
+                            passIconVisToggle(
+                                passInputType, 
+                                setPassInputType, 
+                                setPassIcon, 
+                                setIsGameOverlayDisplayed
+                            )
+                        }}
                     />
                 </span>  
                 <LoginHeaderBtn disabled={isLoginBtnActive ? true : false}>Login</LoginHeaderBtn>
                 {errors.username?<p>{errors.username.message}</p> :<span></span> }
-                {errors.password?
-                <p>{errors.password.message}</p> :
-                <span className="msgContainer">{headerMsg}</span> }
+                {
+                    errors.password ?
+                    <p>{errors.password.message}</p> :
+                    <span className="msgContainer">{submitErrMsg}</span>
+                 }
                 <span><a onClick={() => {
                     setIsGameOverlayDisplayed(false);
                     setIsForgotPassDisplayed(true);

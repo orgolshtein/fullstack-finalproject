@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { AppContext } from "../../state/AppContext";
@@ -6,10 +6,11 @@ import { AppLogo } from "../../styles/global";
 import useImpDisableScrollHandler from "../../hooks/useImperativeDisableScroll";
 import useOuterClick from "../../hooks/useOuterClick";
 import * as AppColor from "../../styles/colors";
-import * as FP from "../../styles/popups";
+import * as ForgotPassStyles from "../../styles/popups";
+import useInputBorderToggle from "../../hooks/useInputBorderToggle";
 
 export default function ForgotPassword () {
-    const [ctaMsg, setCtaMsg] = useState("");
+    const [submitErrMsg, setSubmitErrMsg] = useState("");
     const [inputBorder, setInputBorder] = useState(AppColor.InputBorder);
     const [inputBackgroundColor, setInputBackgroundColor] = useState(AppColor.InputBackground);
     const [isInputDisabled, setIsInputDisabled] = useState(false);
@@ -27,81 +28,79 @@ export default function ForgotPassword () {
     const forgotPassRef = useRef();
 
     useImpDisableScrollHandler(isForgotPassDisplayed);
+    useInputBorderToggle(submitErrMsg, setInputBorder, AppColor.InputErrorBorder, AppColor.InputBorder);
 
-    useEffect(()=>{
-        ctaMsg.length > 0 ?
-        setInputBorder(AppColor.InputErrorBorder) :
-        setInputBorder(AppColor.InputBorder)
-    }, [ctaMsg]);
-
-    const submitHandler = () =>{
-        onSubmit({
-            msg: setCtaMsg,
-            notfound: "User not found",
-            inputdisabled: setIsInputDisabled,
-            bgcolor: setInputBackgroundColor,
-            buttonactive: setIsCtaActive,
-            loadersize: "2rem"
-        })
-    };
-
-    const outsideClickHandler = (event) => {
-        useOuterClick(event,forgotPassRef,() =>{
-            setIsForgotPassDisplayed(false);
-            setCtaMsg("");
-            setValue("user", "");
-            clearErrors();
-        })
+    const closeForgotPassword = () => {
+        setIsForgotPassDisplayed(false);
+        setSubmitErrMsg("");
+        setValue("user", "");
+        clearErrors();
     };
 
     return (
         <>
         {
         isForgotPassDisplayed ?
-        <FP.PopupDiv width="24rem" $zindex="110" $titleboxheight="12rem" onClick={outsideClickHandler}>
+        <ForgotPassStyles.PopupDiv 
+            width="24rem" 
+            $z_index="110" 
+            $titlebox_height="12rem" 
+            onClick={(event) => {
+                useOuterClick(event,forgotPassRef,closeForgotPassword)
+            }}
+        >
             <div className="flexContainer">
                 <div className="inner" ref={forgotPassRef}>
-                    <FP.PopupCloseBtn onClick={() =>{
-                        setIsForgotPassDisplayed(false);
-                        setCtaMsg("");
-                        setValue("user", "");
-                        clearErrors();
-                    }} 
+                    <ForgotPassStyles.PopupCloseBtn onClick={closeForgotPassword} 
                     $url="src/assets/icons/cross_white_icon.svg" />
                     <div className="content">
                         <div className="titlebox">
                             <AppLogo $size="6" alt="popuplogo"/>
                             <div>Forgot user / password assistance</div>
                         </div>
-                        <FP.ForgotPasswordForm onSubmit={handleSubmit(submitHandler)}>
+                        <ForgotPassStyles.PopupForm onSubmit={handleSubmit(() =>{
+                            onSubmit({
+                                msg: setSubmitErrMsg,
+                                notfound: "User not found",
+                                inputdisabled: setIsInputDisabled,
+                                bgcolor: setInputBackgroundColor,
+                                buttonactive: setIsCtaActive,
+                                loadersize: "2rem"
+                            })
+                        })}>
                             <div>Please insert one of the following</div>
-                            <FP.ForgotPassInput 
+                            <ForgotPassStyles.PopupInput 
                                 type="text"
                                 autoComplete="on"
                                 placeholder="Enter user or email address" 
                                 disabled={isInputDisabled}
-                                $inputbor={inputBorder}
+                                $input_border={inputBorder}
                                 $background={inputBackgroundColor}
-                                onClick={() => setCtaMsg("")}
+                                onClick={() => {
+                                    setSubmitErrMsg("");
+                                    clearErrors();
+                                }}
                                 $error_styled={errors.user}
                                 {...register("user", {
                                 required: "User or email address is required",
                                 minLength: { value:3, message: "Input is too short" }
                                 })}
                             />
-                            {errors.user?<span>{errors.user.message}</span> : null}
+                            {errors.user?<p>{errors.user.message}</p> : null}
                             {
-                                ctaMsg !== "" ?
-                                <span>{ctaMsg}</span> : null                          
+                                submitErrMsg !== "" ?
+                                <p>{submitErrMsg}</p> : null                          
                             }
-                            <FP.ForgotPasswordCta 
+                            <ForgotPassStyles.PopupCtaBtn 
                                 disabled={isCtaActive ? true : false}
-                            >continue</FP.ForgotPasswordCta>
-                        </FP.ForgotPasswordForm>
+                                $background={AppColor.LoginBtn}
+                                $margin="1rem auto"
+                            >continue</ForgotPassStyles.PopupCtaBtn>
+                        </ForgotPassStyles.PopupForm>
                     </div>
                 </div>
             </div>
-        </FP.PopupDiv> : null
+        </ForgotPassStyles.PopupDiv> : null
         }
         </>
     );

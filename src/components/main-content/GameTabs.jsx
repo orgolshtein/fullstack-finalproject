@@ -93,43 +93,43 @@ export default function GameTabs () {
 
 return (
     <TabsUl 
-        $homeIcon={homeIcon} 
-        $newIcon={newIcon} 
-        $slotsIcon={slotsIcon} 
-        $tableIcon={tableIcon}
-        $homeLabelColor={homeLabelColor} 
-        $newLabelColor={newLabelColor} 
-        $slotsLabelColor={slotsLabelColor} 
-        $tableLabelColor={tableLabelColor}
+        $home_icon={homeIcon} 
+        $new_icon={newIcon} 
+        $slots_icon={slotsIcon} 
+        $table_icon={tableIcon}
+        $home_label_color={homeLabelColor} 
+        $new_label_color={newLabelColor} 
+        $slots_label_color={slotsLabelColor} 
+        $table_label_color={tableLabelColor}
     >
         <HamburgerNavDiv
-            $homeIcon={homeIcon} 
-            $newIcon={newIcon} 
-            $slotsIcon={slotsIcon} 
-            $tableIcon={tableIcon}
-            $homeLabelColor={homeLabelColor} 
-            $newLabelColor={newLabelColor} 
-            $slotsLabelColor={slotsLabelColor} 
-            $tableLabelColor={tableLabelColor}
+            $home_icon={homeIcon} 
+            $new_icon={newIcon} 
+            $slots_icon={slotsIcon} 
+            $table_icon={tableIcon}
+            $home_label_color={homeLabelColor} 
+            $new_label_color={newLabelColor} 
+            $slots_label_color={slotsLabelColor} 
+            $table_label_color={tableLabelColor}
         >
             <ul className={isHamburgerNavOpen ? "hamburgerNavOpen" : "hamburgerNavClosed"}>
                 <li>
-                    <Link className="homeIcon" to="/">
+                    <Link className="home" to="/">
                     <span />
                         HOME</Link>
                 </li>
                 <li>
-                    <Link className="newIcon" to="/new">
+                    <Link className="new" to="/new">
                     <span />
                         NEW</Link>
                 </li>
                 <li>
-                    <Link className="slotsIcon" to="/slots">
+                    <Link className="slots" to="/slots">
                     <span />
                         SLOTS</Link>
                 </li>
                 <li>
-                    <Link className="tableIcon" to="/table">
+                    <Link className="table" to="/table">
                     <span />
                         TABLE</Link>
                 </li>
@@ -143,22 +143,22 @@ return (
             </div>
         </HamburgerNavDiv>
         <li>
-            <Link className="homeIcon" to="/">
+            <Link className="home" to="/">
             <span />
                 HOME</Link>
         </li>
         <li>
-            <Link className="newIcon" to="/new">
+            <Link className="new" to="/new">
             <span />
                 NEW</Link>
         </li>
         <li>
-            <Link className="slotsIcon" to="/slots">
+            <Link className="slots" to="/slots">
             <span />
                 SLOTS</Link>
         </li>
         <li>
-            <Link className="tableIcon" to="/table">
+            <Link className="table" to="/table">
             <span />
                 TABLE</Link>
         </li>

@@ -84,7 +84,7 @@ const AppProvider = ({children}) =>{
   const onSubmit = ({...submit}) =>{
     submit.displaygameoverlay? submit.displaygameoverlay(false): null;
     submit.msg("");
-    submit.msg(<Loader $size={submit.loadersize} $marginleft={submit.loaderleft? submit.loaderleft : null} />);
+    submit.msg(<Loader $size={submit.loadersize} $margin_left={submit.loaderleft? submit.loaderleft : null} />);
     submit.inputdisabled(true);
     submit.bgcolor(AppColor.DisbledInputBackground);
     submit.buttonactive(true);

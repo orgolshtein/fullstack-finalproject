@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import * as AppColor from "./colors";
 import { darken } from "polished";
+
+import * as AppColor from "./colors";
 
 export const MainContentDiv = styled.div`
     display: flex;
@@ -288,11 +289,11 @@ export const TabsUl = styled.ul`
             height: 3rem
         }
     
-        .homeIcon{
-            color: ${(props)=>props.$homeLabelColor};
+        .home{
+            color: ${(props)=>props.$home_label_color};
 
             span{
-                background: url(${(props)=>props.$homeIcon}) no-repeat;
+                background: url(${(props)=>props.$home_icon}) no-repeat;
             }
 
             @media only screen and (max-width: 768px){
@@ -300,11 +301,11 @@ export const TabsUl = styled.ul`
             }
         }
 
-        .newIcon{
-            color: ${(props)=>props.$newLabelColor};
+        .new{
+            color: ${(props)=>props.$new_labal_color};
 
             span{
-                background: url(${(props)=>props.$newIcon}) no-repeat;
+                background: url(${(props)=>props.$new_icon}) no-repeat;
             }
 
             @media only screen and (max-width: 768px){
@@ -312,11 +313,11 @@ export const TabsUl = styled.ul`
             }
         }
 
-        .slotsIcon{
-            color: ${(props)=>props.$slotsLabelColor};
+        .slots{
+            color: ${(props)=>props.$slots_label_color};
 
             span{
-                background: url(${(props)=>props.$slotsIcon}) no-repeat;
+                background: url(${(props)=>props.$slots_icon}) no-repeat;
             }
 
             @media only screen and (max-width: 768px){
@@ -324,11 +325,11 @@ export const TabsUl = styled.ul`
             }
         }
 
-        .tableIcon{
-            color: ${(props)=>props.$tableLabelColor};
+        .table{
+            color: ${(props)=>props.$table_label_color};
             
             span{
-                background: url(${(props)=>props.$tableIcon}) no-repeat;
+                background: url(${(props)=>props.$table_icon}) no-repeat;
             }
 
             @media only screen and (max-width: 768px){
@@ -341,25 +342,25 @@ export const TabsUl = styled.ul`
                 color: ${AppColor.GameTabLabelActive};
             }
         
-            .homeIcon{
+            .home{
                 span{
                     background: url("src/assets/icons/allgames_icon-active.svg") no-repeat;
                 }
             }
 
-            .newIcon{
+            .new{
                 span{
                     background: url("src/assets/icons/new_icon-active.svg") no-repeat;
                 }
             }
 
-            .slotsIcon{
+            .slots{
                 span{
                     background: url("src/assets/icons/slots_icon-active.svg") no-repeat;
                 }
             }
 
-            .tableIcon{
+            .table{
                 span{
                     background: url("src/assets/icons/table_icon-active.svg") no-repeat;
                 }
@@ -419,35 +420,35 @@ export const HamburgerNavDiv = styled.div`
                 height: 6rem
             }
         
-            .homeIcon{
-                color: ${(props)=>props.$homeLabelColor};
+            .home{
+                color: ${(props)=>props.$home_label_color};
 
                 span{
-                    background: url(${(props)=>props.$homeIcon}) no-repeat;
+                    background: url(${(props)=>props.$home_icon}) no-repeat;
                 }
             }
 
-            .newIcon{
-                color: ${(props)=>props.$newLabelColor};
+            .new{
+                color: ${(props)=>props.$new_label_color};
 
                 span{
-                    background: url(${(props)=>props.$newIcon}) no-repeat;
+                    background: url(${(props)=>props.$new_icon}) no-repeat;
                 }
             }
 
-            .slotsIcon{
-                color: ${(props)=>props.$slotsLabelColor};
+            .slots{
+                color: ${(props)=>props.$slots_label_color};
 
                 span{
-                    background: url(${(props)=>props.$slotsIcon}) no-repeat;
+                    background: url(${(props)=>props.$slots_icon}) no-repeat;
                 }
             }
 
-            .tableIcon{
-                color: ${(props)=>props.$tableLabelColor};
+            .table{
+                color: ${(props)=>props.$table_label_color};
                 
                 span{
-                    background: url(${(props)=>props.$tableIcon}) no-repeat;
+                    background: url(${(props)=>props.$table_icon}) no-repeat;
                 }
             }
 
@@ -456,25 +457,25 @@ export const HamburgerNavDiv = styled.div`
                     color: ${AppColor.GameTabLabelActive};
                 }
             
-                .homeIcon{
+                .home{
                     span{
                         background: url("src/assets/icons/allgames_icon-active.svg") no-repeat;
                     }
                 }
 
-                .newIcon{
+                .new{
                     span{
                         background: url("src/assets/icons/new_icon-active.svg") no-repeat;
                     }
                 }
 
-                .slotsIcon{
+                .slots{
                     span{
                         background: url("src/assets/icons/slots_icon-active.svg") no-repeat;
                     }
                 }
 
-                .tableIcon{
+                .table{
                     span{
                         background: url("src/assets/icons/table_icon-active.svg") no-repeat;
                     }
@@ -525,35 +526,35 @@ export const HamburgerNavDiv = styled.div`
                 height: 6rem
             }
         
-            .homeIcon{
-                color: ${(props)=>props.$homeLabelColor};
+            .home{
+                color: ${(props)=>props.$home_label_color};
 
                 span{
-                    background: url(${(props)=>props.$homeIcon}) no-repeat;
+                    background: url(${(props)=>props.$home_icon}) no-repeat;
                 }
             }
 
-            .newIcon{
-                color: ${(props)=>props.$newLabelColor};
+            .new{
+                color: ${(props)=>props.$new_label_color};
 
                 span{
-                    background: url(${(props)=>props.$newIcon}) no-repeat;
+                    background: url(${(props)=>props.$new_icon}) no-repeat;
                 }
             }
 
-            .slotsIcon{
-                color: ${(props)=>props.$slotsLabelColor};
+            .slots{
+                color: ${(props)=>props.$slots_label_color};
 
                 span{
-                    background: url(${(props)=>props.$slotsIcon}) no-repeat;
+                    background: url(${(props)=>props.$slots_icon}) no-repeat;
                 }
             }
 
-            .tableIcon{
-                color: ${(props)=>props.$tableLabelColor};
+            .table{
+                color: ${(props)=>props.$table_label_color};
                 
                 span{
-                    background: url(${(props)=>props.$tableIcon}) no-repeat;
+                    background: url(${(props)=>props.$table_icon}) no-repeat;
                 }
             }
 
@@ -562,25 +563,25 @@ export const HamburgerNavDiv = styled.div`
                     color: ${AppColor.GameTabLabelActive};
                 }
             
-                .homeIcon{
+                .home{
                     span{
                         background: url("src/assets/icons/allgames_icon-active.svg") no-repeat;
                     }
                 }
 
-                .newIcon{
+                .new{
                     span{
                         background: url("src/assets/icons/new_icon-active.svg") no-repeat;
                     }
                 }
 
-                .slotsIcon{
+                .slots{
                     span{
                         background: url("src/assets/icons/slots_icon-active.svg") no-repeat;
                     }
                 }
 
-                .tableIcon{
+                .table{
                     span{
                         background: url("src/assets/icons/table_icon-active.svg") no-repeat;
                     }
@@ -743,8 +744,8 @@ export const GameThumbBtn = styled.button`
 
     @media only screen and (max-width: 412px) {
         width: 95%;                
-        top: ${(props)=>props.$topsmall};
-        left: ${(props)=>props.$leftsmall};
+        top: ${(props)=>props.$top_small};
+        left: ${(props)=>props.$left_small};
     }
 
     &:hover {

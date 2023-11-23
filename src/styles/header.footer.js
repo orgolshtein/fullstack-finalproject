@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { darken } from "polished";
+
 import * as AppColor from "./colors";
 
 export const HeaderDiv = styled.div`
@@ -99,7 +100,7 @@ export const HeaderDiv = styled.div`
 `;
 
 export const InputHeader = styled.input`
-    border: 1.5px solid ${(props)=>(props.$error_styled ? AppColor.InputErrorBorder : props.$inputbor)};
+    border: 1.5px solid ${(props)=>(props.$error_styled ? AppColor.InputErrorBorder : props.$input_border)};
     border-radius: 0.2rem;
     background-color: ${(props)=>(props.$background)};
     font-size: 1rem;

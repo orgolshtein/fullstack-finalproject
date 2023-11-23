@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+
 import Header from "../components/header-footer/Header";
 import { MainContentDiv } from "../styles/main.content";
 import ForgotPassword from "../components/popups/ForgotPassword";

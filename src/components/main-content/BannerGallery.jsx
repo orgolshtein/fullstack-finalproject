@@ -30,7 +30,7 @@ export default function BannerGallery () {
         $size="20rem" 
         $position="relative" 
         $left="40%"
-        $mediumleft="20%"
+        $left_medium="20%"
       />
      :
     <Swiper
@@ -51,10 +51,10 @@ export default function BannerGallery () {
         <div>
             <WelcomeBonusOverlay 
               $position="absolute"
-              $topwide="2rem" $topbig="3rem" $topmedium="3rem" $topsmall="2rem"
-              $widthwide="23rem" $widthbig="18rem" $widthmedium="18rem" $widthsmall="12rem"
-              $leftwide="14.5%" $leftbig="12%" $leftmedium="1rem" $leftsmall="2.5rem"
-              $zindex="1"
+              $top_wide="2rem" $top_big="3rem" $top_medium="3rem" $top_small="2rem"
+              $width_wide="23rem" $width_big="18rem" $width_medium="18rem" $width_small="12rem"
+              $left_wide="14.5%" $left_big="12%" $left_medium="1rem" $left_small="2.5rem"
+              $z_index="1"
             />
             <JoinGalleryBtn 
               disabled={isCtaActive ? true : false} 

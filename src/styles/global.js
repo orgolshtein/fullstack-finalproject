@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import Reset from "styled-reset";
+
 import * as AppColor from "./colors";
 
 const GlobalStyle = createGlobalStyle`
@@ -42,47 +43,47 @@ export const AppLogo = styled.div`
   background-size: ${(props) => props.$size}rem ${(props) => props.$size}rem;
   height: ${(props) => props.$size}rem;
   width: fit-content;
-  left: ${(props) => props.$leftwide}rem;
-  z-index: ${(props) => props.$zindex};
+  left: ${(props) => props.$left_wide}rem;
+  z-index: ${(props) => props.$z_index};
 
   @media only screen and (max-width: 1024px){
     left: ${(props) => props.$left}rem;
       }
   
   @media only screen and (max-width: 768px){
-    background-size: ${(props) => props.$sizemedium}rem ${(props) => props.$sizemedium}rem;
-    height: ${(props) => props.$sizemedium}rem;
+    background-size: ${(props) => props.$size_medium}rem ${(props) => props.$size_medium}rem;
+    height: ${(props) => props.$size_medium}rem;
       }
 `;
 
 export const WelcomeBonusOverlay = styled.img`
     content: url("src/assets/overlays/welcome-bonus.png");
-    width: ${(props) => props.$widthwide};
+    width: ${(props) => props.$width_wide};
     position: ${(props) => props.$position};
-    top: ${(props) => props.$topwide};
-    left: ${(props) => props.$leftwide};
-    z-index: ${(props) => props.$zindex};
+    top: ${(props) => props.$top_wide};
+    left: ${(props) => props.$left_wide};
+    z-index: ${(props) => props.$z_index};
 
     @media only screen and (max-width: 1024px){
-        top: ${(props) => props.$topbig};
-        width: ${(props) => props.$widthbig};
-        left: ${(props) => props.$leftbig};
+        top: ${(props) => props.$top_big};
+        width: ${(props) => props.$width_big};
+        left: ${(props) => props.$left_big};
     }
 
     @media only screen and (max-width: 768px){
-        top: ${(props) => props.$topmedium};
-        width: ${(props) => props.$widthmedium};
-        left: ${(props) => props.$leftmedium};
+        top: ${(props) => props.$top_medium};
+        width: ${(props) => props.$width_medium};
+        left: ${(props) => props.$left_medium};
     }
 
     @media only screen and (max-width: 412px){
-        top: ${(props) => props.$topsmall};
-        width: ${(props) => props.$widthsmall};
-        left: ${(props) => props.$leftsmall};
+        top: ${(props) => props.$top_small};
+        width: ${(props) => props.$width_small};
+        left: ${(props) => props.$left_small};
     }
 
     @media only screen and (max-height: 412px){
-        display: ${(props) => props.$display};
+        display: ${(props) => props.$display_412px_height};
     }
 `;
 
@@ -92,11 +93,11 @@ export const Loader = styled.img`
   height: ${(props) => props.$size};
   position: ${(props) => props.$position};
   left: ${(props) => props.$left};
-  margin-left: ${(props) => props.$marginleft};
+  margin-left: ${(props) => props.$margin_left};
 
   @media only screen and (max-width: 1024px){
-    left: ${(props) => props.$mediumleft};
-    margin-left: ${(props) => props.$marginleftmedium}
+    left: ${(props) => props.$left_medium};
+    margin-left: ${(props) => props.$margin_left_medium}
     }
 `;
 
@@ -105,7 +106,7 @@ export const PasswordVisIcon = styled.img`
     width: ${(props) => props.width};
     opacity: .60;
     position: absolute;
-    right: 5%;
+    right: 4%;
     font-size: ${(props) => props.width};;
     cursor: ${(props) => props.cursor};
 `;
@@ -115,12 +116,12 @@ export const GameImg = styled.img`
   width: ${(props) => props.width}px;
 
   @media only screen and (max-width: 412px){
-    height: ${(props) => props.$heightsmall}px;
-    width: ${(props) => props.$widthsmall}px;
+    height: ${(props) => props.$height_small}px;
+    width: ${(props) => props.$width_small}px;
   }
 
   @media only screen and (max-height: 412px){
-    display: ${(props)=>props.$display}
+    display: ${(props)=>props.$display_412px_height}
   }
 `;
 

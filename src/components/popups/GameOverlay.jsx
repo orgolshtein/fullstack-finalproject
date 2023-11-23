@@ -1,8 +1,9 @@
 import { useContext } from "react";
 
 import { AppContext } from "../../state/AppContext";
-import { GameOverlayDiv, PlayPopupBtn, PopupCloseBtn } from "../../styles/popups";
+import { GameOverlayDiv, PopupCtaBtn, PopupCloseBtn } from "../../styles/popups";
 import { GameImg } from "../../styles/global";
+import * as AppColor from "../../styles/colors";
 
 export default function GameOverlay () {
     const { 
@@ -20,15 +21,18 @@ export default function GameOverlay () {
                 <h1>{selectedGame.title}</h1>
                 <GameImg 
                     src={selectedGame.thumb} 
-                    $display="none" 
+                    $display_412px_height="none" 
                     height="260" 
                     width="260" 
                     title={selectedGame.title}
                 />
                 <p>{selectedGame.descrition}</p>
-                <PlayPopupBtn onClick={() => {
-                    openLoginPopup(null);
-                }}>play now</PlayPopupBtn>
+                <PopupCtaBtn 
+                    $background={AppColor.JoinBtn}
+                    $width="3rem"
+                    $line_height="2.5rem"
+                    onClick={() => {openLoginPopup()}}
+                >play now</PopupCtaBtn>
             </div>
         </GameOverlayDiv>
     );

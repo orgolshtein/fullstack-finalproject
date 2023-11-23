@@ -5,9 +5,7 @@ function useImperativeDisableScroll({ element, disabled }) {
         if (!element) {
             return
         }
-
         element.style.overflowY = disabled ? 'hidden' : 'scroll'
-
         return () => {
             element.style.overflowY = 'scroll'
         }

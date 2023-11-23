@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { darken, lighten } from "polished";
+
 import * as AppColor from "./colors";
 
 export const PopupDiv = styled.div`
@@ -11,7 +12,7 @@ export const PopupDiv = styled.div`
     bottom: 0;
     justify-content: center;
     align-items: center;
-    z-index: ${(props)=>props.$zindex};
+    z-index: ${(props)=>props.$z_index};
     backdrop-filter: blur(15px);
 
     .flexContainer{
@@ -50,14 +51,14 @@ export const PopupDiv = styled.div`
                     flex-direction: column;
                     align-items: center;
                     justify-content: flex-end;
-                    height: ${(props) => props.$titleboxheight};
+                    height: ${(props) => props.$titlebox_height};
                     padding-bottom: 0.5rem;
                     gap: 0.5rem;
                 }
             }
         }
     }
-`
+`;
 
 export const PopupCloseBtn = styled.span`
     background: url(${(props) => props.$url}) no-repeat 0 0/contain;
@@ -75,12 +76,79 @@ export const PopupCloseBtn = styled.span`
         width: 1.5em;
         height: 1.5em;
     }
+`;
+
+export const PopupCtaBtn = styled.button`
+    display: inline-block;
+    position: relative;
+    color: ${AppColor.ButtonText};
+    background-color: ${(props)=>props.$background};
+    height: 2.8rem;
+    width: ${(props)=>props.$width || "100%"};
+    line-height: ${(props)=>props.$line_height};
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+    border-radius: 0.2rem;
+    min-width: 11rem;
+    margin: ${(props)=>props.$margin};
+    font-family: 'Gotham Bold',sans-serif;
+    transition: background-color .15s ease-out;
+    border: 0;
+    cursor: pointer;
+
+    &:disabled {
+        color: ${darken(0.3, AppColor.ButtonText)};
+        background-color: ${(props)=>darken(0.3, props.$background)};
+        cursor: default;
+
+        &:hover {
+            color: ${darken(0.3, AppColor.ButtonText)};
+            background-color: ${(props)=>darken(0.3, props.$background)};
+        }
+    }
+    
+    &:hover {
+      background-color: ${(props)=>darken(0.2, props.$background)};
+    }
+`;
+
+export const PopupInputContainer = styled.span`
+    display: inline-block;
+    max-width: 100%;
+    position: relative;
+    font-size: 1rem;
+    color: ${AppColor.InputText};
+    box-shadow: none;
+    height: 2.5em;
+    padding: 0 .1rem 0 0.1rem;
+    width: 100%;
+    font-weight: 400;
+    transition: box-shadow 100ms,border 100ms;
+    line-height: 1;
+`;
+
+export const PopupInput = styled.input`
+    background-color: ${(props)=>props.$background};
+    border: 1.5px solid ${(props)=>(props.$error_styled ? AppColor.InputErrorBorder : props.$input_border)};
+    border-radius: 3px;
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    height: 2.5rem;
+    margin-bottom: 1rem;
+    
+    &:focus{
+        outline-width: 0;
+    }
 `
 
-export const ForgotPasswordForm = styled.form`
+export const PopupForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 
     div{
         display: block;
@@ -90,67 +158,24 @@ export const ForgotPasswordForm = styled.form`
         margin-bottom: 1rem;
     }
 
-    span{
-        font-size: 1rem;
+    p{
+        font-size: .9rem;
         color: ${AppColor.ErrorText};
-        line-height: 1;
+        text-align: center;
         font-weight: bold;
-        display: inline-block;
-        height: 2rem;
+        height: 1.5rem;
+        padding-top: 0.3rem;
     }
-`;
 
-export const ForgotPassInput = styled.input`
-    display: block;
-    max-width: 100%;
-    margin-bottom: 1em;
-    font-size: 1rem;
-    color: ${AppColor.InputText};
-    border: 1.5px solid ${(props)=>(props.$error_styled ? AppColor.InputErrorBorder : props.$inputbor)};
-    border-radius: 3px;
-    box-shadow: none;
-    height: 2.5em;
-    padding: 0 2.5em 0 0.56em;
-    width: 100%;
-    font-weight: 400;
-    background-color: ${(props)=>(props.$background)};
-    transition: box-shadow 100ms,border 100ms;
-    line-height: 1;
-
-    &:focus{
-            outline-width: 0;
-        }
-`;
-
-export const ForgotPasswordCta = styled.button`
-    color: ${AppColor.ButtonText};
-    background-color: ${AppColor.LoginBtn};
-    display: inline-block;
-    position: relative;
-    font-family: Asap,Helvetica Neue,Helvetica,Arial,sans-serif;
-    font-size: 1.4rem;
-    cursor: pointer;
-    line-height: 2.25em;
-    padding: 0 1em;
-    border: 0;
-    margin: 1rem auto;
-    border-radius: 0.2rem;
-    min-width: 100%;
-    text-transform: uppercase;
-
-    &:disabled{
-        color: ${darken(0.3, AppColor.ButtonText)};
-        background-color: ${darken(0.3, AppColor.LoginBtn)};
-        cursor: default;
-
-        &:hover{
-            color: ${darken(0.3, AppColor.ButtonText)};
-            background-color: ${darken(0.3, AppColor.LoginBtn)};
-        }
-    }
-    
-    &:hover {
-      background-color: ${darken(0.2, AppColor.LoginBtn)};
+    .inputIcon{
+            left: 0.5rem;
+            top: 1.2rem;
+            width: 1.214em;
+            position: absolute;
+            display: inline-block;
+            opacity: .65;
+            transform: translate3d(0,-50%,0);
+            cursor: pointer;
     }
 `;
 
@@ -271,7 +296,7 @@ export const GameOverlayDiv = styled.div`
     }
 `;
 
-export const LoginDiv = styled.div`
+export const LoginFlexDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -281,39 +306,6 @@ export const LoginDiv = styled.div`
 
     @media only screen and (max-height: 412px){
         height: 28rem;
-    }
-
-    form{
-        width: 100%;
-
-        div{
-            font-size: 1rem;
-            color: ${AppColor.ErrorText};
-            margin: .5rem 0;
-            height: 1rem;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        p{
-            font-size: .9rem;
-            color: ${AppColor.ErrorText};
-            text-align: center;
-            font-weight: bold;
-            height: 1.5rem;
-            padding-top: 0.3rem;
-        }
-
-        .inputIcon{
-            left: 0.5rem;
-            top: 1.2rem;
-            width: 1.214em;
-            position: absolute;
-            display: inline-block;
-            opacity: .65;
-            transform: translate3d(0,-50%,0);
-            cursor: pointer;
-        }
     }
 
     .forgotPassLink{
@@ -344,143 +336,7 @@ export const LoginDiv = styled.div`
     }
 `;
 
-export const InputContainerLogin = styled.span`
-    display: inline-block;
-    max-width: 100%;
-    position: relative;
-    font-size: 1rem;
-    color: ${AppColor.InputText};
-    box-shadow: none;
-    height: 2.5em;
-    padding: 0 .1rem 0 0.1rem;
-    width: 100%;
-    font-weight: 400;
-    transition: box-shadow 100ms,border 100ms;
-    line-height: 1;
-`
-
-export const InputLogin = styled.input`
-    background-color: ${(props)=>props.$background};
-    border: 1.5px solid ${(props)=>(props.$error_styled ? AppColor.InputErrorBorder : props.$inputbor)};
-    border-radius: 3px;
-    width: 100%;
-    padding-left: 2rem;
-    height: 100%;
-    
-    &:focus{
-        outline-width: 0;
-    }
-`
-
-export const LoginPopupBtn = styled.button`
-    color: ${AppColor.ButtonText};
-    background-color: ${AppColor.LoginBtn};
-    height: 2.8rem;
-    width: 100%;
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-shadow: 0 1px 2px rgba(0,0,0,.5);
-    border-radius: 0.2rem;
-    min-width: 11em;
-    font-family: 'Gotham Bold',sans-serif;
-    transition: background-color .15s ease-out;
-    display: inline-block;
-    position: relative;
-    border: 0;
-    cursor: pointer;
-    
-    &:hover {
-      background-color: ${darken(0.2, AppColor.LoginBtn)};
-    }
-`
-
-export const LoginPopupBtnActive = styled.button`
-    color: ${darken(0.3, AppColor.ButtonText)};
-    background-color: ${darken(0.3, AppColor.LoginBtn)};
-    height: 2.8rem;
-    width: 100%;
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-shadow: 0 1px 2px rgba(0,0,0,.5);
-    border-radius: 0.2rem;
-    min-width: 11em;
-    font-family: 'Gotham Bold',sans-serif;
-    transition: background-color .15s ease-out;
-    display: inline-block;
-    position: relative;
-    border: 0;
-    cursor: initial;
-`
-
-export const JoinPopupBtn = styled.button`
-    color: ${AppColor.ButtonText};
-    background-color: ${AppColor.JoinBtn};
-    height: 2.8rem;
-    width: 100%;
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-shadow: 0 1px 2px rgba(0,0,0,.5);
-    border-radius: 0.2rem;
-    min-width: 11em;
-    font-family: 'Gotham Bold',sans-serif;
-    transition: background-color .15s ease-out;
-    display: inline-block;
-    position: relative;
-    border: 0;
-    cursor: pointer;
-    
-    &:hover {
-      background-color: ${darken(0.1, AppColor.JoinBtn)};
-    }
-`
-
-export const JoinPopupBtnActive = styled.button`
-    color: ${darken(0.3, AppColor.ButtonText)};
-    background-color: ${darken(0.2, AppColor.JoinBtn)};
-    height: 2.8rem;
-    width: 100%;
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-shadow: 0 1px 2px rgba(0,0,0,.5);
-    border-radius: 0.2rem;
-    min-width: 11em;
-    font-family: 'Gotham Bold',sans-serif;
-    transition: background-color .15s ease-out;
-    display: inline-block;
-    position: relative;
-    border: 0;
-    cursor: initial;
-`
-
-export const PlayPopupBtn = styled.button`
-    color: ${AppColor.ButtonText};
-    background-color: ${AppColor.JoinBtn};
-    height: 2.8rem;
-    width: 3rem;
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-shadow: 0 1px 2px rgba(0,0,0,.5);
-    border-radius: 0.2rem;
-    line-height: 2.5em;
-    min-width: 11rem;
-    font-family: 'Gotham Bold',sans-serif;
-    transition: background-color .15s ease-out;
-    display: inline-block;
-    position: relative;
-    border: 0;
-    cursor: pointer;
-
-    &:hover {
-      background-color: ${darken(0.1, AppColor.JoinBtn)};
-    }
-`
-
-export const RegBlockDiv = styled.div`
+export const RegBlockFlexDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -493,4 +349,4 @@ export const RegBlockDiv = styled.div`
         margin-bottom: 1rem;
         text-align: center;
     }
-`
+`;
