@@ -76,6 +76,10 @@ export const GalleryDiv = styled.div`
       @media only screen and (max-width: 412px){
         height: 12rem;
       }
+
+      @media screen {orientation: portrait;
+        width:100%;
+      }
     }
 
     .swiper-slide img {
@@ -94,6 +98,10 @@ export const GalleryDiv = styled.div`
             height: 11.5rem;                
             width: fit-content;
         }
+
+        @media screen {orientation: portrait;
+            width:100%;
+        }
     }
 
     .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
@@ -111,7 +119,7 @@ export const GalleryDiv = styled.div`
       background: ${AppColor.MainText};
       opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.4);
 
-      @media only screen and (max-width: 850px) {
+      @media only screen and (max-width: 768px) {
         display: none;            
       }
     }

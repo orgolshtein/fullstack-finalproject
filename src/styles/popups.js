@@ -13,8 +13,8 @@ export const PopupDiv = styled.div`
     justify-content: center;
     align-items: center;
     z-index: ${(props)=>props.$z_index};
-    backdrop-filter: blur(15px) contrast(100%);
-    -webkit-backdrop-filter: blur(15px) contrast(100%);
+    -webkit-backdrop-filter: blur(15px) brightness(50%);
+    backdrop-filter: blur(15px) brightness(50%);
 
     .flexContainer{
         min-width: ${(props)=>props.width};
