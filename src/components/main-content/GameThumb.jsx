@@ -12,7 +12,7 @@ export default function GameThumb ({ image, title, isnew, selectedgame, type }) 
   useOncePostMount(()=> isnew ? setIsNewTag(true) : setIsNewTag(false));
 
   return (
-      <GameThumbContainer className={type} onClick={()=>openGameOverlay(selectedgame)} onTouchEnd={()=>openGameOverlay(selectedgame)}>
+      <GameThumbContainer className={type} onClick={()=>openGameOverlay(selectedgame)} onTouchStart={()=>openGameOverlay(selectedgame)}>
           <GameThumbBtn 
             $top={type === "big" ? "12rem" : "6rem"} 
             $left={type === "normal" ? "3.5rem" : "7rem"} 
