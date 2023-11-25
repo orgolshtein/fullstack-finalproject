@@ -714,6 +714,18 @@ export const GameThumbContainer = styled.div`
             display:inline-block;
         }
     }
+
+    @media screen and (orientation: portrait) or (orientation: landscape){
+        &:hover{
+            img{
+                filter: none;
+            }
+
+            button{
+                display:none;
+            }
+        }
+    }
 `;
 
 export const GameThumbNewTag = styled.span`
