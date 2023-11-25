@@ -42,7 +42,7 @@ export default function BannerGallery () {
          sliderList?.map((item) => (
               <SwiperSlide key={item.id}>
                 <img 
-                  src={width > 800 ? item.srcbig : item.srcsmall} 
+                  src={width > 850 ? item.srcbig : item.srcsmall} 
                   alt={item.title} onClick={()=>openLoginPopup(setIsGameOverlayDisplayed)} 
                 />
               </SwiperSlide>
