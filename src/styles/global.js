@@ -38,12 +38,11 @@ html {
 }
 `;
 
-export const AppLogo = styled.div`
+export const AppLogo = styled.img`
   content: url(${assetUrl+"/logos/unagibet-logo.png"});
   display: inline-block;
   background-size: ${(props) => props.$size}rem ${(props) => props.$size}rem;
   height: ${(props) => props.$size}rem;
-  width: fit-content;
   left: ${(props) => props.$left_wide}rem;
   z-index: ${(props) => props.$z_index};
 
