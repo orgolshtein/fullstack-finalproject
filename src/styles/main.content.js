@@ -119,7 +119,7 @@ export const GalleryDiv = styled.div`
       background: ${AppColor.MainText};
       opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.4);
 
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 850px) {
         display: none;            
       }
     }
@@ -692,8 +692,9 @@ export const SearchInput = styled.input`
     }
 
     @media only screen and (max-width: 768px){
-        font-size: 1.8rem;
+        font-size: 1.4rem;
         width: 100%;
+        height: 60%;
     }
 
     @media only screen and (max-width: 290px){

@@ -233,7 +233,7 @@ export const GameOverlayDiv = styled.div`
             overflow-y: auto;
 
             @media only screen and (max-width: 768px) {
-                font-size: 1.5rem;
+                font-size: 1rem;
                 margin: 0;
                 padding: 3.2rem; 
                 height: max-content;          
