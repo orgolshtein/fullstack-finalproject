@@ -715,7 +715,7 @@ export const GameThumbContainer = styled.div`
         }
     }
 
-    @media screen and (orientation: portrait) or (orientation: landscape){
+    @media (hover: none) and (pointer: coarse) {
         &:hover{
             img{
                 filter: none;
