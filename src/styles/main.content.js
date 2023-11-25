@@ -77,7 +77,7 @@ export const GalleryDiv = styled.div`
         height: 12rem;
       }
 
-      @media screen {orientation: portrait;
+      @media (hover: none) and (pointer: coarse){
         width:100%;
       }
     }
