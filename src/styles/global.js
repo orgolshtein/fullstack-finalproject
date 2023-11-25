@@ -1,6 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 import Reset from "styled-reset";
 
+import { assetUrl } from "../api/app.api";
 import * as AppColor from "./colors";
 
 const GlobalStyle = createGlobalStyle`
@@ -38,7 +39,7 @@ html {
 `;
 
 export const AppLogo = styled.div`
-  content: url("src/assets/logos/unagibet-logo.png");
+  content: url(${assetUrl+"/logos/unagibet-logo.png"});
   display: inline-block;
   background-size: ${(props) => props.$size}rem ${(props) => props.$size}rem;
   height: ${(props) => props.$size}rem;
@@ -57,7 +58,7 @@ export const AppLogo = styled.div`
 `;
 
 export const WelcomeBonusOverlay = styled.img`
-    content: url("src/assets/overlays/welcome-bonus.png");
+    content: url(${assetUrl+"/overlays/welcome-bonus.png"});
     width: ${(props) => props.$width_wide};
     position: ${(props) => props.$position};
     top: ${(props) => props.$top_wide};
@@ -88,7 +89,7 @@ export const WelcomeBonusOverlay = styled.img`
 `;
 
 export const Loader = styled.img`
-  content: url("src/assets/icons/loading.gif");
+  content: url(${assetUrl+"/icons/loading.gif"});
   width: ${(props) => props.$size};
   height: ${(props) => props.$size};
   position: ${(props) => props.$position};

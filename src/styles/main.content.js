@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { darken } from "polished";
 
+import { assetUrl } from "../api/app.api";
 import * as AppColor from "./colors";
 
 export const MainContentDiv = styled.div`
@@ -344,25 +345,25 @@ export const TabsUl = styled.ul`
         
             .home{
                 span{
-                    background: url("src/assets/icons/allgames_icon-active.svg") no-repeat;
+                    background: url(${assetUrl+"/icons/allgames_icon-active.svg"}) no-repeat;
                 }
             }
 
             .new{
                 span{
-                    background: url("src/assets/icons/new_icon-active.svg") no-repeat;
+                    background: url(${assetUrl+"/icons/new_icon-active.svg"}) no-repeat;
                 }
             }
 
             .slots{
                 span{
-                    background: url("src/assets/icons/slots_icon-active.svg") no-repeat;
+                    background: url(${assetUrl+"/icons/slots_icon-active.svg"}) no-repeat;
                 }
             }
 
             .table{
                 span{
-                    background: url("src/assets/icons/table_icon-active.svg") no-repeat;
+                    background: url(${assetUrl+"/icons/table_icon-active.svg"}) no-repeat;
                 }
             }
         }
@@ -459,25 +460,25 @@ export const HamburgerNavDiv = styled.div`
             
                 .home{
                     span{
-                        background: url("src/assets/icons/allgames_icon-active.svg") no-repeat;
+                        background: url(${assetUrl+"/icons/allgames_icon-active.svg"}) no-repeat;
                     }
                 }
 
                 .new{
                     span{
-                        background: url("src/assets/icons/new_icon-active.svg") no-repeat;
+                        background: url(${assetUrl+"/icons/new_icon-active.svg"}) no-repeat;
                     }
                 }
 
                 .slots{
                     span{
-                        background: url("src/assets/icons/slots_icon-active.svg") no-repeat;
+                        background: url(${assetUrl+"/icons/slots_icon-active.svg"}) no-repeat;
                     }
                 }
 
                 .table{
                     span{
-                        background: url("src/assets/icons/table_icon-active.svg") no-repeat;
+                        background: url(${assetUrl+"/icons/table_icon-active.svg"}) no-repeat;
                     }
                 }
             }
@@ -565,25 +566,25 @@ export const HamburgerNavDiv = styled.div`
             
                 .home{
                     span{
-                        background: url("src/assets/icons/allgames_icon-active.svg") no-repeat;
+                        background: url(${assetUrl+"/icons/allgames_icon-active.svg"}) no-repeat;
                     }
                 }
 
                 .new{
                     span{
-                        background: url("src/assets/icons/new_icon-active.svg") no-repeat;
+                        background: url(${assetUrl+"/icons/new_icon-active.svg"}) no-repeat;
                     }
                 }
 
                 .slots{
                     span{
-                        background: url("src/assets/icons/slots_icon-active.svg") no-repeat;
+                        background: url(${assetUrl+"/icons/slots_icon-active.svg"}) no-repeat;
                     }
                 }
 
                 .table{
                     span{
-                        background: url("src/assets/icons/table_icon-active.svg") no-repeat;
+                        background: url(${assetUrl+"/icons/table_icon-active.svg"}) no-repeat;
                     }
                 }
             }
@@ -619,7 +620,7 @@ export const HamburgerNavDiv = styled.div`
         .hamburgerX{
             width: 3rem;
             height: 3rem;
-            background: url("src/assets/icons/cross_gold_icon.svg") no-repeat;
+            background: url(${assetUrl+"/icons/cross_gold_icon.svg"}) no-repeat;
 
             div{
                 display: none;
@@ -651,7 +652,7 @@ export const SearchInputContainer = styled.form`
     }
 
     .searchIcon{
-        background: url("src/assets/icons/gamesearch_icon.svg") 50% 50%/contain no-repeat;
+        background: url(${assetUrl+"/icons/gamesearch_icon.svg"}) 50% 50%/contain no-repeat;
         display: inline-block;
         position: absolute;
         width: 1.2rem;
@@ -762,7 +763,7 @@ export const ToTopButton = styled.div`
 
     .shown{
         display: inline-block;
-        background: url(/src/assets/icons/btop_icon.png) 50% 50%/contain no-repeat;
+        background: url(${assetUrl+"/icons/btop_icon.png"}) 50% 50%/contain no-repeat;
         position: fixed;
         z-index: 100;
         bottom: 3.5rem;
@@ -777,7 +778,7 @@ export const ToTopButton = styled.div`
 
     .hidden{
         display: inline-block;
-        background: url(/src/assets/icons/btop_icon.png) 50% 50%/contain no-repeat;
+        background: url(${assetUrl+"/icons/btop_icon.png"}) 50% 50%/contain no-repeat;
         position: fixed;
         z-index: 100;
         bottom: 3.5rem;

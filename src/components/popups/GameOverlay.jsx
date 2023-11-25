@@ -1,6 +1,7 @@
 import { useContext } from "react";
 
 import { AppContext } from "../../state/AppContext";
+import { assetUrl } from "../../api/app.api";
 import { GameOverlayDiv, PopupCtaBtn, PopupCloseBtn } from "../../styles/popups";
 import { GameImg } from "../../styles/global";
 import * as AppColor from "../../styles/colors";
@@ -17,7 +18,7 @@ export default function GameOverlay () {
         <GameOverlayDiv>
             <div className={isGameOverlayDisplayed? "shown" : "hidden"}>
                 <PopupCloseBtn onClick={() => setIsGameOverlayDisplayed(false)} 
-                    $url="src/assets/icons/cross_white_icon.svg" />
+                    $url={`${assetUrl}/icons/cross_white_icon.svg`} />
                 <h1>{selectedGame.title}</h1>
                 <GameImg 
                     src={selectedGame.thumb} 

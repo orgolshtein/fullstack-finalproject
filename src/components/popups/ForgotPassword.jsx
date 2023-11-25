@@ -2,6 +2,7 @@ import { useContext, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { AppContext } from "../../state/AppContext";
+import { assetUrl } from "../../api/app.api";
 import { AppLogo } from "../../styles/global";
 import useImpDisableScrollHandler from "../../hooks/useImperativeDisableScroll";
 import useOuterClick from "../../hooks/useOuterClick";
@@ -52,7 +53,7 @@ export default function ForgotPassword () {
             <div className="flexContainer">
                 <div className="inner" ref={forgotPassRef}>
                     <ForgotPassStyles.PopupCloseBtn onClick={closeForgotPassword} 
-                    $url="src/assets/icons/cross_white_icon.svg" />
+                    $url={`${assetUrl}/icons/cross_white_icon.svg`} />
                     <div className="content">
                         <div className="titlebox">
                             <AppLogo $size="6" alt="popuplogo"/>

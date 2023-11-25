@@ -72,8 +72,8 @@ const AppProvider = ({children}) =>{
         setPassInputType("text") : 
         setPassInputType("password");
     passInputType === "password" ? 
-        setPassIcon("/src/assets/icons/password_visible_icon.svg") : 
-        setPassIcon("/src/assets/icons/password_invisible_icon.svg");
+        setPassIcon(`${api.assetUrl}/icons/password_visible_icon.svg`) : 
+        setPassIcon(`${api.assetUrl}/icons/password_invisible_icon.svg`);
   };
 
   const openLoginPopup = (overlayDisplayed) => {

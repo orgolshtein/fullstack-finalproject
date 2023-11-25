@@ -2,19 +2,18 @@ import { useContext, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { AppContext } from "../../state/AppContext";
+import { assetUrl } from "../../api/app.api";
 import useImpDisableScrollHandler from "../../hooks/useImperativeDisableScroll";
 import useOuterClick from "../../hooks/useOuterClick";
 import * as AppColor from "../../styles/colors";
 import * as LoginStyles from "../../styles/popups";
 import { WelcomeBonusOverlay, PasswordVisIcon } from "../../styles/global";
-import UserIcon from "../../assets/icons/login_user_icon.svg";
-import PassIcon from "../../assets/icons/login_password_icon.svg";
 import useInputBorderToggle from "../../hooks/useInputBorderToggle";
 
 export default function Login () {
     const [submitErrMsg, setSubmitErrMsg] = useState("");
     const [passInputType, setPassInputType] = useState("password");
-    const [passIcon, setPassIcon] = useState("/src/assets/icons/password_invisible_icon.svg");
+    const [passIcon, setPassIcon] = useState(`${assetUrl}/icons/password_invisible_icon.svg`);
     const [inputDisabled, setInputDisabled] = useState(false);
     const [inputBorder, setInputBorder] = useState(AppColor.InputBorder);
     const [inputBackgroundColor, setInputBackgroundColor] = useState(AppColor.InputBackground);
@@ -61,7 +60,7 @@ export default function Login () {
             <div className="flexContainer">
                 <div className="inner" ref={loginRef}>
                     <LoginStyles.PopupCloseBtn onClick={closeLogin} 
-                    $url="src/assets/icons/cross_gray_icon.svg" />
+                    $url={`${assetUrl}/icons/cross_gray_icon.svg`} />
                     <div className="content">
                         <LoginStyles.LoginFlexDiv>
                             <LoginStyles.PopupForm onSubmit={handleSubmit(() =>{
@@ -75,8 +74,11 @@ export default function Login () {
                                 })
                             })}>
                                 <LoginStyles.PopupInputContainer>
-                                    <img className="inputIcon" src={UserIcon} onClick={()=>{
-                                        setFocus("username");
+                                    <img 
+                                        className="inputIcon" 
+                                        src={`${assetUrl}/icons/login_user_icon.svg`} 
+                                        onClick={()=>{
+                                            setFocus("username");
                                     }}/>
                                     <LoginStyles.PopupInput 
                                         type="text"
@@ -98,8 +100,11 @@ export default function Login () {
                                 </LoginStyles.PopupInputContainer>
                                 <p>{errors.username?.message}</p>
                                 <LoginStyles.PopupInputContainer>
-                                    <img className="inputIcon" src={PassIcon} onClick={()=>{
-                                        setFocus("password");;
+                                    <img 
+                                        className="inputIcon" 
+                                        src={`${assetUrl}/icons/login_password_icon.svg`} 
+                                        onClick={()=>{
+                                            setFocus("password");;
                                     }}/>
                                     <LoginStyles.PopupInput
                                         type={passInputType}

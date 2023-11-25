@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+import { assetUrl } from "../../api/app.api";
 import * as AppColor from "../../styles/colors"
 import { HamburgerNavDiv, TabsUl } from "../../styles/main.content";
 import SearchGame from "./SearchGame";
 
 export default function GameTabs () {
-    const [homeIcon, setHomeIcon] = useState("src/assets/icons/allgames_icon.svg");
-    const [newIcon, setNewIcon] = useState("src/assets/icons/new_icon.svg");
-    const [slotsIcon, setSlotsIcon] = useState("src/assets/icons/slots_icon.svg");
-    const [tableIcon, setTableIcon] = useState("src/assets/icons/table_icon.svg");
+    const [homeIcon, setHomeIcon] = useState(`${assetUrl}/icons/allgames_icon.svg`);
+    const [newIcon, setNewIcon] = useState(`${assetUrl}/icons/new_icon.svg`);
+    const [slotsIcon, setSlotsIcon] = useState(`${assetUrl}/icons/slots_icon.svg`);
+    const [tableIcon, setTableIcon] = useState(`${assetUrl}/icons/table_icon.svg`);
     const [homeLabelColor, setHomeLabelColor] = useState(AppColor.GameTabLabel);
     const [newLabelColor, setNewLabelColor] = useState(AppColor.GameTabLabel);
     const [slotsLabelColor, setSlotsLabelColor] = useState(AppColor.GameTabLabel);
@@ -24,10 +25,10 @@ export default function GameTabs () {
     }
     
     const homeSetActive = () => {
-        setHomeIcon("src/assets/icons/allgames_icon-active.svg");
-        setNewIcon("src/assets/icons/new_icon.svg");
-        setSlotsIcon("src/assets/icons/slots_icon.svg");
-        setTableIcon("src/assets/icons/table_icon.svg");
+        setHomeIcon(`${assetUrl}/icons/allgames_icon-active.svg`);
+        setNewIcon(`${assetUrl}/icons/new_icon.svg`);
+        setSlotsIcon(`${assetUrl}/icons/slots_icon.svg`);
+        setTableIcon(`${assetUrl}/icons/table_icon.svg`);
         setHomeLabelColor(AppColor.GameTabLabelActive);
         setNewLabelColor(AppColor.GameTabLabel);
         setSlotsLabelColor(AppColor.GameTabLabel);
@@ -36,10 +37,10 @@ export default function GameTabs () {
     };
 
     const newSetActive = () => {
-        setHomeIcon("src/assets/icons/allgames_icon.svg");
-        setNewIcon("src/assets/icons/new_icon-active.svg");
-        setSlotsIcon("src/assets/icons/slots_icon.svg");
-        setTableIcon("src/assets/icons/table_icon.svg");
+        setHomeIcon(`${assetUrl}/icons/allgames_icon.svg`);
+        setNewIcon(`${assetUrl}/icons/new_icon-active.svg`);
+        setSlotsIcon(`${assetUrl}/icons/slots_icon.svg`);
+        setTableIcon(`${assetUrl}/icons/table_icon.svg`);
         setHomeLabelColor(AppColor.GameTabLabel);
         setNewLabelColor(AppColor.GameTabLabelActive);
         setSlotsLabelColor(AppColor.GameTabLabel);
@@ -48,10 +49,10 @@ export default function GameTabs () {
     };
 
     const slotsSetActive = () => {
-        setHomeIcon("src/assets/icons/allgames_icon.svg");
-        setNewIcon("src/assets/icons/new_icon.svg");
-        setSlotsIcon("src/assets/icons/slots_icon-active.svg");
-        setTableIcon("src/assets/icons/table_icon.svg");
+        setHomeIcon(`${assetUrl}/icons/allgames_icon.svg`);
+        setNewIcon(`${assetUrl}/icons/new_icon.svg`);
+        setSlotsIcon(`${assetUrl}/icons/slots_icon-active.svg`);
+        setTableIcon(`${assetUrl}/icons/table_icon.svg`);
         setHomeLabelColor(AppColor.GameTabLabel);
         setNewLabelColor(AppColor.GameTabLabel);
         setSlotsLabelColor(AppColor.GameTabLabelActive);
@@ -60,10 +61,10 @@ export default function GameTabs () {
     };
 
     const tableSetActive = () => {
-        setHomeIcon("src/assets/icons/allgames_icon.svg");
-        setNewIcon("src/assets/icons/new_icon.svg");
-        setSlotsIcon("src/assets/icons/slots_icon.svg");
-        setTableIcon("src/assets/icons/table_icon-active.svg");
+        setHomeIcon(`${assetUrl}/icons/allgames_icon.svg`);
+        setNewIcon(`${assetUrl}/icons/new_icon.svg`);
+        setSlotsIcon(`${assetUrl}/icons/slots_icon.svg`);
+        setTableIcon(`${assetUrl}/icons/table_icon-active.svg`);
         setHomeLabelColor(AppColor.GameTabLabel);
         setNewLabelColor(AppColor.GameTabLabel);
         setSlotsLabelColor(AppColor.GameTabLabel);

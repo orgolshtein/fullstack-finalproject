@@ -1,10 +1,10 @@
 import { NotFoundDiv } from "../../styles/main.content";
-import gif from "../../assets/gif/salmon-skin-roll.gif"
+import { assetUrl } from "../../api/app.api";
 
 const NotFound = () => (
     <NotFoundDiv>
         <h1>Could this page BE anymore <br />"Not Found"?</h1>
-        <img src={gif} alt="Salmon Skin Roll" />
+        <img src={`${assetUrl}/gif/salmon-skin-roll.gif`} alt="Salmon Skin Roll" />
     </NotFoundDiv>
 );
 

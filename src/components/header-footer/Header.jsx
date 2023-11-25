@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { AppContext } from "../../state/AppContext";
+import { assetUrl } from "../../api/app.api";
 import * as AppColor from "../../styles/colors";
 import { HeaderDiv, LoginHeaderBtn, JoinHeaderBtn, InputHeader } from "../../styles/header.footer";
 import { AppLogo, PasswordVisIcon } from "../../styles/global";
@@ -11,7 +12,7 @@ import useInputBorderToggle from "../../hooks/useInputBorderToggle";
 export default function Header (){
     const [submitErrMsg, setSubmitErrMsg] = useState("");
     const [passInputType, setPassInputType] = useState("password");
-    const [passwordIcon, setPassIcon] = useState("/src/assets/icons/password_invisible_icon.svg");
+    const [passwordIcon, setPassIcon] = useState(`${assetUrl}/icons/password_invisible_icon.svg`);
     const [loginInputBorder, setLoginInputBorder] = useState(AppColor.InputBorder);
     const [loginBackgroundColor, setLoginBackgroundColor] = useState(AppColor.InputBackground);
     const [isLoginInputDisabled, setIsLoginInputDisabled] = useState(false);

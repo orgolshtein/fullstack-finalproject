@@ -1,9 +1,9 @@
 import { FooterDiv } from "../../styles/header.footer";
-import paymentLine from "../../assets/overlays/footer-en.png";
+import { assetUrl } from "../../api/app.api";
 
 const Footer = () => (
     <FooterDiv>
-        <img src={paymentLine} alt="Payment Methods" />
+        <img src={`${assetUrl}/overlays/footer-en.png`} alt="Payment Methods" />
         <div>
             <p>
             UnagiBet is a brand operated by Red Ross Entertainment Limited. Red Ross Entertainment Limited is licensed and regulated by the Malta Gaming Authority.
