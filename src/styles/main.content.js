@@ -73,7 +73,7 @@ export const GalleryDiv = styled.div`
         height: 18rem;
       }
 
-      @media only screen and (max-width: 412px){
+      @media only screen and (max-width: 500px){
         height: 12rem;
       }
 
@@ -94,7 +94,7 @@ export const GalleryDiv = styled.div`
         left: 0;
         right: 0;
         
-        @media only screen and (max-width: 412px) {
+        @media only screen and (max-width: 500px) {
             height: 11.5rem;                
             width: fit-content;
         }
@@ -184,7 +184,7 @@ export const JoinGalleryBtn = styled.button`
         font-size: 1.3rem;
     }
 
-    @media only screen and (max-width: 412px){
+    @media only screen and (max-width: 500px){
         top: 7.5rem;
         width: 11rem;
         margin-left: 3rem;

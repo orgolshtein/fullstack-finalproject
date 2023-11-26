@@ -76,7 +76,7 @@ export const WelcomeBonusOverlay = styled.img`
         left: ${(props) => props.$left_medium};
     }
 
-    @media only screen and (max-width: 412px){
+    @media only screen and (max-width: 500px){
         top: ${(props) => props.$top_small};
         width: ${(props) => props.$width_small};
         left: ${(props) => props.$left_small};
