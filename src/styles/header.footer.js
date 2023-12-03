@@ -243,6 +243,10 @@ export const FooterDiv = styled.div`
 
     p{
         line-height: 1.2rem;
+
+        a{
+            color: ${AppColor.MainText};
+        }
         
         @media only screen and (max-width: 768px) {
             width: 100%;

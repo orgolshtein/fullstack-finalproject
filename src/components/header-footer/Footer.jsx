@@ -12,7 +12,7 @@ const Footer = () => (
             Registered Address: Red Ross Entertainment Limited, 15 Yemen Road, Yemen.
             </p>
             <p>
-            Gambling can be addictive. Play responsibly.
+            Created by Or Golshtein: <a href="https://github.com/orgolshtein" target="_blank">github.com/orgolshtein</a>.
             </p>
         </div>
     </FooterDiv>
