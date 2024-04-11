@@ -7,26 +7,7 @@ export async function fetchSliderData() {
   return slider_data;
 };
 
-export async function fetchHomeGameData() {
-    const url_data = await (await fetch(gameDataUrl)).json();
-    const games_data = url_data.map((item)=>({...item, show: true}))
-    return games_data;
-};
-
-export async function fetchNewGameData() {
-  const url_data = await (await fetch(gameDataUrl)).json();
-  const new_games_data = url_data.filter((item) => item.new === true).map((item)=>({...item, show: true}))
-  return new_games_data;
-};
-
-export async function fetchSlotsGameData() {
-  const url_data = await (await fetch(gameDataUrl)).json();
-  const slots_games_data = url_data.filter((item) => item.type === "slot").map((item)=>({...item, show: true}))
-  return slots_games_data;
-};
-
-export async function fetchTableGameData() {
-  const url_data = await (await fetch(gameDataUrl)).json();
-  const table_games_data = url_data.filter((item) => item.type === "table").map((item)=>({...item, show: true}))
-  return table_games_data;
+export async function fetchGameData() {
+  const game_data = await (await fetch(gameDataUrl)).json();
+  return game_data;
 };

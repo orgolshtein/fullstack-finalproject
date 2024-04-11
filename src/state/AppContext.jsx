@@ -29,32 +29,8 @@ const AppProvider = ({children}) =>{
   
   useOncePostMount(()=>{
     window.addEventListener("resize", () => setWidth(window.innerWidth));
-    (async () => {
-      try {
-        const slider_data = await api.fetchSliderData();
-        setSliderList(slider_data);
-      } catch {
-        setSliderErrorMessage("Connection error: cannot display content");
-      } finally {
-        setIsSliderLoading(false);
-      }
-    })();
-    (async () => {
-      try {
-        const home_data = await api.fetchHomeGameData();
-        setGamesList(home_data);
-        const new_data = await api.fetchNewGameData();
-        setNewGamesList(new_data);
-        const slots_data = await api.fetchSlotsGameData();
-        setSlotsGamesList(slots_data);
-        const table_data = await api.fetchTableGameData();
-        setTableGamesList(table_data);
-      } catch {
-        setGamesErrorMessage("Connection error: cannot display games");
-      } finally {
-        setAreGamesLoading(false);
-      }
-    })();
+    loadBanners();
+    loadGames();
   });
 
   useEffect(() => {
@@ -65,6 +41,31 @@ const AppProvider = ({children}) =>{
         setIsToTopDisplayed(false)
     });
   },[scrollY]);
+  
+  const loadBanners = async () => {
+    try {
+      const slider_data = await api.fetchSliderData();
+      setSliderList(slider_data);
+    } catch {
+      setSliderErrorMessage("Connection error: cannot display content");
+    } finally {
+      setIsSliderLoading(false);
+    }
+  };
+
+  const loadGames = async () => {
+    try {
+      const game_data = await api.fetchGameData();
+      setGamesList(game_data.map((item)=>({...item, show: true})));
+      setNewGamesList(game_data.filter((item) => item.new === true).map((item)=>({...item, show: true})));
+      setSlotsGamesList(game_data.filter((item) => item.type === "slot").map((item)=>({...item, show: true})));
+      setTableGamesList(game_data.filter((item) => item.type === "table").map((item)=>({...item, show: true})));
+    } catch {
+      setGamesErrorMessage("Connection error: cannot display games");
+    } finally {
+      setAreGamesLoading(false);
+    }
+  };
 
   const passIconVisToggle = (passInputType, setPassInputType, setPassIcon, overlayDisplayed) => {
     overlayDisplayed? overlayDisplayed(false): null;
