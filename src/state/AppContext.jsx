@@ -29,6 +29,7 @@ const AppProvider = ({children}) =>{
   
   useOncePostMount(()=>{
     window.addEventListener("resize", () => setWidth(window.innerWidth));
+    api.riseAndShine();
     loadBanners();
     loadGames();
   });
