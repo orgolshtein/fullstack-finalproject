@@ -6,24 +6,31 @@ import { AppContext } from "../../state/AppContext";
 import { assetUrl } from "../../api/app.api";
 import * as AppColor from "../../styles/colors";
 import { HeaderDiv, LoginHeaderBtn, JoinHeaderBtn, InputHeader } from "../../styles/header.footer";
-import { AppLogo, PasswordVisIcon } from "../../styles/global";
+import { AppLogo, Loader, PasswordVisIcon } from "../../styles/global";
 import useInputBorderToggle from "../../hooks/useInputBorderToggle";
+import usePassIconToggle from "../../hooks/usePassIconToggle";
+import useSubmit from "../../hooks/useSubmit";
 
 export default function Header (){
-    const [submitErrMsg, setSubmitErrMsg] = useState("");
-    const [passInputType, setPassInputType] = useState("password");
-    const [passwordIcon, setPassIcon] = useState(`${assetUrl}/icons/password_invisible_icon.svg`);
-    const [loginBackgroundColor, setLoginBackgroundColor] = useState(AppColor.InputBackground);
-    const [isLoginInputDisabled, setIsLoginInputDisabled] = useState(false);
-    const [isLoginBtnActive, setIsLoginBtnActive] = useState(false);
-    const [isJoinBtnActive, setIsJoinBtnActive] = useState(false);
-    const loginInputBorder = useInputBorderToggle(submitErrMsg);
+    const passIcon = usePassIconToggle(
+        `${assetUrl}/icons/password_visible_icon.svg`,
+        `${assetUrl}/icons/password_invisible_icon.svg`
+    )
+    const submit = useSubmit(
+        AppColor.InputBackground, 
+        AppColor.DisbledInputBackground,
+        <Loader $size="2.7rem" $margin_left="4.5rem" />,
+        "Username/Email or Password does not exist"
+    )
+    const loginInputBorder = useInputBorderToggle(
+        submit.submitErrMsg, 
+        AppColor.InputBorder, 
+        AppColor.InputErrorBorder
+    );
     const { 
         setIsForgotPassDisplayed, 
         setIsGameOverlayDisplayed,
-        passIconVisToggle,
         openLoginPopup,
-        onSubmit,
         openRegBlockPopup
     } = useContext(AppContext);
 
@@ -50,16 +57,8 @@ export default function Header (){
                 />
             </Link>
             <form className="authGrid" onSubmit={handleSubmit(() =>{
-                onSubmit({
-                    msg: setSubmitErrMsg,
-                    notfound: "Username/Email or Password does not exist",
-                    inputdisabled: setIsLoginInputDisabled,
-                    bgcolor: setLoginBackgroundColor,
-                    buttonactive: setIsLoginBtnActive,
-                    loadersize: "2.7rem",
-                    loaderleft: "4.5rem",
-                    displaygameoverlay: setIsGameOverlayDisplayed
-                })
+                setIsGameOverlayDisplayed(false);
+                submit.onSubmit();
             })}>
                 <span className="inputContainer">
                     <InputHeader 
@@ -67,11 +66,11 @@ export default function Header (){
                         type="text"
                         autoComplete="on"
                         placeholder="Username / Email"
-                        disabled={isLoginInputDisabled}
-                        $background={loginBackgroundColor}
+                        disabled={submit.isInputDisabled}
+                        $background={submit.inputBackgroundColor}
                         onClick={() => {
                             setIsGameOverlayDisplayed(false);
-                            setSubmitErrMsg("");
+                            submit.setSubmitErrMsg("");
                             clearErrors();
                         }}
                         $error_styled={errors.username}
@@ -84,14 +83,14 @@ export default function Header (){
                 <span className="inputContainer">
                     <InputHeader 
                         $input_border={loginInputBorder}
-                        type={passInputType}
+                        type={passIcon.passInputType}
                         autoComplete="on"
                         placeholder="Password:"
-                        disabled={isLoginInputDisabled}
-                        $background={loginBackgroundColor}
+                        disabled={submit.isInputDisabled}
+                        $background={submit.inputBackgroundColor}
                         onClick={() => {
                             setIsGameOverlayDisplayed(false);
-                            setSubmitErrMsg("");
+                            submit.setSubmitErrMsg("");
                             clearErrors();
                         }}
                         $error_styled={errors.password}
@@ -102,24 +101,20 @@ export default function Header (){
                     />
                     <PasswordVisIcon 
                         width="1.2em" 
-                        src={passwordIcon} 
-                        cursor={isLoginBtnActive ? "default" : "pointer"} 
-                        onClick={isLoginBtnActive ? null : () => {
-                            passIconVisToggle(
-                                passInputType, 
-                                setPassInputType, 
-                                setPassIcon, 
-                                setIsGameOverlayDisplayed
-                            )
+                        src={passIcon.passwordIcon} 
+                        cursor={submit.isBtnActive ? "default" : "pointer"} 
+                        onClick={submit.isBtnActive ? null : () => {
+                            setIsGameOverlayDisplayed(false);
+                            passIcon.toggle()
                         }}
                     />
                 </span>  
-                <LoginHeaderBtn disabled={isLoginBtnActive ? true : false}>Login</LoginHeaderBtn>
+                <LoginHeaderBtn disabled={submit.isBtnActive ? true : false}>Login</LoginHeaderBtn>
                 {errors.username?<p>{errors.username.message}</p> :<span></span> }
                 {
                     errors.password ?
                     <p>{errors.password.message}</p> :
-                    <span className="msgContainer">{submitErrMsg}</span>
+                    <span className="msgContainer">{submit.submitErrMsg}</span>
                  }
                 <span><a onClick={() => {
                     setIsGameOverlayDisplayed(false);
@@ -128,8 +123,8 @@ export default function Header (){
                 <span></span>
                 <JoinHeaderBtn 
                     type="button" 
-                    disabled={isJoinBtnActive ? true : false} 
-                    onClick={()=>openRegBlockPopup(setIsJoinBtnActive, setIsGameOverlayDisplayed)}
+                    disabled={submit.isJoinBtnActive ? true : false} 
+                    onClick={()=>openRegBlockPopup(submit.setIsJoinBtnActive, setIsGameOverlayDisplayed)}
                 >Join Now</JoinHeaderBtn>
             </form>
             <div className="authResponsive">
@@ -137,8 +132,8 @@ export default function Header (){
                     openLoginPopup();
                 }}>Login</LoginHeaderBtn>
                 <JoinHeaderBtn 
-                    disabled={isJoinBtnActive ? true : false}
-                    onClick={()=>openRegBlockPopup(setIsJoinBtnActive, setIsGameOverlayDisplayed)}
+                    disabled={submit.isJoinBtnActive ? true : false}
+                    onClick={()=>openRegBlockPopup(submit.setIsJoinBtnActive, setIsGameOverlayDisplayed)}
                 >Join Now</JoinHeaderBtn>
             </div>
         </div>

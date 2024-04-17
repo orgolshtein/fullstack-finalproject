@@ -8,9 +8,10 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { AppContext } from "../../state/AppContext";
 import { GalleryDiv, JoinGalleryBtn } from "../../styles/main.content";
 import { Loader, WelcomeBonusOverlay } from "../../styles/global";
+import useSubmit from "../../hooks/useSubmit";
 
 export default function BannerGallery () {
-  const [isCtaActive, setIsCtaActive] = useState(false);
+  const cta = useSubmit();
   const { width,
           sliderList,
           isSliderLoading,
@@ -57,8 +58,8 @@ export default function BannerGallery () {
               $z_index="1"
             />
             <JoinGalleryBtn 
-              disabled={isCtaActive ? true : false} 
-              onClick={()=>openRegBlockPopup(setIsCtaActive, setIsGameOverlayDisplayed)}
+              disabled={cta.isJoinBtnActive ? true : false} 
+              onClick={()=>openRegBlockPopup(cta.setIsJoinBtnActive, setIsGameOverlayDisplayed)}
             >JOIN NOW</JoinGalleryBtn>
         </div>
     </Swiper>

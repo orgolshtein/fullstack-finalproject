@@ -3,21 +3,27 @@ import { useForm } from "react-hook-form";
 
 import { AppContext } from "../../state/AppContext";
 import { assetUrl } from "../../api/app.api";
-import { AppLogo } from "../../styles/global";
+import { AppLogo, Loader } from "../../styles/global";
 import useImpDisableScrollHandler from "../../hooks/useImperativeDisableScroll";
 import useOuterClick from "../../hooks/useOuterClick";
 import * as AppColor from "../../styles/colors";
 import * as ForgotPassStyles from "../../styles/popups";
 import useInputBorderToggle from "../../hooks/useInputBorderToggle";
+import useSubmit from "../../hooks/useSubmit";
 
 export default function ForgotPassword () {
-    const [submitErrMsg, setSubmitErrMsg] = useState("");
-    const inputBorder = useInputBorderToggle(submitErrMsg);
-    const [inputBackgroundColor, setInputBackgroundColor] = useState(AppColor.InputBackground);
-    const [isInputDisabled, setIsInputDisabled] = useState(false);
-    const [isCtaActive, setIsCtaActive] = useState(false);
-    const { isForgotPassDisplayed, setIsForgotPassDisplayed, onSubmit } = useContext(AppContext);
-
+    const submit = useSubmit(
+        AppColor.InputBackground, 
+        AppColor.DisbledInputBackground,
+        <Loader $size="2rem" />,
+        "User not found"
+    )
+    const inputBorder = useInputBorderToggle(
+        submit.submitErrMsg, 
+        AppColor.InputBorder, 
+        AppColor.InputErrorBorder
+    );
+    const { isForgotPassDisplayed, setIsForgotPassDisplayed } = useContext(AppContext);
     const {
         register,
         handleSubmit,
@@ -32,7 +38,7 @@ export default function ForgotPassword () {
 
     const closeForgotPassword = () => {
         setIsForgotPassDisplayed(false);
-        setSubmitErrMsg("");
+        submit.setSubmitErrMsg("");
         setValue("user", "");
         clearErrors();
     };
@@ -59,25 +65,18 @@ export default function ForgotPassword () {
                             <div>Forgot user / password assistance</div>
                         </div>
                         <ForgotPassStyles.PopupForm onSubmit={handleSubmit(() =>{
-                            onSubmit({
-                                msg: setSubmitErrMsg,
-                                notfound: "User not found",
-                                inputdisabled: setIsInputDisabled,
-                                bgcolor: setInputBackgroundColor,
-                                buttonactive: setIsCtaActive,
-                                loadersize: "2rem"
-                            })
+                            submit.onSubmit();
                         })}>
                             <div>Please insert one of the following</div>
                             <ForgotPassStyles.PopupInput 
                                 type="text"
                                 autoComplete="on"
                                 placeholder="Enter user or email address" 
-                                disabled={isInputDisabled}
+                                disabled={submit.isInputDisabled}
                                 $input_border={inputBorder}
-                                $background={inputBackgroundColor}
+                                $background={submit.inputBackgroundColor}
                                 onClick={() => {
-                                    setSubmitErrMsg("");
+                                    submit.setSubmitErrMsg("");
                                     clearErrors();
                                 }}
                                 $error_styled={errors.user}
@@ -88,11 +87,11 @@ export default function ForgotPassword () {
                             />
                             {errors.user?<p>{errors.user.message}</p> : null}
                             {
-                                submitErrMsg !== "" ?
-                                <p>{submitErrMsg}</p> : null                          
+                                submit.submitErrMsg !== "" ?
+                                <p>{submit.submitErrMsg}</p> : null                          
                             }
                             <ForgotPassStyles.PopupCtaBtn 
-                                disabled={isCtaActive ? true : false}
+                                disabled={submit.isBtnActive ? true : false}
                                 $background={AppColor.LoginBtn}
                                 $margin="1rem auto"
                             >continue</ForgotPassStyles.PopupCtaBtn>

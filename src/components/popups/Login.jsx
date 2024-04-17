@@ -3,28 +3,35 @@ import { useForm } from "react-hook-form";
 
 import { AppContext } from "../../state/AppContext";
 import { assetUrl } from "../../api/app.api";
-import useImpDisableScrollHandler from "../../hooks/useImperativeDisableScroll";
-import useOuterClick from "../../hooks/useOuterClick";
 import * as AppColor from "../../styles/colors";
 import * as LoginStyles from "../../styles/popups";
-import { WelcomeBonusOverlay, PasswordVisIcon } from "../../styles/global";
+import { WelcomeBonusOverlay, PasswordVisIcon, Loader } from "../../styles/global";
+import useImpDisableScrollHandler from "../../hooks/useImperativeDisableScroll";
+import useOuterClick from "../../hooks/useOuterClick";
 import useInputBorderToggle from "../../hooks/useInputBorderToggle";
+import usePassIconToggle from "../../hooks/usePassIconToggle";
+import useSubmit from "../../hooks/useSubmit";
 
 export default function Login () {
-    const [submitErrMsg, setSubmitErrMsg] = useState("");
-    const [passInputType, setPassInputType] = useState("password");
-    const [passIcon, setPassIcon] = useState(`${assetUrl}/icons/password_invisible_icon.svg`);
-    const [inputDisabled, setInputDisabled] = useState(false);
-    const inputBorder = useInputBorderToggle(submitErrMsg);
-    const [inputBackgroundColor, setInputBackgroundColor] = useState(AppColor.InputBackground);
-    const [loginBtnActive, setLoginBtnActive] = useState(false);
-    const [joinBtnActive, setJoinBtnActive] = useState(false);
+    const submit = useSubmit(
+        AppColor.InputBackground, 
+        AppColor.DisbledInputBackground,
+        <Loader $size="2rem" />,
+        "Username or Password not valid"
+    )
+    const inputBorder = useInputBorderToggle(
+        submit.submitErrMsg, 
+        AppColor.InputBorder, 
+        AppColor.InputErrorBorder
+    );
+    const passIcon = usePassIconToggle(
+        `${assetUrl}/icons/password_visible_icon.svg`,
+        `${assetUrl}/icons/password_invisible_icon.svg`
+    )
     const { 
         isLoginDisplayed, 
         setIsLoginDisplayed,
         setIsForgotPassDisplayed,
-        passIconVisToggle,
-        onSubmit,
         openRegBlockPopup
     } = useContext(AppContext);
 
@@ -43,7 +50,7 @@ export default function Login () {
 
     const closeLogin = () =>{
         setIsLoginDisplayed(false);
-        setSubmitErrMsg("");
+        submit.setSubmitErrMsg("");
         setValue("username", "");
         setValue("password", "");
         clearErrors();
@@ -63,14 +70,7 @@ export default function Login () {
                     <div className="content">
                         <LoginStyles.LoginFlexDiv>
                             <LoginStyles.PopupForm onSubmit={handleSubmit(() =>{
-                                onSubmit({
-                                    msg: setSubmitErrMsg,
-                                    notfound: "Username or Password not valid",
-                                    inputdisabled: setInputDisabled,
-                                    bgcolor: setInputBackgroundColor,
-                                    buttonactive: setLoginBtnActive,
-                                    loadersize: "2rem"
-                                })
+                                submit.onSubmit();
                             })}>
                                 <LoginStyles.PopupInputContainer>
                                     <img 
@@ -83,12 +83,12 @@ export default function Login () {
                                         type="text"
                                         autoComplete="on"
                                         placeholder="Username / Email" 
-                                        disabled={inputDisabled}
+                                        disabled={submit.isInputDisabled}
                                         onClick={() => {
-                                            setSubmitErrMsg("");
+                                            submit.setSubmitErrMsg("");
                                             clearErrors();
                                         }}
-                                        $background={inputBackgroundColor} 
+                                        $background={submit.inputBackgroundColor} 
                                         $input_border={inputBorder}
                                         $error_styled={errors.username}
                                         {...register("username", {
@@ -106,15 +106,15 @@ export default function Login () {
                                             setFocus("password");;
                                     }}/>
                                     <LoginStyles.PopupInput
-                                        type={passInputType}
+                                        type={passIcon.passInputType}
                                         autoComplete="on"
                                         placeholder="Password:" 
-                                        disabled={inputDisabled}
+                                        disabled={submit.isInputDisabled}
                                         onClick={() => {
-                                            setSubmitErrMsg("");
+                                            submit.setSubmitErrMsg("");
                                             clearErrors();
                                         }}
-                                        $background={inputBackgroundColor}
+                                        $background={submit.inputBackgroundColor}
                                         $input_border={inputBorder}
                                         $error_styled={errors.password}
                                         {...register("password", {
@@ -124,21 +124,21 @@ export default function Login () {
                                     />
                                     <PasswordVisIcon 
                                         width="1.9rem" 
-                                        src={passIcon} 
-                                        cursor={loginBtnActive ? "default" : "pointer"} 
-                                        onClick={loginBtnActive ? null : () =>{
-                                            passIconVisToggle(passInputType, setPassInputType, setPassIcon);
+                                        src={passIcon.passwordIcon} 
+                                        cursor={submit.isBtnActive ? "default" : "pointer"} 
+                                        onClick={submit.isBtnActive ? null : () =>{
+                                            passIcon.toggle();
                                         }}
                                     />
                                 </LoginStyles.PopupInputContainer>
                                 <p>{errors.password?.message}</p>
                                 <LoginStyles.PopupCtaBtn 
-                                    disabled={loginBtnActive ? true : false}
+                                    disabled={submit.isBtnActive ? true : false}
                                     $background={AppColor.LoginBtn}
                                 >Login</LoginStyles.PopupCtaBtn>
                                 {
-                                submitErrMsg !== "" ?
-                                <p>{submitErrMsg}</p> : null                          
+                                submit.submitErrMsg !== "" ?
+                                <p>{submit.submitErrMsg}</p> : null                          
                                 }
                             </LoginStyles.PopupForm>
                             <div className="forgotPassLink" onClick={() =>{
@@ -153,9 +153,9 @@ export default function Login () {
                             />
                             <LoginStyles.PopupCtaBtn 
                                 type="button" 
-                                disabled={joinBtnActive ? true : false}
+                                disabled={submit.isJoinBtnActive ? true : false}
                                 $background={AppColor.JoinBtn}
-                                onClick={()=>openRegBlockPopup(setJoinBtnActive)}
+                                onClick={()=>openRegBlockPopup(submit.setIsJoinBtnActive)}
                             >Register</LoginStyles.PopupCtaBtn>
                         </LoginStyles.LoginFlexDiv>
                     </div>
