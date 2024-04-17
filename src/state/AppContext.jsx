@@ -116,26 +116,14 @@ const AppProvider = ({children}) =>{
   };
 
   const filterGames = (input) => {
-    const searchedGamesList = gamesList.map((item)=>{
-        item.show = item.title.toLowerCase().includes(input.current.value.toLowerCase());
-        return item;
+    const filter = (list) => list.map((item)=>{
+      item.show = item.title.toLowerCase().includes(input.current.value.toLowerCase());
+      return item;
     });
-    setGamesList(searchedGamesList);
-    const searchedNewGamesList = newGamesList.map((item)=>{
-        item.show = item.title.toLowerCase().includes(input.current.value.toLowerCase());
-        return item;
-    });
-    setNewGamesList(searchedNewGamesList);
-    const searchedSlotsGamesList = slotsGamesList.map((item)=>{
-        item.show = item.title.toLowerCase().includes(input.current.value.toLowerCase());
-        return item;
-    });
-    setSlotsGamesList(searchedSlotsGamesList);
-    const searchedTableGamesList = tableGamesList.map((item)=>{
-        item.show = item.title.toLowerCase().includes(input.current.value.toLowerCase());
-        return item;
-    });
-    setTableGamesList(searchedTableGamesList);
+    setGamesList(filter(gamesList));
+    setNewGamesList(filter(newGamesList));
+    setSlotsGamesList(filter(slotsGamesList));
+    setTableGamesList(filter(tableGamesList));
 };
 
   const state = {
