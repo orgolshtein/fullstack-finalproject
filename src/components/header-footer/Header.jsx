@@ -13,11 +13,11 @@ export default function Header (){
     const [submitErrMsg, setSubmitErrMsg] = useState("");
     const [passInputType, setPassInputType] = useState("password");
     const [passwordIcon, setPassIcon] = useState(`${assetUrl}/icons/password_invisible_icon.svg`);
-    const [loginInputBorder, setLoginInputBorder] = useState(AppColor.InputBorder);
     const [loginBackgroundColor, setLoginBackgroundColor] = useState(AppColor.InputBackground);
     const [isLoginInputDisabled, setIsLoginInputDisabled] = useState(false);
     const [isLoginBtnActive, setIsLoginBtnActive] = useState(false);
     const [isJoinBtnActive, setIsJoinBtnActive] = useState(false);
+    const loginInputBorder = useInputBorderToggle(submitErrMsg);
     const { 
         setIsForgotPassDisplayed, 
         setIsGameOverlayDisplayed,
@@ -33,8 +33,6 @@ export default function Header (){
         clearErrors,
         formState: { errors }
       } = useForm();
-
-    useInputBorderToggle(submitErrMsg, setLoginInputBorder, AppColor.InputErrorBorder, AppColor.InputBorder);
 
     return (
     <HeaderDiv>

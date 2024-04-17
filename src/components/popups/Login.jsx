@@ -15,7 +15,7 @@ export default function Login () {
     const [passInputType, setPassInputType] = useState("password");
     const [passIcon, setPassIcon] = useState(`${assetUrl}/icons/password_invisible_icon.svg`);
     const [inputDisabled, setInputDisabled] = useState(false);
-    const [inputBorder, setInputBorder] = useState(AppColor.InputBorder);
+    const inputBorder = useInputBorderToggle(submitErrMsg);
     const [inputBackgroundColor, setInputBackgroundColor] = useState(AppColor.InputBackground);
     const [loginBtnActive, setLoginBtnActive] = useState(false);
     const [joinBtnActive, setJoinBtnActive] = useState(false);
@@ -40,7 +40,6 @@ export default function Login () {
     const loginRef = useRef();
 
     useImpDisableScrollHandler(isLoginDisplayed);
-    useInputBorderToggle(submitErrMsg, setInputBorder, AppColor.InputErrorBorder, AppColor.InputBorder);
 
     const closeLogin = () =>{
         setIsLoginDisplayed(false);

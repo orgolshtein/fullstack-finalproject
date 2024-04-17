@@ -1,9 +1,15 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
-export default function useInputBorderToggle(msg, bordersetter, bordererr, border) {
+import * as AppColor from "../styles/colors";
+
+export default function useInputBorderToggle(msg) {
+    const [inputBorder, setInputBorder] = useState(AppColor.InputBorder);
+    
     useEffect(()=>{
         msg.length > 0 ?
-        bordersetter(bordererr) :
-        bordersetter(border)
+        setInputBorder(AppColor.InputErrorBorder) :
+        setInputBorder(AppColor.InputBorder)
     }, [msg]);
+
+    return inputBorder;
 };

@@ -12,7 +12,7 @@ import useInputBorderToggle from "../../hooks/useInputBorderToggle";
 
 export default function ForgotPassword () {
     const [submitErrMsg, setSubmitErrMsg] = useState("");
-    const [inputBorder, setInputBorder] = useState(AppColor.InputBorder);
+    const inputBorder = useInputBorderToggle(submitErrMsg);
     const [inputBackgroundColor, setInputBackgroundColor] = useState(AppColor.InputBackground);
     const [isInputDisabled, setIsInputDisabled] = useState(false);
     const [isCtaActive, setIsCtaActive] = useState(false);
@@ -29,7 +29,6 @@ export default function ForgotPassword () {
     const forgotPassRef = useRef();
 
     useImpDisableScrollHandler(isForgotPassDisplayed);
-    useInputBorderToggle(submitErrMsg, setInputBorder, AppColor.InputErrorBorder, AppColor.InputBorder);
 
     const closeForgotPassword = () => {
         setIsForgotPassDisplayed(false);
